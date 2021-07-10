@@ -14,6 +14,29 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
     private var txCharacteristic: CBCharacteristic!
     private var rxCharacteristic: CBCharacteristic!
     
+    var xAcc: [String] = []
+    var yAcc: [String] = []
+    var zAcc: [String] = []
+    var counter: Int = 0
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        centralManager = CBCentralManager(delegate: self, queue: nil)
+    }
+    
+    @IBOutlet weak var data_label: UILabel!
+    
+    // parse str sent over ble and collect x y z accelerations and store them in respective array
+    func parseString(str: String) -> Void {
+        let stringArr: [String] = str.components(separatedBy: ",")
+        xAcc.append(stringArr[0])
+        xAcc.append(stringArr[9])
+        yAcc.append(stringArr[1])
+        yAcc.append(stringArr[10])
+        zAcc.append(stringArr[2])
+        zAcc.append(stringArr[11])
+    }
+    
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
         if central.state == CBManagerState.poweredOn {
             central.scanForPeripherals(withServices: nil, options: nil)
@@ -87,13 +110,6 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
             }
         }
     }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        centralManager = CBCentralManager(delegate: self, queue: nil)
-    }
-    
-    @IBOutlet weak var data_label: UILabel!
 }
 
 extension ViewController: CBPeripheralManagerDelegate {
@@ -128,8 +144,21 @@ extension ViewController: CBPeripheralManagerDelegate {
         let ASCIIstring = NSString(data: characteristicValue, encoding: String.Encoding.utf8.rawValue) else { return }
 
         characteristicASCIIValue = ASCIIstring
-
-        print("Value Received: \((characteristicASCIIValue as String))")
-        data_label.text = characteristicASCIIValue as String
+        
+        parseString(str: characteristicASCIIValue as String)
+        
+        print("X1: \(xAcc[counter]), X2: \(xAcc[counter+1]), Y1: \(yAcc[counter]), Y2: \(yAcc[counter+1]), Z1: \(zAcc[counter]), Z:2\(zAcc[counter+1])")
+        
+        if counter % 6 == 0 {data_label.text = "Parsing."}
+        else if counter % 6 == 2 {data_label.text = "Parsing.."}
+        else {data_label.text = "Parsing..."}
+        
+        counter += 2
+        
+        
+        if counter >= 280 {
+            // create graph. Note: Need to end peripheral scan, but i dont know how to do that.
+            
+        }
     }
 }
