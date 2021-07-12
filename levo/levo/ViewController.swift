@@ -18,6 +18,7 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
     var yAcc: [String] = []
     var zAcc: [String] = []
     var counter: Int = 0
+    var done_flag: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +33,8 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
         if stringArr[0] == "EOF" {
             // disconnect peripheral connection
             centralManager.cancelPeripheralConnection(myPeripheral)
+            data_label.text = "Complete."
+            done_flag = true
         } else {
             // append xyz acceleration values
             xAcc.append(stringArr[0])
@@ -63,6 +66,7 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
                 self.centralManager.connect(peripheral, options: nil)
                 data_label.text = "ESP32 is connected"
                 print("ESP32 is connected")
+                // This is for debugging purpose. Will remove after completion - Antonio
                 //print("Peripheral Discovered: \(peripheral)")
                 //print("Peripheral name: \(peripheral.name)")
                 //print ("Advertisement Data : \(advertisementData)")
@@ -152,19 +156,16 @@ extension ViewController: CBPeripheralManagerDelegate {
         characteristicASCIIValue = ASCIIstring
         
         parseString(str: characteristicASCIIValue as String)
+
+        if !done_flag {
+            print("X1: \(xAcc[counter]), X2: \(xAcc[counter+1]), Y1: \(yAcc[counter]), Y2: \(yAcc[counter+1]), Z1: \(zAcc[counter]), Z:2\(zAcc[counter+1])")
         
-        print("X1: \(xAcc[counter]), X2: \(xAcc[counter+1]), Y1: \(yAcc[counter]), Y2: \(yAcc[counter+1]), Z1: \(zAcc[counter]), Z:2\(zAcc[counter+1])")
+            data_label.text = "Parsing..."
         
-        if counter % 6 == 0 {data_label.text = "Parsing."}
-        else if counter % 6 == 2 {data_label.text = "Parsing.."}
-        else {data_label.text = "Parsing..."}
-        
-        counter += 2
-        
-        
-        if counter >= 280 {
-            // create graph. Note: Need to end peripheral scan, but i dont know how to do that.
-            
+             counter += 2
+        } else {
+            // Add graphing stuff here
         }
-    }
+        
+    }	
 }
