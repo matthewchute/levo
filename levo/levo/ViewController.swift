@@ -29,12 +29,18 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
     // parse str sent over ble and collect x y z accelerations and store them in respective array
     func parseString(str: String) -> Void {
         let stringArr: [String] = str.components(separatedBy: ",")
-        xAcc.append(stringArr[0])
-        xAcc.append(stringArr[9])
-        yAcc.append(stringArr[1])
-        yAcc.append(stringArr[10])
-        zAcc.append(stringArr[2])
-        zAcc.append(stringArr[11])
+        if stringArr[0] == "EOF" {
+            // disconnect peripheral connection
+            centralManager.cancelPeripheralConnection(myPeripheral)
+        } else {
+            // append xyz acceleration values
+            xAcc.append(stringArr[0])
+            xAcc.append(stringArr[9])
+            yAcc.append(stringArr[1])
+            yAcc.append(stringArr[10])
+            zAcc.append(stringArr[2])
+            zAcc.append(stringArr[11])
+        }
     }
     
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
@@ -57,9 +63,9 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
                 self.centralManager.connect(peripheral, options: nil)
                 data_label.text = "ESP32 is connected"
                 print("ESP32 is connected")
-                print("Peripheral Discovered: \(peripheral)")
-                print("Peripheral name: \(peripheral.name)")
-                print ("Advertisement Data : \(advertisementData)")
+                //print("Peripheral Discovered: \(peripheral)")
+                //print("Peripheral name: \(peripheral.name)")
+                //print ("Advertisement Data : \(advertisementData)")
             }
         } else {
             print("Error on Connecting ESP32")
