@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		F93A3A46269CD0A2006AD1E2 /* ActivityLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93A3A45269CD0A2006AD1E2 /* ActivityLog.swift */; };
 		F93A3A4A269CD278006AD1E2 /* ActivityGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93A3A49269CD278006AD1E2 /* ActivityGraph.swift */; };
+		F93A3A4E269CDE1A006AD1E2 /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93A3A4D269CDE1A006AD1E2 /* ResultsViewController.swift */; };
 		F9597BAB26816BCE009AE690 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9597BAA26816BCE009AE690 /* AppDelegate.swift */; };
 		F9597BAD26816BCE009AE690 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9597BAC26816BCE009AE690 /* SceneDelegate.swift */; };
 		F9597BAF26816BCE009AE690 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9597BAE26816BCE009AE690 /* ViewController.swift */; };
@@ -22,6 +23,7 @@
 /* Begin PBXFileReference section */
 		F93A3A45269CD0A2006AD1E2 /* ActivityLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityLog.swift; sourceTree = "<group>"; };
 		F93A3A49269CD278006AD1E2 /* ActivityGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityGraph.swift; sourceTree = "<group>"; };
+		F93A3A4D269CDE1A006AD1E2 /* ResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
 		F9597BA726816BCE009AE690 /* levo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = levo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9597BAA26816BCE009AE690 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F9597BAC26816BCE009AE690 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -68,6 +70,7 @@
 				F9597BAC26816BCE009AE690 /* SceneDelegate.swift */,
 				F9597BAE26816BCE009AE690 /* ViewController.swift */,
 				F9597BB026816BCE009AE690 /* Main.storyboard */,
+				F93A3A4D269CDE1A006AD1E2 /* ResultsViewController.swift */,
 				F9597BB326816BD0009AE690 /* Assets.xcassets */,
 				F9597BB526816BD0009AE690 /* LaunchScreen.storyboard */,
 				F9597BB826816BD0009AE690 /* Info.plist */,
@@ -156,6 +159,7 @@
 				F9597BAD26816BCE009AE690 /* SceneDelegate.swift in Sources */,
 				F9A0FC2426965F6500780591 /* CBUUIDs.swift in Sources */,
 				F93A3A46269CD0A2006AD1E2 /* ActivityLog.swift in Sources */,
+				F93A3A4E269CDE1A006AD1E2 /* ResultsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
