@@ -14,11 +14,12 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
     private var txCharacteristic: CBCharacteristic!
     private var rxCharacteristic: CBCharacteristic!
     
-    var xAcc: [String] = []
-    var yAcc: [String] = []
-    var zAcc: [String] = []
+    var xAcc: [Float] = []
+    var yAcc: [Float] = []
+    var zAcc: [Float] = []
     var counter: Int = 0
     var done_flag: Bool = false
+    var sample_period: Float = 0.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,18 +33,111 @@ class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDe
         let stringArr: [String] = str.components(separatedBy: ",")
         if stringArr[0] == "EOF" {
             // disconnect peripheral connection
+            sample_period = Float(stringArr[1]) ?? 0.0
             centralManager.cancelPeripheralConnection(myPeripheral)
             data_label.text = "Complete."
             done_flag = true
         } else {
             // append xyz acceleration values
-            xAcc.append(stringArr[0])
-            xAcc.append(stringArr[9])
-            yAcc.append(stringArr[1])
-            yAcc.append(stringArr[10])
-            zAcc.append(stringArr[2])
-            zAcc.append(stringArr[11])
+            xAcc.append(Float(stringArr[0]) ?? 0.0)
+            xAcc.append(Float(stringArr[9]) ?? 0.0)
+            yAcc.append(Float(stringArr[1]) ?? 0.0)
+            yAcc.append(Float(stringArr[10]) ?? 0.0)
+            zAcc.append(Float(stringArr[2]) ?? 0.0)
+            zAcc.append(Float(stringArr[11]) ?? 0.0)
         }
+    }
+    
+    func process_data(xData: [Float]) -> Void {
+        var velX = trap_rule(data: xData)
+    }
+    
+    // trapezoid rule
+    func trap_rule(data: [Float]) -> [Float] {
+        var integral: [Float] = []
+        var prev:Float = 0.0
+        var area:Float = 0.0
+        for i in 0...data.count-1 {
+            area = (sample_period/2)*(data[i]+data[i+1])
+            integral.append(area+prev)
+            prev += area
+        }
+        integral.append(integral[data.count-1])
+        return integral
+    }
+    
+    // matrix transpose
+    func tpose(_ a: [[Float]]) -> [[Float]] {
+        let rows_a = a.count
+        let cols_a = a[0].count
+        var atrans: [[Float]] = []
+        for ca in 0...cols_a {
+            var temp_row: [Float] = []
+            for ra in 0...rows_a {
+                temp_row.append(a[ra][ca])
+            }
+            atrans.append(temp_row)
+        }
+        return atrans
+    }
+    
+    // matrix multiply
+    func matx(_ a:[[Float]], _ b:[[Float]]) -> [[Float]] {
+        var c:[[Float]] = []
+        let rows_a = a.count
+        let cols_a = a[0].count
+        let cols_b = b[0].count
+        for ra in 0...rows_a {
+            var temp_row: [Float] = []
+            for cb in 0...cols_b {
+                var temp_ele:Float = 0.0
+                for ca in 0...cols_a {
+                    temp_ele += a[ra][ca]*b[ca][cb]
+                }
+                temp_row.append(temp_ele)
+            }
+            c.append(temp_row)
+        }
+        return c
+    }
+    
+    // inverse 2d matrix
+    func inv2(_ a:[[Float]]) -> [[Float]] {
+        var b:[[Float]] = []
+        b.append([a[1][1], -1*a[0][1]])
+        b.append([-1*a[1][0], a[0][0]])
+        let determinant:Float = 1/(a[0][0]*a[1][1]-a[1][0]*a[0][1])
+        b[0][0] = determinant*b[0][0]
+        b[0][1] = determinant*b[0][1]
+        b[1][0] = determinant*b[1][0]
+        b[1][1] = determinant*b[1][1]
+        return b
+    }
+    
+    // pad vector with 1's
+    func pad1(_ a:[Float]) -> [[Float]] {
+        var b:[Float] = []
+        var c:[Float] = []
+        var d:[[Float]] = []
+        for i in 0...a.count {
+            b.append(a[i])
+            c.append(1.0)
+        }
+        d.append(b)
+        d.append(c)
+        return d
+    }
+    
+    func polyfit(_ a:[[Float]], _ y:[[Float]]) -> [[Float]] {
+        var temp1: [[Float]] = matx(a, tpose(a))
+        temp1 = inv2(temp1)
+        let temp2 = matx(a, tpose(y))
+        let coeffs = matx(temp1, temp2)
+        return coeffs
+    }
+    
+    func noise_comp(metric: [Float], loop:Int) -> Void {
+
     }
     
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
@@ -164,6 +258,7 @@ extension ViewController: CBPeripheralManagerDelegate {
         
              counter += 2
         } else {
+            //process_data()
             // Add graphing stuff here
         }
         
