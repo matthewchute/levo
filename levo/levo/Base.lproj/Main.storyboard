@@ -17,13 +17,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3vO-Ht-gH0">
-                                <rect key="frame" x="186" y="661" width="42" height="21"/>
+                                <rect key="frame" x="186" y="711" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HEN-8C-nQj">
-                                <rect key="frame" x="184" y="732" width="46" height="30"/>
+                                <rect key="frame" x="184" y="782" width="46" height="30"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
                                     <action selector="didtap" destination="BYZ-38-t0r" eventType="touchUpInside" id="hPf-yx-Ac6"/>
@@ -35,7 +35,7 @@
                         <constraints>
                             <constraint firstItem="HEN-8C-nQj" firstAttribute="top" secondItem="3vO-Ht-gH0" secondAttribute="bottom" constant="50" id="Mfq-9h-f72"/>
                             <constraint firstItem="3vO-Ht-gH0" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="cYp-bN-3ft"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="HEN-8C-nQj" secondAttribute="bottom" constant="100" id="u8J-el-TDC"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="HEN-8C-nQj" secondAttribute="bottom" constant="50" id="u8J-el-TDC"/>
                             <constraint firstItem="HEN-8C-nQj" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="vfa-5U-Ntb"/>
                         </constraints>
                     </view>
@@ -58,13 +58,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1mk-w4-CjM">
-                                <rect key="frame" x="186" y="661" width="42" height="21"/>
+                                <rect key="frame" x="186" y="711" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xq6-6O-Gwz">
-                                <rect key="frame" x="184" y="732" width="46" height="30"/>
+                                <rect key="frame" x="184" y="782" width="46" height="30"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
                                     <action selector="didTap:" destination="xin-x5-35g" eventType="touchUpInside" id="Zm4-hD-I6w"/>
@@ -74,7 +74,7 @@
                         <viewLayoutGuide key="safeArea" id="oOS-Xs-Q1g"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="oOS-Xs-Q1g" firstAttribute="bottom" secondItem="xq6-6O-Gwz" secondAttribute="bottom" constant="100" id="Dvw-mb-Aa4"/>
+                            <constraint firstItem="oOS-Xs-Q1g" firstAttribute="bottom" secondItem="xq6-6O-Gwz" secondAttribute="bottom" constant="50" id="Dvw-mb-Aa4"/>
                             <constraint firstItem="1mk-w4-CjM" firstAttribute="centerX" secondItem="CCW-6Y-2aX" secondAttribute="centerX" id="N4i-Or-zfS"/>
                             <constraint firstItem="xq6-6O-Gwz" firstAttribute="top" secondItem="1mk-w4-CjM" secondAttribute="bottom" constant="50" id="cYY-uK-nRw"/>
                             <constraint firstItem="xq6-6O-Gwz" firstAttribute="centerX" secondItem="CCW-6Y-2aX" secondAttribute="centerX" id="rfE-yy-g1r"/>

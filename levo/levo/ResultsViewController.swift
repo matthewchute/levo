@@ -18,6 +18,7 @@ class ResultsViewController: UIViewController, CBCentralManagerDelegate, CBPerip
     var xAcc: [Float] = []
     var yAcc: [Float] = []
     var zAcc: [Float] = []
+    var packetNum: [Int] = []
     var counter: Int = 0
     var done_flag: Bool = false
     var sample_period: Float = 0.0
@@ -53,6 +54,7 @@ class ResultsViewController: UIViewController, CBCentralManagerDelegate, CBPerip
             yAcc.append(Float(stringArr[10]) ?? 0.0)
             zAcc.append(Float(stringArr[2]) ?? 0.0)
             zAcc.append(Float(stringArr[11]) ?? 0.0)
+            packetNum.append(Int(stringArr[18]) ?? 9999)
         }
     }
     
@@ -260,17 +262,13 @@ extension ResultsViewController: CBPeripheralManagerDelegate {
         parseString(str: characteristicASCIIValue as String)
 
         if !done_flag {
-            print("X1: \(xAcc[counter]), X2: \(xAcc[counter+1]), Y1: \(yAcc[counter]), Y2: \(yAcc[counter+1]), Z1: \(zAcc[counter]), Z:2\(zAcc[counter+1])")
+            print("X1: \(xAcc[counter]), X2: \(xAcc[counter+1]), Packet: \(packetNum[counter/2])")
         
             data_label.text = "Parsing..."
         
              counter += 2
         } else {
             centralManager.cancelPeripheralConnection(myPeripheral)
-            //NotificationCenter.default.post(name: Notification.Name("array"), object: xAcc)
-            //dismiss(animated: true, completion: nil)
-            //process_data()
-            // Add graphing stuff here
         }
         
     }
