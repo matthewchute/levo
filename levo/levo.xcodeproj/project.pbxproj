@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		944510D07C5614FEC5EFCC05 /* Pods_levo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D8601A4098EAFBF922D17D9 /* Pods_levo.framework */; };
 		F93A3A46269CD0A2006AD1E2 /* ActivityLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93A3A45269CD0A2006AD1E2 /* ActivityLog.swift */; };
 		F93A3A4A269CD278006AD1E2 /* ActivityGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93A3A49269CD278006AD1E2 /* ActivityGraph.swift */; };
 		F93A3A4E269CDE1A006AD1E2 /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93A3A4D269CDE1A006AD1E2 /* ResultsViewController.swift */; };
@@ -21,6 +22,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3FEA19FE99CA1CCD0F93EAF5 /* Pods-levo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-levo.debug.xcconfig"; path = "Target Support Files/Pods-levo/Pods-levo.debug.xcconfig"; sourceTree = "<group>"; };
+		7A29897FA0434D9B7B566779 /* Pods-levo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-levo.release.xcconfig"; path = "Target Support Files/Pods-levo/Pods-levo.release.xcconfig"; sourceTree = "<group>"; };
+		8D8601A4098EAFBF922D17D9 /* Pods_levo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_levo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F93A3A45269CD0A2006AD1E2 /* ActivityLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityLog.swift; sourceTree = "<group>"; };
 		F93A3A49269CD278006AD1E2 /* ActivityGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityGraph.swift; sourceTree = "<group>"; };
 		F93A3A4D269CDE1A006AD1E2 /* ResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
@@ -41,17 +45,38 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				944510D07C5614FEC5EFCC05 /* Pods_levo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A5076D4C6CF192DE46D2FC51 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3FEA19FE99CA1CCD0F93EAF5 /* Pods-levo.debug.xcconfig */,
+				7A29897FA0434D9B7B566779 /* Pods-levo.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		F861A7FBB65830B661335200 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8D8601A4098EAFBF922D17D9 /* Pods_levo.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		F9597B9E26816BCE009AE690 = {
 			isa = PBXGroup;
 			children = (
 				F9597BA926816BCE009AE690 /* levo */,
 				F9597BA826816BCE009AE690 /* Products */,
+				A5076D4C6CF192DE46D2FC51 /* Pods */,
+				F861A7FBB65830B661335200 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -89,9 +114,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F9597BBB26816BD0009AE690 /* Build configuration list for PBXNativeTarget "levo" */;
 			buildPhases = (
+				0C1F3A9C39B0EBFA024F8A25 /* [CP] Check Pods Manifest.lock */,
 				F9597BA326816BCE009AE690 /* Sources */,
 				F9597BA426816BCE009AE690 /* Frameworks */,
 				F9597BA526816BCE009AE690 /* Resources */,
+				386351B4D4F8E3383DC14B17 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -146,6 +173,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0C1F3A9C39B0EBFA024F8A25 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-levo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		386351B4D4F8E3383DC14B17 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-levo/Pods-levo-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-levo/Pods-levo-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-levo/Pods-levo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		F9597BA326816BCE009AE690 /* Sources */ = {
@@ -303,6 +372,7 @@
 		};
 		F9597BBC26816BD0009AE690 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3FEA19FE99CA1CCD0F93EAF5 /* Pods-levo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -322,6 +392,7 @@
 		};
 		F9597BBD26816BD0009AE690 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7A29897FA0434D9B7B566779 /* Pods-levo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
