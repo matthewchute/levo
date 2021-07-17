@@ -187,6 +187,14 @@ class ViewController: UIViewController, ChartViewDelegate {
         }
         return mCorrected
     }
+    
+    func matSin(_ agl: [[Float]], _ c: Float) -> [Float] {
+        var vals: [Float] = []
+        for i in 0...agl[0].count {
+            vals.append(sin(agl[0][i] + c))
+        }
+        return vals
+    }
 
     lazy var lineChartView: LineChartView = {
         let chartView = LineChartView()
