@@ -13,8 +13,10 @@ class ViewController: UIViewController, ChartViewDelegate {
     var xAcc: [Float] = [3.0]
     var yAcc: [Float] = [3.0]
     var zAcc: [Float] = [3.0]
-    
-    var sample_period: Float = 0.0
+    var agl2gndX: [Float] = [3.0]
+    var agl2gndY: [Float] = [3.0]
+    var agl2gndZ: [Float] = [3.0]
+    var sample_period: Float = 3.0
     
     @IBOutlet weak var btn: UIButton!
     @IBOutlet weak var xBtn: UIButton!
@@ -23,15 +25,23 @@ class ViewController: UIViewController, ChartViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // nc observers
         NotificationCenter.default.addObserver(self, selector: #selector(catchX(_:)), name: Notification.Name("xdata"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(catchY(_:)), name: Notification.Name("ydata"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(catchZ(_:)), name: Notification.Name("zdata"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(catchAglX(_:)), name: Notification.Name("xagl"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(catchAglY(_:)), name: Notification.Name("yagl"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(catchAglZ(_:)), name: Notification.Name("zagl"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(catchSP(_:)), name: Notification.Name("sample"), object: nil)
+        
+        // buttons
         btn.setTitle("Start", for: .normal)
         xBtn.setTitle("X Data", for: .normal)
         yBtn.setTitle("Y Data", for: .normal)
         zBtn.setTitle("Z Data", for: .normal)
         
+        // charts
         view.addSubview(lineChartView)
         lineChartView.centerInSuperview()
         lineChartView.width(to: view)
@@ -41,8 +51,7 @@ class ViewController: UIViewController, ChartViewDelegate {
     @objc func catchX(_ noti: Notification) {
         let arr = noti.object as! [Float]?
         xAcc = arr ?? [2.0]
-        print("catch x!")
-        
+        print("******* Processing Data *******")
         // process the data
         // process_data()
     }
@@ -50,19 +59,31 @@ class ViewController: UIViewController, ChartViewDelegate {
     @objc func catchY(_ noti: Notification) {
         let arr = noti.object as! [Float]?
         yAcc = arr ?? [2.0]
-        print("catch y!")
     }
     
     @objc func catchZ(_ noti: Notification) {
         let arr = noti.object as! [Float]?
         zAcc = arr ?? [2.0]
-        print("catch z!")
+    }
+    
+    @objc func catchAglX(_ noti: Notification) {
+        let arr = noti.object as! [Float]?
+        agl2gndX = arr ?? [2.0]
+    }
+    
+    @objc func catchAglY(_ noti: Notification) {
+        let arr = noti.object as! [Float]?
+        agl2gndY = arr ?? [2.0]
+    }
+    
+    @objc func catchAglZ(_ noti: Notification) {
+        let arr = noti.object as! [Float]?
+        agl2gndZ = arr ?? [2.0]
     }
     
     @objc func catchSP(_ noti: Notification) {
         let tsp = noti.object as! Float?
         sample_period = tsp ?? 2.0
-        print("catch sp!")
     }
     
     @IBAction func didtap() {

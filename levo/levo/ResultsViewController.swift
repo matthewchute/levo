@@ -18,6 +18,9 @@ class ResultsViewController: UIViewController, CBCentralManagerDelegate, CBPerip
     var xAcc: [Float] = []
     var yAcc: [Float] = []
     var zAcc: [Float] = []
+    var agl2gndX: [Float] = []
+    var agl2gndY: [Float] = []
+    var agl2gndZ: [Float] = []
     var packetNum: [Int] = []
     var counter: Int = 0
     var done_flag: Bool = false
@@ -30,10 +33,16 @@ class ResultsViewController: UIViewController, CBCentralManagerDelegate, CBPerip
         let xdata: [Float] = xAcc
         let ydata: [Float] = yAcc
         let zdata: [Float] = zAcc
+        let xagl: [Float] = agl2gndX
+        let yagl: [Float] = agl2gndY
+        let zagl: [Float] = agl2gndZ
         let sp: Float = sample_period
         NotificationCenter.default.post(name: Notification.Name("xdata"), object: xdata)
         NotificationCenter.default.post(name: Notification.Name("ydata"), object: ydata)
         NotificationCenter.default.post(name: Notification.Name("zdata"), object: zdata)
+        NotificationCenter.default.post(name: Notification.Name("xagl"), object: xagl)
+        NotificationCenter.default.post(name: Notification.Name("yagl"), object: yagl)
+        NotificationCenter.default.post(name: Notification.Name("zagl"), object: zagl)
         NotificationCenter.default.post(name: Notification.Name("sample"), object: sp)
         dismiss(animated: true, completion: nil)
     }
@@ -48,7 +57,6 @@ class ResultsViewController: UIViewController, CBCentralManagerDelegate, CBPerip
     func parseString(str: String) -> Void {
         let stringArr: [String] = str.components(separatedBy: ",")
         if stringArr[0] == "EOF" {
-            // disconnect peripheral connection
             sample_period = Float(stringArr[1]) ?? 0.0
             data_label.text = "Complete."
             done_flag = true
@@ -60,7 +68,12 @@ class ResultsViewController: UIViewController, CBCentralManagerDelegate, CBPerip
             yAcc.append(Float(stringArr[10]) ?? 0.0)
             zAcc.append(Float(stringArr[2]) ?? 0.0)
             zAcc.append(Float(stringArr[11]) ?? 0.0)
-            packetNum.append(Int(stringArr[18]) ?? 9999)
+            agl2gndX.append(Float(stringArr[6]) ?? 0.0)
+            agl2gndX.append(Float(stringArr[15]) ?? 0.0)
+            agl2gndY.append(Float(stringArr[7]) ?? 0.0)
+            agl2gndY.append(Float(stringArr[16]) ?? 0.0)
+            agl2gndZ.append(Float(stringArr[8]) ?? 0.0)
+            agl2gndZ.append(Float(stringArr[17]) ?? 0.0)
         }
     }
     
@@ -180,7 +193,7 @@ extension ResultsViewController: CBPeripheralManagerDelegate {
         
             data_label.text = "Parsing..."
         
-             counter += 2
+            counter += 2
         } else {
             centralManager.cancelPeripheralConnection(myPeripheral)
         }
