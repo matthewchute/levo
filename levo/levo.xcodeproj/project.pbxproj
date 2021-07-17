@@ -3,11 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		944510D07C5614FEC5EFCC05 /* Pods_levo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D8601A4098EAFBF922D17D9 /* Pods_levo.framework */; };
+		6341B4AC269FD2030061B23B /* Pods_levo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D8601A4098EAFBF922D17D9 /* Pods_levo.framework */; };
 		F93A3A46269CD0A2006AD1E2 /* ActivityLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93A3A45269CD0A2006AD1E2 /* ActivityLog.swift */; };
 		F93A3A4A269CD278006AD1E2 /* ActivityGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93A3A49269CD278006AD1E2 /* ActivityGraph.swift */; };
 		F93A3A4E269CDE1A006AD1E2 /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93A3A4D269CDE1A006AD1E2 /* ResultsViewController.swift */; };
@@ -23,6 +23,7 @@
 
 /* Begin PBXFileReference section */
 		3FEA19FE99CA1CCD0F93EAF5 /* Pods-levo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-levo.debug.xcconfig"; path = "Target Support Files/Pods-levo/Pods-levo.debug.xcconfig"; sourceTree = "<group>"; };
+		6341B4AF269FD2380061B23B /* Charts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Charts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A29897FA0434D9B7B566779 /* Pods-levo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-levo.release.xcconfig"; path = "Target Support Files/Pods-levo/Pods-levo.release.xcconfig"; sourceTree = "<group>"; };
 		8D8601A4098EAFBF922D17D9 /* Pods_levo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_levo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F93A3A45269CD0A2006AD1E2 /* ActivityLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityLog.swift; sourceTree = "<group>"; };
@@ -45,7 +46,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				944510D07C5614FEC5EFCC05 /* Pods_levo.framework in Frameworks */,
+				6341B4AC269FD2030061B23B /* Pods_levo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,13 +59,13 @@
 				3FEA19FE99CA1CCD0F93EAF5 /* Pods-levo.debug.xcconfig */,
 				7A29897FA0434D9B7B566779 /* Pods-levo.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
 		F861A7FBB65830B661335200 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6341B4AF269FD2380061B23B /* Charts.framework */,
 				8D8601A4098EAFBF922D17D9 /* Pods_levo.framework */,
 			);
 			name = Frameworks;
@@ -377,13 +378,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4725PG772Y;
+				DEVELOPMENT_TEAM = 8NPGZ6A9SD;
 				INFOPLIST_FILE = levo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.antoniok.levo.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.matthewchute.levo.1.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -397,13 +398,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4725PG772Y;
+				DEVELOPMENT_TEAM = 8NPGZ6A9SD;
 				INFOPLIST_FILE = levo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.antoniok.levo.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.matthewchute.levo.1.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

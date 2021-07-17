@@ -27,8 +27,12 @@ class ResultsViewController: UIViewController, CBCentralManagerDelegate, CBPerip
     @IBOutlet weak var back_btn: UIButton!
     
     @IBAction func didTap(_ sender: Any) {
-        let send: [Float] = xAcc
-        NotificationCenter.default.post(name: Notification.Name("array"), object: send)
+        let xdata: [Float] = xAcc
+        let ydata: [Float] = yAcc
+        let zdata: [Float] = zAcc
+        NotificationCenter.default.post(name: Notification.Name("xdata"), object: xdata)
+        NotificationCenter.default.post(name: Notification.Name("ydata"), object: ydata)
+        NotificationCenter.default.post(name: Notification.Name("zdata"), object: zdata)
         dismiss(animated: true, completion: nil)
     }
     
