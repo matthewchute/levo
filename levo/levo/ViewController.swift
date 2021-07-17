@@ -216,6 +216,16 @@ class ViewController: UIViewController, ChartViewDelegate {
         }
         return vals
     }
+    
+    func orientation_correction(_ spatialX: [[Float]], _ spatialY: [[Float]], _ aglX: [[Float]], _ aglY: [[Float]]) -> [Float] {
+        let sinX: [Float] = matSin(aglX, 22/14)
+        let sinY: [Float] = matSin(aglY, 22/14)
+        var perp2gnd: [Float] = []
+        for i in 0...spatialX[0].count-1 {
+            perp2gnd.append(spatialX[0][i]*sinX[i]+spatialY[0][i]*sinY[i])
+        }
+        return perp2gnd
+    }
 
     lazy var lineChartView: LineChartView = {
         let chartView = LineChartView()
