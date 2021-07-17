@@ -30,9 +30,11 @@ class ResultsViewController: UIViewController, CBCentralManagerDelegate, CBPerip
         let xdata: [Float] = xAcc
         let ydata: [Float] = yAcc
         let zdata: [Float] = zAcc
+        let sp: Float = sample_period
         NotificationCenter.default.post(name: Notification.Name("xdata"), object: xdata)
         NotificationCenter.default.post(name: Notification.Name("ydata"), object: ydata)
         NotificationCenter.default.post(name: Notification.Name("zdata"), object: zdata)
+        NotificationCenter.default.post(name: Notification.Name("sample"), object: sp)
         dismiss(animated: true, completion: nil)
     }
     
@@ -60,98 +62,6 @@ class ResultsViewController: UIViewController, CBCentralManagerDelegate, CBPerip
             zAcc.append(Float(stringArr[11]) ?? 0.0)
             packetNum.append(Int(stringArr[18]) ?? 9999)
         }
-    }
-    
-//    func process_data(xData: [Float]) -> Void {
-//        var velX = trap_rule(data: xData)
-//    }
-    
-    // trapezoid rule
-    func trap_rule(data: [Float]) -> [Float] {
-        var integral: [Float] = []
-        var prev:Float = 0.0
-        var area:Float = 0.0
-        for i in 0...data.count-1 {
-            area = (sample_period/2)*(data[i]+data[i+1])
-            integral.append(area+prev)
-            prev += area
-        }
-        integral.append(integral[data.count-1])
-        return integral
-    }
-    
-    // matrix transpose
-    func tpose(_ a: [[Float]]) -> [[Float]] {
-        let rows_a = a.count
-        let cols_a = a[0].count
-        var atrans: [[Float]] = []
-        for ca in 0...cols_a {
-            var temp_row: [Float] = []
-            for ra in 0...rows_a {
-                temp_row.append(a[ra][ca])
-            }
-            atrans.append(temp_row)
-        }
-        return atrans
-    }
-    
-    // matrix multiply
-    func matx(_ a:[[Float]], _ b:[[Float]]) -> [[Float]] {
-        var c:[[Float]] = []
-        let rows_a = a.count
-        let cols_a = a[0].count
-        let cols_b = b[0].count
-        for ra in 0...rows_a {
-            var temp_row: [Float] = []
-            for cb in 0...cols_b {
-                var temp_ele:Float = 0.0
-                for ca in 0...cols_a {
-                    temp_ele += a[ra][ca]*b[ca][cb]
-                }
-                temp_row.append(temp_ele)
-            }
-            c.append(temp_row)
-        }
-        return c
-    }
-    
-    // inverse 2d matrix
-    func inv2(_ a:[[Float]]) -> [[Float]] {
-        var b:[[Float]] = []
-        b.append([a[1][1], -1*a[0][1]])
-        b.append([-1*a[1][0], a[0][0]])
-        let determinant:Float = 1/(a[0][0]*a[1][1]-a[1][0]*a[0][1])
-        b[0][0] = determinant*b[0][0]
-        b[0][1] = determinant*b[0][1]
-        b[1][0] = determinant*b[1][0]
-        b[1][1] = determinant*b[1][1]
-        return b
-    }
-    
-    // pad vector with 1's
-    func pad1(_ a:[Float]) -> [[Float]] {
-        var b:[Float] = []
-        var c:[Float] = []
-        var d:[[Float]] = []
-        for i in 0...a.count {
-            b.append(a[i])
-            c.append(1.0)
-        }
-        d.append(b)
-        d.append(c)
-        return d
-    }
-    
-    func polyfit(_ a:[[Float]], _ y:[[Float]]) -> [[Float]] {
-        var temp1: [[Float]] = matx(a, tpose(a))
-        temp1 = inv2(temp1)
-        let temp2 = matx(a, tpose(y))
-        let coeffs = matx(temp1, temp2)
-        return coeffs
-    }
-    
-    func noise_comp(metric: [Float], loop:Int) -> Void {
-
     }
     
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
@@ -249,8 +159,8 @@ extension ResultsViewController: CBPeripheralManagerDelegate {
             print("Peripheral Is Powered Off.")
         @unknown default:
             print("Error")
+        }
     }
-  }
     
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
 
@@ -274,6 +184,5 @@ extension ResultsViewController: CBPeripheralManagerDelegate {
         } else {
             centralManager.cancelPeripheralConnection(myPeripheral)
         }
-        
     }
 }
