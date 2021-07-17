@@ -42,6 +42,9 @@ class ViewController: UIViewController, ChartViewDelegate {
         let arr = noti.object as! [Float]?
         xAcc = arr ?? [2.0]
         print("catch x!")
+        
+        // process the data
+        // process_data()
     }
     
     @objc func catchY(_ noti: Notification) {
@@ -172,8 +175,17 @@ class ViewController: UIViewController, ChartViewDelegate {
         return coeffs
     }
     
-    func noise_comp(metric: [Float], loop:Int) -> Void {
-
+    func noise_comp(metric: [Float], loop:Int) -> [Float] {
+        var s: [Float] = []
+        for i in 1...loop {
+            s.append(Float(i))
+        }
+        let mCoeff = polyfit(pad1(s), [metric])
+        var mCorrected: [Float] = []
+        for i in 1...loop {
+            mCorrected.append(metric[i] - s[i]*mCoeff[0][0] - mCoeff[1][0])
+        }
+        return mCorrected
     }
 
     lazy var lineChartView: LineChartView = {
