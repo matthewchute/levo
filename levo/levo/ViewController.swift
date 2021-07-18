@@ -297,6 +297,21 @@ class ViewController: UIViewController, ChartViewDelegate {
         }
         return (metCorrected,repsDmet_dt)
     }
+    
+    func set_range(_ acc: [Float]) -> (Int, Int) {
+        var idx_start:Int  = 1000000
+        var idx_end: Int = 0
+        for i in 0...acc.count-1 {
+            if acc[i] > 0.3 || acc[i] < -0.3 {
+                if i < idx_start {
+                    idx_start = i
+                } else if i > idx_end {
+                    idx_end = i
+                }
+            }
+        }
+        return (idx_start, idx_end)
+    }
 
     lazy var lineChartView: LineChartView = {
         let chartView = LineChartView()
