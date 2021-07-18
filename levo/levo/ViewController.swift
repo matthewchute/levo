@@ -326,6 +326,68 @@ class ViewController: UIViewController, ChartViewDelegate {
         
         return (maxVel, meanVel)
     }
+    
+    func rep_count(_ vel: [Float], _ acc: [Float]) -> (Int, [Float], [Float], [Float], [Float], [[Int]]) {
+        var rep: Int = 0
+        var repetitions: Int = 0
+        var t1_flag: Int = 0
+        var t2_flag: Int = 0
+        var t1_idx: Int = 0
+        var t2_idx: Int = 0
+        var veloAvgs: [Float] = []
+        var veloPeaks: [Float] = []
+        var accAvgs: [Float] = []
+        var accPeaks: [Float] = []
+        var repRange: [[Int]] = []
+        
+        for i in 0...vel.count-1 {
+            var lwr_sign: Int = 1 - Int(truncating: NSNumber(value: vel[i] <= 0))
+            let upr_sign: Int = 1 - Int(truncating: NSNumber(value: vel[i+1] <= 0))
+            if i == 0 {
+                let ins0: Int = 1 - Int(truncating: NSNumber(value: vel[i] <= 0))
+                let ins10: Int = 1 - Int(truncating: NSNumber(value: vel[i+1] <= 0))
+                let temp: [Int] = [ins0, ins10]
+                if temp.min() == 1 {
+                    lwr_sign = 0
+                } else if temp.max() == 0 {
+                    lwr_sign = 1
+                }
+            }
+            
+            if lwr_sign != upr_sign {
+                rep += 1
+                if t1_flag == 0 && upr_sign > 0 {
+                    t1_idx = i + 1
+                    t1_flag = 1
+                } else if t1_flag == 1 {
+                    t2_idx = i
+                    t2_flag = 1
+                }
+            }
+            
+            if t1_flag == 1 && t2_flag == 1 && (t2_idx - t1_idx) > 75 {
+                var avgTempVel: Float = 0.0
+                var peakTempVel: Float = 0.0
+                var avgTempAcc: Float = 0.0
+                var peakTempAcc: Float = 0.0
+                (avgTempVel, peakTempVel) = repVelo(t1_idx, t2_idx, vel)
+                (avgTempAcc, peakTempAcc) = repVelo(t1_idx, t2_idx, acc)
+                veloAvgs.append(avgTempVel)
+                accAvgs.append(avgTempAcc)
+                veloPeaks.append(peakTempVel)
+                accPeaks.append(peakTempAcc)
+                t1_flag = 0
+                t2_flag = 0
+                repRange.append([t1_idx, t2_idx])
+                repetitions += 1
+            } else if t1_flag == 1 && t2_flag == 1 {
+                t1_flag = 0
+                t2_flag = 0
+            }
+        }
+        
+        return (repetitions, veloAvgs, veloPeaks, accAvgs, accPeaks, repRange)
+    }
 
     lazy var lineChartView: LineChartView = {
         let chartView = LineChartView()
