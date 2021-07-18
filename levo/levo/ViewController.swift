@@ -226,6 +226,77 @@ class ViewController: UIViewController, ChartViewDelegate {
         }
         return perp2gnd
     }
+    
+    func in_rep_slope(_ lwr: Int, _ upr: Int, _ met: [Float], _ dmet_dt: [Float]) -> ([Float], [Float]) {
+        if upr >= met.count || lwr >= met.count {
+            return (met, dmet_dt)
+        }
+        
+        var repsMet: [Float] = []
+        var repsDmet_dt: [Float] = []
+        var first_move: Int = 1
+        var shift: Float = 0.0
+        var prev: Float = met[lwr]
+        var discon_const: Float = 0.0
+        
+        repsMet.append(met[lwr])
+        repsDmet_dt.append(dmet_dt[lwr])
+        
+        for i in 1...(upr-lwr-1) {
+            if 0.4 > abs(met[i+lwr] - met[i+lwr-1]) {
+                repsMet.append(met[i+lwr]+discon_const)
+                repsDmet_dt.append(met[i+lwr]+discon_const)
+            } else {
+                discon_const = met[i+lwr] - met[i+lwr-1]
+                repsMet.append(met[i+lwr]+discon_const)
+                repsDmet_dt.append(dmet_dt[i+lwr]+discon_const)
+            }
+        }
+        
+        let reps_met: [[Float]] = [repsMet]
+        var n: [Float] = []
+        var repCoeff: [[Float]] = []
+        
+        for i in 0...reps_met[0].count {
+            n.append(Float(i))
+        }
+        
+        if reps_met.count != 0 {
+            repCoeff = polyfit(pad1(n), reps_met)
+        } else {
+            return (repsMet, repsDmet_dt)
+        }
+        
+        var metCorrected: [Float] = []
+        
+        for i in 0...reps_met[0].count {
+            metCorrected.append(reps_met[0][i] - n[i]*repCoeff[0][0] - repCoeff[1][0])
+        }
+        
+        prev = 0.0
+        
+        for i in 0...metCorrected.count {
+            if abs(prev) < 0.2 && abs(dmet_dt[i+lwr-1]) < 0.2 && abs(dmet_dt[i+lwr+1]) < 0.2 && abs(dmet_dt[i+lwr+2]) < 0.2 && abs(dmet_dt[i+lwr+3]) < 0.2 && abs(dmet_dt[i+lwr+10]) < 0.2 {
+                metCorrected[i] = 0.0
+                first_move = 1
+                prev = metCorrected[i]
+            } else if abs(dmet_dt[i+lwr-1]) < 0.2 && abs(dmet_dt[i+lwr+1]) < 0.2 && abs(dmet_dt[i+lwr+2]) < 0.2 && abs(dmet_dt[i+lwr+3]) < 0.2 && abs(dmet_dt[i+lwr+10]) < 0.2 {
+                metCorrected[i] = prev
+                first_move = 1
+            } else {
+                if first_move == 1 {
+                    shift = prev - metCorrected[i]
+                    first_move = 0
+                    metCorrected[i] = metCorrected[i] + shift
+                    prev = metCorrected[i]
+                } else {
+                    metCorrected[i] = metCorrected[i] + shift
+                    prev = metCorrected[i]
+                }
+            }
+        }
+        return (metCorrected,repsDmet_dt)
+    }
 
     lazy var lineChartView: LineChartView = {
         let chartView = LineChartView()
