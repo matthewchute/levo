@@ -144,7 +144,6 @@ class ViewController: UIViewController, ChartViewDelegate {
         var integral: [Float] = []
         var prev:Float = 0.0
         var area:Float = 0.0
-        print("\(data.count)")
         for i in 0...data.count-2 {
             area = (sample_period/2000)*(data[i]+data[i+1]) // divide by 2000 because in seconds, not milliseconds
             integral.append(area+prev)
@@ -401,7 +400,7 @@ class ViewController: UIViewController, ChartViewDelegate {
                 }
             }
             
-            if t1_flag == 1 && t2_flag == 1 && (t2_idx - t1_idx) > 75 {
+            if t1_flag == 1 && t2_flag == 1 && (t2_idx - t1_idx) > 15 {
                 var avgTempVel: Float = 0.0
                 var peakTempVel: Float = 0.0
                 var avgTempAcc: Float = 0.0
@@ -421,7 +420,11 @@ class ViewController: UIViewController, ChartViewDelegate {
                 t2_flag = 0
             }
         }
-        
+        print("Repetitions: \(repetitions)")
+        print("Average Velocity: \(veloAvgs)")
+        print("Peak Velocity: \(veloPeaks)")
+        print("Average Acceleration: \(accAvgs)")
+        print("Peak Acceleration: \(accPeaks)")
         return (repetitions, veloAvgs, veloPeaks, accAvgs, accPeaks, repRange)
     }
 
