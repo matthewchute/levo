@@ -32,6 +32,7 @@ class ViewController: UIViewController, ChartViewDelegate {
     @IBOutlet weak var xBtn: UIButton!
     @IBOutlet weak var yBtn: UIButton!
     @IBOutlet weak var zBtn: UIButton!
+    @IBOutlet weak var dataLbl: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,6 +51,7 @@ class ViewController: UIViewController, ChartViewDelegate {
         xBtn.setTitle("Upward Vel", for: .normal)
         yBtn.setTitle("Y Data", for: .normal)
         zBtn.setTitle("Z Data", for: .normal)
+        dataLbl.text = "Data to be displayed here"
         
         // charts
         view.addSubview(lineChartView)
@@ -405,8 +407,8 @@ class ViewController: UIViewController, ChartViewDelegate {
                 var peakTempVel: Float = 0.0
                 var avgTempAcc: Float = 0.0
                 var peakTempAcc: Float = 0.0
-                (avgTempVel, peakTempVel) = repVelo(t1_idx, t2_idx, vel)
-                (avgTempAcc, peakTempAcc) = repVelo(t1_idx, t2_idx, acc)
+                (peakTempVel, avgTempVel) = repVelo(t1_idx, t2_idx, vel)
+                (peakTempAcc, avgTempAcc) = repVelo(t1_idx, t2_idx, acc)
                 veloAvgs.append(avgTempVel)
                 accAvgs.append(avgTempAcc)
                 veloPeaks.append(peakTempVel)
@@ -420,6 +422,7 @@ class ViewController: UIViewController, ChartViewDelegate {
                 t2_flag = 0
             }
         }
+        dataLbl.text = "Reps: \(repetitions) \n aV: \(veloAvgs) \n pV: \(veloPeaks)"
         print("Repetitions: \(repetitions)")
         print("Average Velocity: \(veloAvgs)")
         print("Peak Velocity: \(veloPeaks)")
