@@ -16,6 +16,7 @@ class ViewController: UIViewController, ChartViewDelegate {
     var xVel: [Float] = [3.0]
     var yVel: [Float] = [3.0]
     var zVel: [Float] = [3.0]
+    var up_vel_iso_graph: [Float] = [3.0]
     var agl2gndX: [Float] = [3.0]
     var agl2gndY: [Float] = [3.0]
     var agl2gndZ: [Float] = [3.0]
@@ -46,7 +47,7 @@ class ViewController: UIViewController, ChartViewDelegate {
         
         // buttons
         btn.setTitle("Start", for: .normal)
-        xBtn.setTitle("X Data", for: .normal)
+        xBtn.setTitle("Upward Vel", for: .normal)
         yBtn.setTitle("Y Data", for: .normal)
         zBtn.setTitle("Z Data", for: .normal)
         
@@ -61,7 +62,6 @@ class ViewController: UIViewController, ChartViewDelegate {
         let arr = noti.object as! [Float]?
         xAcc = arr ?? [2.0]
         print("******* Processing Data *******")
-        (num_reps, velAvgs, velPeaks, accAvgs, accPeaks, range_of_reps) = process_data()
     }
     
     @objc func catchY(_ noti: Notification) {
@@ -100,7 +100,8 @@ class ViewController: UIViewController, ChartViewDelegate {
     }
     
     @IBAction func displayXData() {
-        setData(data: xAcc, axis: "X Acceleration")
+        (num_reps, velAvgs, velPeaks, accAvgs, accPeaks, range_of_reps) = process_data()
+        setData(data: up_vel_iso_graph, axis: "Upward Velocity")
     }
     
     @IBAction func displayYData() {
@@ -127,16 +128,15 @@ class ViewController: UIViewController, ChartViewDelegate {
         
         var lwr: Int = 0
         var upr: Int = 0
-        var up_vel_iso: [Float] = [0.0]
         var up_acc_iso: [Float] = [0.0]
         //var up_dis_iso: [Float] = [0.0]
         //var burn:  [Float] = [0.0]
         
         (lwr, upr) = set_range(up_acc)
-        (up_vel_iso, up_acc_iso) = in_rep_slope(lwr, upr, up_vel, up_acc)
+        (up_vel_iso_graph, up_acc_iso) = in_rep_slope(lwr, upr, up_vel, up_acc)
         //(up_dis_iso,burn) = in_rep_slope(lwr,upr,up_dis,up_vel)
             
-        return rep_count(up_vel_iso, up_acc_iso)
+        return rep_count(up_vel_iso_graph, up_acc_iso)
     }
         
     // trapezoid rule
@@ -144,19 +144,20 @@ class ViewController: UIViewController, ChartViewDelegate {
         var integral: [Float] = []
         var prev:Float = 0.0
         var area:Float = 0.0
-        for i in 0...data.count-1 {
-            area = (sample_period/2)*(data[i]+data[i+1])
+        print("\(data.count)")
+        for i in 0...data.count-2 {
+            area = (sample_period/2000)*(data[i]+data[i+1]) // divide by 2000 because in seconds, not milliseconds
             integral.append(area+prev)
             prev += area
         }
-        integral.append(integral[data.count-1])
+        integral.append(integral[data.count-2])
         return integral
     }
     
     // matrix transpose
     func tpose(_ a: [[Float]]) -> [[Float]] {
-        let rows_a = a.count
-        let cols_a = a[0].count
+        let rows_a = a.count-1
+        let cols_a = a[0].count-1
         var atrans: [[Float]] = []
         for ca in 0...cols_a {
             var temp_row: [Float] = []
@@ -171,9 +172,9 @@ class ViewController: UIViewController, ChartViewDelegate {
     // matrix multiply
     func matx(_ a:[[Float]], _ b:[[Float]]) -> [[Float]] {
         var c:[[Float]] = []
-        let rows_a = a.count
-        let cols_a = a[0].count
-        let cols_b = b[0].count
+        let rows_a = a.count-1
+        let cols_a = a[0].count-1
+        let cols_b = b[0].count-1
         for ra in 0...rows_a {
             var temp_row: [Float] = []
             for cb in 0...cols_b {
@@ -206,7 +207,7 @@ class ViewController: UIViewController, ChartViewDelegate {
         var b:[Float] = []
         var c:[Float] = []
         var d:[[Float]] = []
-        for i in 0...a.count {
+        for i in 0...a.count-2 {
             b.append(a[i])
             c.append(1.0)
         }
@@ -232,7 +233,7 @@ class ViewController: UIViewController, ChartViewDelegate {
         }
         let mCoeff = polyfit(pad1(s), [metric])
         var mCorrected: [Float] = []
-        for i in 1...loop {
+        for i in 0...s.count-1 {
             mCorrected.append(metric[i] - s[i]*mCoeff[0][0] - mCoeff[1][0])
         }
         return mCorrected
@@ -241,7 +242,7 @@ class ViewController: UIViewController, ChartViewDelegate {
     // calculate sin values of a vector
     func matSin(_ agl: [[Float]], _ c: Float) -> [Float] {
         var vals: [Float] = []
-        for i in 0...agl[0].count {
+        for i in 0...agl[0].count-1 {
             vals.append(sin(agl[0][i] + c))
         }
         return vals
@@ -301,18 +302,18 @@ class ViewController: UIViewController, ChartViewDelegate {
         
         var metCorrected: [Float] = []
         
-        for i in 0...reps_met[0].count {
+        for i in 0...reps_met[0].count-1 {
             metCorrected.append(reps_met[0][i] - n[i]*repCoeff[0][0] - repCoeff[1][0])
         }
         
         prev = 0.0
         
-        for i in 0...metCorrected.count {
-            if abs(prev) < 0.2 && abs(dmet_dt[i+lwr-1]) < 0.2 && abs(dmet_dt[i+lwr+1]) < 0.2 && abs(dmet_dt[i+lwr+2]) < 0.2 && abs(dmet_dt[i+lwr+3]) < 0.2 && abs(dmet_dt[i+lwr+10]) < 0.2 {
+        for i in 1...metCorrected.count-1 {
+            if abs(prev) < 0.2 && abs(dmet_dt[i+lwr-1]) < 0.2 && abs(dmet_dt[i+lwr+1]) < 0.2 && abs(dmet_dt[i+lwr+2]) < 0.2 && abs(dmet_dt[i+lwr+3]) < 0.2 && abs(dmet_dt[i+lwr+4]) < 0.2 {
                 metCorrected[i] = 0.0
                 first_move = 1
                 prev = metCorrected[i]
-            } else if abs(dmet_dt[i+lwr-1]) < 0.2 && abs(dmet_dt[i+lwr+1]) < 0.2 && abs(dmet_dt[i+lwr+2]) < 0.2 && abs(dmet_dt[i+lwr+3]) < 0.2 && abs(dmet_dt[i+lwr+10]) < 0.2 {
+            } else if abs(dmet_dt[i+lwr-1]) < 0.2 && abs(dmet_dt[i+lwr+1]) < 0.2 && abs(dmet_dt[i+lwr+2]) < 0.2 && abs(dmet_dt[i+lwr+3]) < 0.2 && abs(dmet_dt[i+lwr+4]) < 0.2 {
                 metCorrected[i] = prev
                 first_move = 1
             } else {
@@ -375,7 +376,7 @@ class ViewController: UIViewController, ChartViewDelegate {
         var accPeaks: [Float] = []
         var repRange: [[Int]] = []
         
-        for i in 0...vel.count-1 {
+        for i in 0...vel.count-2 {
             var lwr_sign: Int = 1 - Int(truncating: NSNumber(value: vel[i] <= 0))
             let upr_sign: Int = 1 - Int(truncating: NSNumber(value: vel[i+1] <= 0))
             if i == 0 {
@@ -461,7 +462,7 @@ class ViewController: UIViewController, ChartViewDelegate {
         else {
             for i in 0...input.count-1 {
                 temp.append(ChartDataEntry(x: Double(i), y: Double(input[i])))
-                print("x: \(Double(i)), y: \(Double(input[i]))")
+                // print("x: \(Double(i)), y: \(Double(input[i]))")
             }
         }
         return temp

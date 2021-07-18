@@ -59,6 +59,7 @@ class ResultsViewController: UIViewController, CBCentralManagerDelegate, CBPerip
         if stringArr[0] == "EOF" {
             sample_period = Float(stringArr[1]) ?? 0.0
             data_label.text = "Complete."
+            print("Complete")
             done_flag = true
         } else {
             // append xyz acceleration values
@@ -90,7 +91,7 @@ class ResultsViewController: UIViewController, CBCentralManagerDelegate, CBPerip
 
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
         if let pname = peripheral.name {
-            if pname == "ESP32" {
+            if pname == "esp32" || pname == "ESP32" {
                 self.centralManager.stopScan()
                 self.myPeripheral = peripheral
                 self.myPeripheral.delegate = self
@@ -102,8 +103,6 @@ class ResultsViewController: UIViewController, CBCentralManagerDelegate, CBPerip
                 //print("Peripheral name: \(peripheral.name)")
                 //print ("Advertisement Data : \(advertisementData)")
             }
-        } else {
-            print("Error on Connecting ESP32")
         }
     }
     
@@ -189,7 +188,7 @@ extension ResultsViewController: CBPeripheralManagerDelegate {
         parseString(str: characteristicASCIIValue as String)
 
         if !done_flag {
-            print("X1: \(xAcc[counter]), X2: \(xAcc[counter+1]), Packet: \(packetNum[counter/2])")
+            //print("X1: \(xAcc[counter]), X2: \(xAcc[counter+1]), Packet: \(packetNum[counter/2])")
         
             data_label.text = "Parsing..."
         
