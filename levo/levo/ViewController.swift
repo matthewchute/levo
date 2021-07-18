@@ -13,9 +13,18 @@ class ViewController: UIViewController, ChartViewDelegate {
     var xAcc: [Float] = [3.0]
     var yAcc: [Float] = [3.0]
     var zAcc: [Float] = [3.0]
+    var xVel: [Float] = [3.0]
+    var yVel: [Float] = [3.0]
+    var zVel: [Float] = [3.0]
     var agl2gndX: [Float] = [3.0]
     var agl2gndY: [Float] = [3.0]
     var agl2gndZ: [Float] = [3.0]
+    var velAvgs: [Float] = [3.0]
+    var velPeaks: [Float] = [3.0]
+    var accAvgs: [Float] = [3.0]
+    var accPeaks: [Float] = [3.0]
+    var num_reps: Int = 0
+    var range_of_reps: [[Int]] = [[3]]
     var sample_period: Float = 3.0
     
     @IBOutlet weak var btn: UIButton!
@@ -52,8 +61,7 @@ class ViewController: UIViewController, ChartViewDelegate {
         let arr = noti.object as! [Float]?
         xAcc = arr ?? [2.0]
         print("******* Processing Data *******")
-        // process the data
-        // process_data()
+        (num_reps, velAvgs, velPeaks, accAvgs, accPeaks, range_of_reps) = process_data()
     }
     
     @objc func catchY(_ noti: Notification) {
@@ -108,12 +116,31 @@ class ViewController: UIViewController, ChartViewDelegate {
         
     }
     
-    //    func process_data(xData: [Float]) -> Void {
-    //        var velX = trap_rule(data: xData)
-    //    }
+    func process_data() -> (Int, [Float], [Float], [Float], [Float], [[Int]]) {
+        // xVel = noise_comp(trap_rule(xAcc), xAcc.count)
+        yVel = noise_comp(trap_rule(yAcc), yAcc.count)
+        zVel = noise_comp(trap_rule(zAcc), zAcc.count)
+        let up_acc = orientation_correction([yAcc],[zAcc],[agl2gndY],[agl2gndZ])
+        let up_vel = orientation_correction([yVel],[zVel],[agl2gndY],[agl2gndZ])
+        
+        //let up_dis = trap_rule(up_vel)
+        
+        var lwr: Int = 0
+        var upr: Int = 0
+        var up_vel_iso: [Float] = [0.0]
+        var up_acc_iso: [Float] = [0.0]
+        //var up_dis_iso: [Float] = [0.0]
+        //var burn:  [Float] = [0.0]
+        
+        (lwr, upr) = set_range(up_acc)
+        (up_vel_iso, up_acc_iso) = in_rep_slope(lwr, upr, up_vel, up_acc)
+        //(up_dis_iso,burn) = in_rep_slope(lwr,upr,up_dis,up_vel)
+            
+        return rep_count(up_vel_iso, up_acc_iso)
+    }
         
     // trapezoid rule
-    func trap_rule(data: [Float]) -> [Float] {
+    func trap_rule(_ data: [Float]) -> [Float] {
         var integral: [Float] = []
         var prev:Float = 0.0
         var area:Float = 0.0
@@ -188,6 +215,7 @@ class ViewController: UIViewController, ChartViewDelegate {
         return d
     }
     
+    // polyfit
     func polyfit(_ a:[[Float]], _ y:[[Float]]) -> [[Float]] {
         var temp1: [[Float]] = matx(a, tpose(a))
         temp1 = inv2(temp1)
@@ -196,7 +224,8 @@ class ViewController: UIViewController, ChartViewDelegate {
         return coeffs
     }
     
-    func noise_comp(metric: [Float], loop:Int) -> [Float] {
+    // account for noise in accelerometer
+    func noise_comp(_ metric: [Float], _ loop:Int) -> [Float] { // metric is uncorrected data
         var s: [Float] = []
         for i in 1...loop {
             s.append(Float(i))
@@ -209,6 +238,7 @@ class ViewController: UIViewController, ChartViewDelegate {
         return mCorrected
     }
     
+    // calculate sin values of a vector
     func matSin(_ agl: [[Float]], _ c: Float) -> [Float] {
         var vals: [Float] = []
         for i in 0...agl[0].count {
@@ -217,6 +247,7 @@ class ViewController: UIViewController, ChartViewDelegate {
         return vals
     }
     
+    // determine which direction is ground assuming x and y and directions of interest
     func orientation_correction(_ spatialX: [[Float]], _ spatialY: [[Float]], _ aglX: [[Float]], _ aglY: [[Float]]) -> [Float] {
         let sinX: [Float] = matSin(aglX, 22/14)
         let sinY: [Float] = matSin(aglY, 22/14)
@@ -227,6 +258,7 @@ class ViewController: UIViewController, ChartViewDelegate {
         return perp2gnd
     }
     
+    // paramaters: index range of importance, metric of interest and its first derrivitive
     func in_rep_slope(_ lwr: Int, _ upr: Int, _ met: [Float], _ dmet_dt: [Float]) -> ([Float], [Float]) {
         if upr >= met.count || lwr >= met.count {
             return (met, dmet_dt)
@@ -298,6 +330,7 @@ class ViewController: UIViewController, ChartViewDelegate {
         return (metCorrected,repsDmet_dt)
     }
     
+    // determine the range of a repetition
     func set_range(_ acc: [Float]) -> (Int, Int) {
         var idx_start:Int  = 1000000
         var idx_end: Int = 0
@@ -313,6 +346,7 @@ class ViewController: UIViewController, ChartViewDelegate {
         return (idx_start, idx_end)
     }
     
+    // determine the velocity of a repetition
     func repVelo(_ idx_low: Int, _ idx_high: Int, _ vel: [Float]) -> (Float, Float) {
         if idx_low == idx_high {
             return (0.0, 0.0)
@@ -327,6 +361,7 @@ class ViewController: UIViewController, ChartViewDelegate {
         return (maxVel, meanVel)
     }
     
+    // count the number of repetitions
     func rep_count(_ vel: [Float], _ acc: [Float]) -> (Int, [Float], [Float], [Float], [Float], [[Int]]) {
         var rep: Int = 0
         var repetitions: Int = 0
@@ -389,6 +424,7 @@ class ViewController: UIViewController, ChartViewDelegate {
         return (repetitions, veloAvgs, veloPeaks, accAvgs, accPeaks, repRange)
     }
 
+    // Charts Methods:
     lazy var lineChartView: LineChartView = {
         let chartView = LineChartView()
         chartView.backgroundColor = .systemBlue
