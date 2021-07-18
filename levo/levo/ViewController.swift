@@ -312,6 +312,20 @@ class ViewController: UIViewController, ChartViewDelegate {
         }
         return (idx_start, idx_end)
     }
+    
+    func repVelo(_ idx_low: Int, _ idx_high: Int, _ vel: [Float]) -> (Float, Float) {
+        if idx_low == idx_high {
+            return (0.0, 0.0)
+        }
+        var tempVel: [Float] = []
+        for i in 0...(idx_high-idx_low) {
+            tempVel.append(vel[i+idx_low])
+        }
+        let maxVel: Float = tempVel.max() ?? 0.0
+        let meanVel: Float = tempVel.reduce(0, +) / Float(tempVel.count)
+        
+        return (maxVel, meanVel)
+    }
 
     lazy var lineChartView: LineChartView = {
         let chartView = LineChartView()
