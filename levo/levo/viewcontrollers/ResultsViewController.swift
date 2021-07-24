@@ -25,6 +25,9 @@ class ResultsViewController: UIViewController, CBCentralManagerDelegate, CBPerip
     var counter: Int = 0
     var done_flag: Bool = false
     var sample_period: Float = 0.0
+    var xGryo: [Float] = []
+    var yGryo: [Float] = []
+    var zGryo: [Float] = []
     
     @IBOutlet weak var data_label: UILabel!
     @IBOutlet weak var back_btn: UIButton!
@@ -37,13 +40,11 @@ class ResultsViewController: UIViewController, CBCentralManagerDelegate, CBPerip
         let yagl: [Float] = agl2gndY
         let zagl: [Float] = agl2gndZ
         let sp: Float = sample_period
-        NotificationCenter.default.post(name: Notification.Name("xdata"), object: xdata)
-        NotificationCenter.default.post(name: Notification.Name("ydata"), object: ydata)
-        NotificationCenter.default.post(name: Notification.Name("zdata"), object: zdata)
-        NotificationCenter.default.post(name: Notification.Name("xagl"), object: xagl)
-        NotificationCenter.default.post(name: Notification.Name("yagl"), object: yagl)
-        NotificationCenter.default.post(name: Notification.Name("zagl"), object: zagl)
-        NotificationCenter.default.post(name: Notification.Name("sample"), object: sp)
+        let xgyro: [Float] = xGryo
+        let ygyro: [Float] = yGryo
+        let zgyro: [Float] = zGryo
+        NotificationCenter.default.post(name: Notification.Name("baseData"), object: (xdata, ydata, zdata, xagl, yagl, zagl, sp))
+        NotificationCenter.default.post(name: Notification.Name("gyroData"), object: (xgyro, ygyro, zgyro))
         dismiss(animated: true, completion: nil)
     }
     
@@ -75,6 +76,12 @@ class ResultsViewController: UIViewController, CBCentralManagerDelegate, CBPerip
             agl2gndY.append(Float(stringArr[16]) ?? 0.0)
             agl2gndZ.append(Float(stringArr[8]) ?? 0.0)
             agl2gndZ.append(Float(stringArr[17]) ?? 0.0)
+            xGryo.append(Float(stringArr[3]) ?? 7.0)
+            xGryo.append(Float(stringArr[12]) ?? 7.0)
+            yGryo.append(Float(stringArr[4]) ?? 7.0)
+            yGryo.append(Float(stringArr[13]) ?? 7.0)
+            zGryo.append(Float(stringArr[5]) ?? 7.0)
+            zGryo.append(Float(stringArr[14]) ?? 7.0)
         }
     }
     
@@ -188,7 +195,7 @@ extension ResultsViewController: CBPeripheralManagerDelegate {
         parseString(str: characteristicASCIIValue as String)
 
         if !done_flag {
-            //print("X1: \(xAcc[counter]), X2: \(xAcc[counter+1]), Packet: \(packetNum[counter/2])")
+            print("Gyro X: \(xGryo[counter]), \(xGryo[counter+1]) \n Gyro Y: \(yGryo[counter]), \(yGryo[counter+1]) \n Gyro Z: \(zGryo[counter]), \(zGryo[counter+1]) \n")
         
             data_label.text = "Parsing..."
         

@@ -8,7 +8,7 @@ import UIKit
 import Charts
 import TinyConstraints
 
-class ViewController: UIViewController, ChartViewDelegate {
+class WorkoutViewController: UIViewController, ChartViewDelegate {
     
     var xAcc: [Float] = [3.0]
     var yAcc: [Float] = [3.0]
@@ -16,6 +16,9 @@ class ViewController: UIViewController, ChartViewDelegate {
     var xVel: [Float] = [3.0]
     var yVel: [Float] = [3.0]
     var zVel: [Float] = [3.0]
+    var xGyro: [Float] = [3.0]
+    var yGyro: [Float] = [3.0]
+    var zGyro: [Float] = [3.0]
     var up_vel_iso_graph: [Float] = [3.0]
     var agl2gndX: [Float] = [3.0]
     var agl2gndY: [Float] = [3.0]
@@ -33,25 +36,25 @@ class ViewController: UIViewController, ChartViewDelegate {
     @IBOutlet weak var yBtn: UIButton!
     @IBOutlet weak var zBtn: UIButton!
     @IBOutlet weak var dataLbl: UILabel!
+    @IBOutlet weak var backBtn: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // nc observers
-        NotificationCenter.default.addObserver(self, selector: #selector(catchX(_:)), name: Notification.Name("xdata"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(catchY(_:)), name: Notification.Name("ydata"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(catchZ(_:)), name: Notification.Name("zdata"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(catchAglX(_:)), name: Notification.Name("xagl"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(catchAglY(_:)), name: Notification.Name("yagl"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(catchAglZ(_:)), name: Notification.Name("zagl"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(catchSP(_:)), name: Notification.Name("sample"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(catchBase(_:)), name: Notification.Name("baseData"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(catchGyro(_:)), name: Notification.Name("gyroData"), object: nil)
         
         // buttons
         btn.setTitle("Start", for: .normal)
-        xBtn.setTitle("Upward Vel", for: .normal)
-        yBtn.setTitle("Y Data", for: .normal)
-        zBtn.setTitle("Z Data", for: .normal)
+        xBtn.setTitle("X Gyro", for: .normal)
+        yBtn.setTitle("Y Gyro", for: .normal)
+        zBtn.setTitle("Z Gyro", for: .normal)
         dataLbl.text = "Data to be displayed here"
+        
+        backBtn.frame = CGRect(x: 25, y: 25, width: 25, height: 25)
+        backBtn.imageEdgeInsets = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
+        backBtn.tintColor = .systemOrange
         
         // charts
         view.addSubview(lineChartView)
@@ -60,58 +63,47 @@ class ViewController: UIViewController, ChartViewDelegate {
         lineChartView.heightToWidth(of: view)
     }
     
-    @objc func catchX(_ noti: Notification) {
-        let arr = noti.object as! [Float]?
-        xAcc = arr ?? [2.0]
-        print("******* Processing Data *******")
+    @objc func catchBase(_ noti: Notification) {
+        if let (arrx, arry, arrz, aglx, agly, aglz, tsp) = noti.object as! ([Float], [Float], [Float], [Float], [Float], [Float], Float)? {
+            xAcc = arrx
+            yAcc = arry
+            zAcc = arrz
+            agl2gndX = aglx
+            agl2gndY = agly
+            agl2gndZ = aglz
+            sample_period = tsp
+        } else {print("******ERROR******")}
     }
     
-    @objc func catchY(_ noti: Notification) {
-        let arr = noti.object as! [Float]?
-        yAcc = arr ?? [2.0]
-    }
-    
-    @objc func catchZ(_ noti: Notification) {
-        let arr = noti.object as! [Float]?
-        zAcc = arr ?? [2.0]
-    }
-    
-    @objc func catchAglX(_ noti: Notification) {
-        let arr = noti.object as! [Float]?
-        agl2gndX = arr ?? [2.0]
-    }
-    
-    @objc func catchAglY(_ noti: Notification) {
-        let arr = noti.object as! [Float]?
-        agl2gndY = arr ?? [2.0]
-    }
-    
-    @objc func catchAglZ(_ noti: Notification) {
-        let arr = noti.object as! [Float]?
-        agl2gndZ = arr ?? [2.0]
-    }
-    
-    @objc func catchSP(_ noti: Notification) {
-        let tsp = noti.object as! Float?
-        sample_period = tsp ?? 2.0
+    @objc func catchGyro(_ noti: Notification) {
+        if let (arrx, arry, arrz) = noti.object as! ([Float], [Float], [Float])? {
+            xGyro = arrx
+            yGyro = arry
+            zGyro = arrz
+        } else {print("******ERROR******")}
     }
     
     @IBAction func didtap() {
         let vc = storyboard?.instantiateViewController(identifier: "Results") as! ResultsViewController
+        vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true)
     }
     
     @IBAction func displayXData() {
         (num_reps, velAvgs, velPeaks, accAvgs, accPeaks, range_of_reps) = process_data()
-        setData(data: up_vel_iso_graph, axis: "Upward Velocity")
+        setData(data: xGyro, axis: "X Gyro")
     }
     
     @IBAction func displayYData() {
-        setData(data: yAcc, axis: "Y Acceleration")
+        setData(data: yGyro, axis: "Y Gyro")
     }
     
     @IBAction func displayZData() {
-        setData(data: zAcc, axis: "Z Acceleration")
+        setData(data: zGyro, axis: "Z Gyro")
+    }
+    
+    @IBAction func didTapBackBtn() {
+        dismiss(animated: true, completion: nil)
     }
     
     func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {

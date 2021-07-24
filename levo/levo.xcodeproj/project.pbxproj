@@ -8,12 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		6341B4AC269FD2030061B23B /* Pods_levo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D8601A4098EAFBF922D17D9 /* Pods_levo.framework */; };
+		63A16DF926ACB30D00429A9B /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A16DF826ACB30D00429A9B /* SettingsViewController.swift */; };
+		63A16DFB26ACB31B00429A9B /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A16DFA26ACB31B00429A9B /* ProfileViewController.swift */; };
+		63FCDDE326AC9E3D00F31282 /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FCDDE226AC9E3D00F31282 /* LandingViewController.swift */; };
 		F93A3A46269CD0A2006AD1E2 /* ActivityLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93A3A45269CD0A2006AD1E2 /* ActivityLog.swift */; };
 		F93A3A4A269CD278006AD1E2 /* ActivityGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93A3A49269CD278006AD1E2 /* ActivityGraph.swift */; };
 		F93A3A4E269CDE1A006AD1E2 /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93A3A4D269CDE1A006AD1E2 /* ResultsViewController.swift */; };
 		F9597BAB26816BCE009AE690 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9597BAA26816BCE009AE690 /* AppDelegate.swift */; };
 		F9597BAD26816BCE009AE690 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9597BAC26816BCE009AE690 /* SceneDelegate.swift */; };
-		F9597BAF26816BCE009AE690 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9597BAE26816BCE009AE690 /* ViewController.swift */; };
+		F9597BAF26816BCE009AE690 /* WorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9597BAE26816BCE009AE690 /* WorkoutViewController.swift */; };
 		F9597BB226816BCE009AE690 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F9597BB026816BCE009AE690 /* Main.storyboard */; };
 		F9597BB426816BD0009AE690 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F9597BB326816BD0009AE690 /* Assets.xcassets */; };
 		F9597BB726816BD0009AE690 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F9597BB526816BD0009AE690 /* LaunchScreen.storyboard */; };
@@ -24,6 +27,9 @@
 /* Begin PBXFileReference section */
 		3FEA19FE99CA1CCD0F93EAF5 /* Pods-levo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-levo.debug.xcconfig"; path = "Target Support Files/Pods-levo/Pods-levo.debug.xcconfig"; sourceTree = "<group>"; };
 		6341B4AF269FD2380061B23B /* Charts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Charts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		63A16DF826ACB30D00429A9B /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		63A16DFA26ACB31B00429A9B /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		63FCDDE226AC9E3D00F31282 /* LandingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
 		7A29897FA0434D9B7B566779 /* Pods-levo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-levo.release.xcconfig"; path = "Target Support Files/Pods-levo/Pods-levo.release.xcconfig"; sourceTree = "<group>"; };
 		8D8601A4098EAFBF922D17D9 /* Pods_levo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_levo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F93A3A45269CD0A2006AD1E2 /* ActivityLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityLog.swift; sourceTree = "<group>"; };
@@ -32,7 +38,7 @@
 		F9597BA726816BCE009AE690 /* levo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = levo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9597BAA26816BCE009AE690 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F9597BAC26816BCE009AE690 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		F9597BAE26816BCE009AE690 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		F9597BAE26816BCE009AE690 /* WorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutViewController.swift; sourceTree = "<group>"; };
 		F9597BB126816BCE009AE690 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F9597BB326816BD0009AE690 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F9597BB626816BD0009AE690 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -53,6 +59,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		63A16DFC26ACBEEB00429A9B /* viewcontrollers */ = {
+			isa = PBXGroup;
+			children = (
+				F9597BAE26816BCE009AE690 /* WorkoutViewController.swift */,
+				63A16DFA26ACB31B00429A9B /* ProfileViewController.swift */,
+				63A16DF826ACB30D00429A9B /* SettingsViewController.swift */,
+				63FCDDE226AC9E3D00F31282 /* LandingViewController.swift */,
+				F93A3A4D269CDE1A006AD1E2 /* ResultsViewController.swift */,
+			);
+			path = viewcontrollers;
+			sourceTree = "<group>";
+		};
 		A5076D4C6CF192DE46D2FC51 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -94,9 +112,8 @@
 			children = (
 				F9597BAA26816BCE009AE690 /* AppDelegate.swift */,
 				F9597BAC26816BCE009AE690 /* SceneDelegate.swift */,
-				F9597BAE26816BCE009AE690 /* ViewController.swift */,
 				F9597BB026816BCE009AE690 /* Main.storyboard */,
-				F93A3A4D269CDE1A006AD1E2 /* ResultsViewController.swift */,
+				63A16DFC26ACBEEB00429A9B /* viewcontrollers */,
 				F9597BB326816BD0009AE690 /* Assets.xcassets */,
 				F9597BB526816BD0009AE690 /* LaunchScreen.storyboard */,
 				F9597BB826816BD0009AE690 /* Info.plist */,
@@ -222,13 +239,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F9597BAF26816BCE009AE690 /* ViewController.swift in Sources */,
+				F9597BAF26816BCE009AE690 /* WorkoutViewController.swift in Sources */,
 				F93A3A4A269CD278006AD1E2 /* ActivityGraph.swift in Sources */,
 				F9597BAB26816BCE009AE690 /* AppDelegate.swift in Sources */,
+				63A16DF926ACB30D00429A9B /* SettingsViewController.swift in Sources */,
 				F9A0FC2626965FC700780591 /* BlePeripheral.swift in Sources */,
 				F9597BAD26816BCE009AE690 /* SceneDelegate.swift in Sources */,
+				63A16DFB26ACB31B00429A9B /* ProfileViewController.swift in Sources */,
 				F9A0FC2426965F6500780591 /* CBUUIDs.swift in Sources */,
 				F93A3A46269CD0A2006AD1E2 /* ActivityLog.swift in Sources */,
+				63FCDDE326AC9E3D00F31282 /* LandingViewController.swift in Sources */,
 				F93A3A4E269CDE1A006AD1E2 /* ResultsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
