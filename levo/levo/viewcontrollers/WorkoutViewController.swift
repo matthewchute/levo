@@ -130,6 +130,8 @@ class WorkoutViewController: UIViewController, ChartViewDelegate {
         
         let angularDispXZPlane: [Float] = dp.noise_comp(dp.trap_rule(dp.gyro_smooth(yGyro), sample_period), yGyro.count)
         
+        // let angularDispXZPlane: [Float] = dp.trap_rule(dp.gyro_smooth(yGyro), sample_period)
+        
         temp = angularDispXZPlane
         
         // get velocity in each axis
