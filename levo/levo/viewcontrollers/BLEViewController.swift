@@ -25,9 +25,9 @@ class BLEViewController: UIViewController, CBCentralManagerDelegate, CBPeriphera
     var counter: Int = 0
     var done_flag: Bool = false
     var sample_period: Float = 0.0
-    var xGryo: [Float] = []
-    var yGryo: [Float] = []
-    var zGryo: [Float] = []
+    var xGyro: [Float] = []
+    var yGyro: [Float] = []
+    var zGyro: [Float] = []
     
     @IBOutlet weak var data_label: UILabel!
     @IBOutlet weak var back_btn: UIButton!
@@ -40,9 +40,9 @@ class BLEViewController: UIViewController, CBCentralManagerDelegate, CBPeriphera
         let yagl: [Float] = agl2gndY
         let zagl: [Float] = agl2gndZ
         let sp: Float = sample_period
-        let xgyro: [Float] = xGryo
-        let ygyro: [Float] = yGryo
-        let zgyro: [Float] = zGryo
+        let xgyro: [Float] = xGyro
+        let ygyro: [Float] = yGyro
+        let zgyro: [Float] = zGyro
         NotificationCenter.default.post(name: Notification.Name("baseData"), object: (xdata, ydata, zdata, xagl, yagl, zagl, sp))
         NotificationCenter.default.post(name: Notification.Name("gyroData"), object: (xgyro, ygyro, zgyro))
         dismiss(animated: true, completion: nil)
@@ -76,12 +76,12 @@ class BLEViewController: UIViewController, CBCentralManagerDelegate, CBPeriphera
             agl2gndY.append(Float(stringArr[16]) ?? 0.0)
             agl2gndZ.append(Float(stringArr[8]) ?? 0.0)
             agl2gndZ.append(Float(stringArr[17]) ?? 0.0)
-            xGryo.append(Float(stringArr[3]) ?? 7.0)
-            xGryo.append(Float(stringArr[12]) ?? 7.0)
-            yGryo.append(Float(stringArr[4]) ?? 7.0)
-            yGryo.append(Float(stringArr[13]) ?? 7.0)
-            zGryo.append(Float(stringArr[5]) ?? 7.0)
-            zGryo.append(Float(stringArr[14]) ?? 7.0)
+            xGyro.append(Float(stringArr[3]) ?? 7.0)
+            xGyro.append(Float(stringArr[12]) ?? 7.0)
+            yGyro.append(Float(stringArr[4]) ?? 7.0)
+            yGyro.append(Float(stringArr[13]) ?? 7.0)
+            zGyro.append(Float(stringArr[5]) ?? 7.0)
+            zGyro.append(Float(stringArr[14]) ?? 7.0)
         }
     }
     
@@ -195,6 +195,7 @@ extension BLEViewController: CBPeripheralManagerDelegate {
         parseString(str: characteristicASCIIValue as String)
 
         if !done_flag {
+            //print("\(xGyro[counter]) \(xGyro[counter+1]) \n \(yGyro[counter]) \(yGyro[counter+1]) \n \(zGyro[counter]) \(zGyro[counter+1])")
             data_label.text = "Parsing..."
             counter += 2
         } else {

@@ -14,12 +14,12 @@ class ProfileViewController: UIViewController {
         
         titleLbl.text = "Profile"
         
-        firstName.attributedText = makeFont2("First Name: ", UserData.testData.firstName)
-        lastName.attributedText = makeFont2("Last Name: ", UserData.testData.lastName)
-        email.attributedText = makeFont2("Email: ", UserData.testData.email)
-        age.attributedText = makeFont2("Age: ", String(UserData.testData.age))
-        height.attributedText = makeFont3("Height: ", String(UserData.testData.height), " cm")
-        weight.attributedText = makeFont3("Weight: ", String(UserData.testData.weight), " lbs")
+        firstName.attributedText = makeFont2("First Name: ", UserData.personal.firstName)
+        lastName.attributedText = makeFont2("Last Name: ", UserData.personal.lastName)
+        email.attributedText = makeFont2("Email: ", UserData.personal.email)
+        age.attributedText = makeFont2("Age: ", String(UserData.personal.age))
+        height.attributedText = makeFont3("Height: ", String(UserData.personal.height), " cm")
+        weight.attributedText = makeFont3("Weight: ", String(UserData.personal.weight), " lbs")
 
         backBtn.frame = CGRect(x: 25, y: 25, width: 25, height: 25)
         backBtn.imageEdgeInsets = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
