@@ -40,11 +40,17 @@ class WorkoutViewController: UIViewController, ChartViewDelegate {
     var range_of_reps: [[Int]] = [[3]]
     var sample_period: Float = 3.0
     
+    var temp: [Float] = [3.0]
+    var temp1: [Float] = [3.0]
+    
     // UI
     @IBOutlet weak var btn: UIButton!
     @IBOutlet weak var xBtn: UIButton!
     @IBOutlet weak var yBtn: UIButton!
     @IBOutlet weak var zBtn: UIButton!
+    @IBOutlet weak var aBtn: UIButton!
+    @IBOutlet weak var bBtn: UIButton!
+    @IBOutlet weak var cBtn: UIButton!
     @IBOutlet weak var dataLbl: UILabel!
     @IBOutlet weak var backBtn: UIButton!
     
@@ -60,6 +66,9 @@ class WorkoutViewController: UIViewController, ChartViewDelegate {
         xBtn.setTitle("Up Vel", for: .normal)
         yBtn.setTitle("X Acc", for: .normal)
         zBtn.setTitle("Z Acc", for: .normal)
+        aBtn.setTitle("Net Disp", for: .normal)
+        bBtn.setTitle("Y Gyro", for: .normal)
+        cBtn.setTitle("Angular Disp XZ", for: .normal)
         dataLbl.text = "Data to be displayed here"
         
         backBtn.frame = CGRect(x: 25, y: 25, width: 25, height: 25)
@@ -115,6 +124,18 @@ class WorkoutViewController: UIViewController, ChartViewDelegate {
         setData(data: zAcc, axis: "Z Acc")
     }
     
+    @IBAction func displayAData() {
+        setData(data: temp1, axis: "Up Disp")
+    }
+    
+    @IBAction func displayBData() {
+        setData(data: yGyro, axis: "Y Gyro")
+    }
+    
+    @IBAction func displayCData() {
+        setData(data: temp, axis: "Ang Disp XZ")
+    }
+    
     @IBAction func didTapBackBtn() {
         dismiss(animated: true, completion: nil)
     }
@@ -125,6 +146,12 @@ class WorkoutViewController: UIViewController, ChartViewDelegate {
     }
     
     func process_data() -> (Int, [Float], [Float], [Float], [Float], [[Int]]) {
+        
+        //let angularDispXZPlane: [Float] = dp.noise_comp(dp.trap_rule(dp.gyro_smooth(yGyro), sample_period), yGyro.count)
+                
+        let angularDispXZPlane: [Float] = dp.trap_rule(dp.gyro_smooth(yGyro), sample_period)
+                
+        temp = angularDispXZPlane
         
         // get velocity in each axis
         xVel = dp.noise_comp(dp.trap_rule(xAcc, sample_period), xAcc.count)
@@ -141,6 +168,10 @@ class WorkoutViewController: UIViewController, ChartViewDelegate {
         var up_acc_iso: [Float] = [0.0]
         (lwr, upr) = dp.set_range(up_acc)
         (up_vel_iso, up_acc_iso) = dp.in_rep_slope(lwr, upr, up_vel, up_acc)
+        
+        let netDisp = dp.noise_comp(dp.trap_rule(up_vel_iso, sample_period), up_vel_iso.count)
+        
+        temp1 = netDisp
             
         return dp.rep_count(up_vel_iso, up_acc_iso)
     }
