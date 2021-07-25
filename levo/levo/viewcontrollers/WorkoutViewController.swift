@@ -113,8 +113,9 @@ class WorkoutViewController: UIViewController, ChartViewDelegate {
     
     func process_data() -> (Int, [Float], [Float], [Float], [Float], [[Int]]) {
         // xVel = noise_comp(trap_rule(xAcc), xAcc.count)
-        let angleDispX: [Float] = angle_adjustment(agl2gndX, trap_rule(gyro_smooth(yGyro)))
-        let angleDispZ: [Float] = angle_adjustment(agl2gndZ, trap_rule(gyro_smooth(yGyro)))
+        //let angleDispX: [Float] = angle_adjustment(agl2gndX, trap_rule(gyro_smooth(yGyro)))
+        let angleDispX: [Float] = trap_rule(gyro_smooth(yGyro))
+        let angleDispZ: [Float] = noise_comp(trap_rule(gyro_smooth(yGyro)), yGyro.count)
         
         xVel = noise_comp(trap_rule(xAcc), xAcc.count)
         zVel = noise_comp(trap_rule(zAcc), zAcc.count)
@@ -137,6 +138,31 @@ class WorkoutViewController: UIViewController, ChartViewDelegate {
         zVel = angleDispZ
             
         return rep_count(up_vel_iso_graph, up_acc_iso)
+    }
+    
+    // combine angle to ground and gyro
+    func angle_adjustment(_ agl2grnd: [Float], _ gyro: [Float]) -> [Float] {
+        var adjustment: Float = 0.0
+        var angle_adjusted: [Float] = [0.0]
+        for i in 0...agl2grnd.count - 2 {
+            let val = 3.14*gyro[i]/180
+            let temp: Float = agl2grnd[i]
+            angle_adjusted.append(agl2grnd[i]+val-adjustment)
+            if temp != agl2grnd[i+1] {
+                adjustment = gyro[i]
+            }
+        }
+        return angle_adjusted
+    }
+    
+    func gyro_smooth(_ gyro: [Float]) -> [Float] {
+        var temp: [Float] = gyro
+        for i in 0...gyro.count - 2 {
+            if (abs(gyro[i+1]) < abs(gyro[i])*1.1 && abs(gyro[i+1]) > abs(gyro[i])*0.9 ) || abs(gyro[i+1]) > 100*abs(gyro[i]) {
+                temp[i+1] = temp[i]
+            }
+        }
+        return temp
     }
         
     // trapezoid rule
@@ -245,31 +271,6 @@ class WorkoutViewController: UIViewController, ChartViewDelegate {
             vals.append(sin(agl[0][i] + c))
         }
         return vals
-    }
-    
-    // combine angle to ground and gyro
-    func angle_adjustment(_ agl2grnd: [Float], _ gyro: [Float]) -> [Float] {
-        var adjustment: Float = 0.0
-        var angle_adjusted: [Float] = [0.0]
-        for i in 0...agl2grnd.count - 2 {
-            let val = 3.14*gyro[i]/180
-            let temp: Float = agl2grnd[i]
-            angle_adjusted.append(agl2grnd[i]+val-adjustment)
-            if temp != agl2grnd[i+1] {
-                adjustment = gyro[i]
-            }
-        }
-        return angle_adjusted
-    }
-    
-    func gyro_smooth(_ gyro: [Float]) -> [Float] {
-        var temp: [Float] = gyro
-        for i in 0...gyro.count - 2 {
-            if (abs(gyro[i+1]) < abs(gyro[i])*1.1 && abs(gyro[i+1]) > abs(gyro[i])*0.9 ) || abs(gyro[i+1]) > 100*abs(gyro[i]) {
-                temp[i+1] = temp[i]
-            }
-        }
-        return temp
     }
     
     // determine which direction is ground assuming x and y and directions of interest
