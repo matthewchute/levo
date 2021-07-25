@@ -112,11 +112,11 @@ class WorkoutViewController: UIViewController, ChartViewDelegate {
     }
     
     func process_data() -> (Int, [Float], [Float], [Float], [Float], [[Int]]) {
-        // xVel = noise_comp(trap_rule(xAcc), xAcc.count)
-        yVel = noise_comp(trap_rule(yAcc), yAcc.count)
+        xVel = noise_comp(trap_rule(xAcc), xAcc.count)
+        //yVel = noise_comp(trap_rule(yAcc), yAcc.count)
         zVel = noise_comp(trap_rule(zAcc), zAcc.count)
-        let up_acc = orientation_correction([yAcc],[zAcc],[agl2gndY],[agl2gndZ])
-        let up_vel = orientation_correction([yVel],[zVel],[agl2gndY],[agl2gndZ])
+        let up_acc = orientation_correction([xAcc],[zAcc],[agl2gndX],[agl2gndZ])
+        let up_vel = orientation_correction([xVel],[zVel],[agl2gndX],[agl2gndZ])
         
         //let up_dis = trap_rule(up_vel)
         
