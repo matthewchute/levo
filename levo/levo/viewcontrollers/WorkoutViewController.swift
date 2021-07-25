@@ -91,7 +91,7 @@ class WorkoutViewController: UIViewController, ChartViewDelegate {
     
     @IBAction func displayXData() {
         (num_reps, velAvgs, velPeaks, accAvgs, accPeaks, range_of_reps) = process_data()
-        setData(data: xGyro, axis: "X Gyro")
+        setData(data: up_vel_iso_graph, axis: "X Gyro")
     }
     
     @IBAction func displayYData() {
@@ -99,7 +99,7 @@ class WorkoutViewController: UIViewController, ChartViewDelegate {
     }
     
     @IBAction func displayZData() {
-        setData(data: zGyro, axis: "Z Gyro")
+        setData(data: zVel, axis: "Z Gyro")
     }
     
     @IBAction func didTapBackBtn() {
@@ -113,10 +113,13 @@ class WorkoutViewController: UIViewController, ChartViewDelegate {
     
     func process_data() -> (Int, [Float], [Float], [Float], [Float], [[Int]]) {
         // xVel = noise_comp(trap_rule(xAcc), xAcc.count)
-        yVel = noise_comp(trap_rule(yAcc), yAcc.count)
+        let angleDispX: [Float] = angle_adjustment(agl2gndX, trap_rule(gyro_smooth(yGyro)))
+        let angleDispZ: [Float] = angle_adjustment(agl2gndZ, trap_rule(gyro_smooth(yGyro)))
+        
+        xVel = noise_comp(trap_rule(xAcc), xAcc.count)
         zVel = noise_comp(trap_rule(zAcc), zAcc.count)
-        let up_acc = orientation_correction([yAcc],[zAcc],[agl2gndY],[agl2gndZ])
-        let up_vel = orientation_correction([yVel],[zVel],[agl2gndY],[agl2gndZ])
+        let up_acc = orientation_correction([xAcc],[zAcc],[angleDispX],[angleDispZ])
+        let up_vel = orientation_correction([xVel],[zVel],[angleDispX],[angleDispZ])
         
         //let up_dis = trap_rule(up_vel)
         
@@ -129,6 +132,9 @@ class WorkoutViewController: UIViewController, ChartViewDelegate {
         (lwr, upr) = set_range(up_acc)
         (up_vel_iso_graph, up_acc_iso) = in_rep_slope(lwr, upr, up_vel, up_acc)
         //(up_dis_iso,burn) = in_rep_slope(lwr,upr,up_dis,up_vel)
+        
+        // just for testing
+        zVel = angleDispZ
             
         return rep_count(up_vel_iso_graph, up_acc_iso)
     }
@@ -239,6 +245,31 @@ class WorkoutViewController: UIViewController, ChartViewDelegate {
             vals.append(sin(agl[0][i] + c))
         }
         return vals
+    }
+    
+    // combine angle to ground and gyro
+    func angle_adjustment(_ agl2grnd: [Float], _ gyro: [Float]) -> [Float] {
+        var adjustment: Float = 0.0
+        var angle_adjusted: [Float] = [0.0]
+        for i in 0...agl2grnd.count - 2 {
+            let val = 3.14*gyro[i]/180
+            let temp: Float = agl2grnd[i]
+            angle_adjusted.append(agl2grnd[i]+val-adjustment)
+            if temp != agl2grnd[i+1] {
+                adjustment = gyro[i]
+            }
+        }
+        return angle_adjusted
+    }
+    
+    func gyro_smooth(_ gyro: [Float]) -> [Float] {
+        var temp: [Float] = gyro
+        for i in 0...gyro.count - 2 {
+            if abs(gyro[i+1]) < abs(gyro[i])*1.1 || abs(gyro[i+1]) > 100*abs(gyro[i]){
+                temp[i+1] = temp[i]
+            }
+        }
+        return temp
     }
     
     // determine which direction is ground assuming x and y and directions of interest
