@@ -124,7 +124,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oHM-Po-ENZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-652" y="752"/>
+            <point key="canvasLocation" x="-610" y="751"/>
         </scene>
         <!--Workout View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -273,24 +273,84 @@
                                 <color key="textColor" systemColor="systemOrangeColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="BU1-Ym-gyU">
+                                <rect key="frame" x="40" y="195.5" width="334" height="379"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a9b-9I-efZ">
+                                        <rect key="frame" x="0.0" y="0.0" width="334" height="21.5"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                        <color key="textColor" red="0.098039215686274508" green="0.22745098039215686" blue="0.43529411764705883" alpha="0.89803921568627454" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XLs-So-BuK">
+                                        <rect key="frame" x="0.0" y="71.5" width="334" height="21.5"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                        <color key="textColor" red="0.098039215690000001" green="0.2274509804" blue="0.43529411759999997" alpha="0.8980392157" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e4f-5F-Yjl">
+                                        <rect key="frame" x="0.0" y="143" width="334" height="21.5"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                        <color key="textColor" red="0.098039215690000001" green="0.2274509804" blue="0.43529411759999997" alpha="0.8980392157" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rlU-Hg-Hpg">
+                                        <rect key="frame" x="0.0" y="214.5" width="334" height="21.5"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                        <color key="textColor" red="0.098039215690000001" green="0.2274509804" blue="0.43529411759999997" alpha="0.8980392157" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9WK-kq-HMM">
+                                        <rect key="frame" x="0.0" y="286" width="334" height="21.5"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                        <color key="textColor" red="0.098039215690000001" green="0.2274509804" blue="0.43529411759999997" alpha="0.8980392157" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wy5-Vt-foc">
+                                        <rect key="frame" x="0.0" y="357.5" width="334" height="21.5"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                        <color key="textColor" red="0.098039215690000001" green="0.2274509804" blue="0.43529411759999997" alpha="0.8980392157" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N29-yZ-BTy">
+                                <rect key="frame" x="184" y="782" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="didTap" destination="aDS-fh-N1S" eventType="touchUpInside" id="U8h-Wv-B5n"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="v1E-aQ-zfG"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="v1E-aQ-zfG" firstAttribute="bottom" secondItem="N29-yZ-BTy" secondAttribute="bottom" constant="50" id="6C3-Ca-3Sy"/>
                             <constraint firstItem="1OO-ZB-29t" firstAttribute="centerX" secondItem="YKo-up-Mmu" secondAttribute="centerX" id="EFn-aq-SUz"/>
                             <constraint firstItem="1OO-ZB-29t" firstAttribute="top" secondItem="v1E-aQ-zfG" secondAttribute="top" constant="20" id="H2k-qK-OAL"/>
                             <constraint firstItem="RtH-KX-4XX" firstAttribute="leading" secondItem="v1E-aQ-zfG" secondAttribute="leading" constant="20" id="HSk-dm-WaM"/>
+                            <constraint firstItem="BU1-Ym-gyU" firstAttribute="leading" secondItem="v1E-aQ-zfG" secondAttribute="leading" constant="40" id="KFf-qm-pov"/>
+                            <constraint firstItem="BU1-Ym-gyU" firstAttribute="centerX" secondItem="YKo-up-Mmu" secondAttribute="centerX" id="OvB-RW-f8u"/>
+                            <constraint firstItem="BU1-Ym-gyU" firstAttribute="top" secondItem="1OO-ZB-29t" secondAttribute="bottom" constant="100" id="TLk-x5-fFG"/>
+                            <constraint firstItem="v1E-aQ-zfG" firstAttribute="trailing" secondItem="BU1-Ym-gyU" secondAttribute="trailing" constant="40" id="WZr-H2-0Ae"/>
+                            <constraint firstItem="N29-yZ-BTy" firstAttribute="centerX" secondItem="YKo-up-Mmu" secondAttribute="centerX" id="x8w-qY-FB9"/>
                             <constraint firstItem="RtH-KX-4XX" firstAttribute="top" secondItem="v1E-aQ-zfG" secondAttribute="top" constant="20" id="zQX-7u-sya"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="age" destination="rlU-Hg-Hpg" id="0UZ-xB-iKb"/>
                         <outlet property="backBtn" destination="RtH-KX-4XX" id="lEt-61-NKh"/>
+                        <outlet property="email" destination="e4f-5F-Yjl" id="eVf-Kd-g7N"/>
+                        <outlet property="firstName" destination="a9b-9I-efZ" id="K7B-tm-tYc"/>
+                        <outlet property="height" destination="9WK-kq-HMM" id="72y-DS-po6"/>
+                        <outlet property="lastName" destination="XLs-So-BuK" id="y0Y-bZ-H45"/>
                         <outlet property="titleLbl" destination="1OO-ZB-29t" id="9CP-Do-aNl"/>
+                        <outlet property="weight" destination="wy5-Vt-foc" id="8D6-2B-6dQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZPS-kU-JD9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="84" y="751"/>
+            <point key="canvasLocation" x="248" y="751"/>
         </scene>
     </scenes>
     <resources>

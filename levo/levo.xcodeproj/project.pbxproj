@@ -11,8 +11,7 @@
 		63A16DF926ACB30D00429A9B /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A16DF826ACB30D00429A9B /* SettingsViewController.swift */; };
 		63A16DFB26ACB31B00429A9B /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A16DFA26ACB31B00429A9B /* ProfileViewController.swift */; };
 		63FCDDE326AC9E3D00F31282 /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FCDDE226AC9E3D00F31282 /* LandingViewController.swift */; };
-		F93A3A46269CD0A2006AD1E2 /* ActivityLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93A3A45269CD0A2006AD1E2 /* ActivityLog.swift */; };
-		F93A3A4A269CD278006AD1E2 /* ActivityGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93A3A49269CD278006AD1E2 /* ActivityGraph.swift */; };
+		F93A3A46269CD0A2006AD1E2 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93A3A45269CD0A2006AD1E2 /* UserData.swift */; };
 		F93A3A4E269CDE1A006AD1E2 /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93A3A4D269CDE1A006AD1E2 /* ResultsViewController.swift */; };
 		F9597BAB26816BCE009AE690 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9597BAA26816BCE009AE690 /* AppDelegate.swift */; };
 		F9597BAD26816BCE009AE690 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9597BAC26816BCE009AE690 /* SceneDelegate.swift */; };
@@ -32,8 +31,7 @@
 		63FCDDE226AC9E3D00F31282 /* LandingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
 		7A29897FA0434D9B7B566779 /* Pods-levo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-levo.release.xcconfig"; path = "Target Support Files/Pods-levo/Pods-levo.release.xcconfig"; sourceTree = "<group>"; };
 		8D8601A4098EAFBF922D17D9 /* Pods_levo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_levo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F93A3A45269CD0A2006AD1E2 /* ActivityLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityLog.swift; sourceTree = "<group>"; };
-		F93A3A49269CD278006AD1E2 /* ActivityGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityGraph.swift; sourceTree = "<group>"; };
+		F93A3A45269CD0A2006AD1E2 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		F93A3A4D269CDE1A006AD1E2 /* ResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
 		F9597BA726816BCE009AE690 /* levo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = levo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9597BAA26816BCE009AE690 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -119,8 +117,7 @@
 				F9597BB826816BD0009AE690 /* Info.plist */,
 				F9A0FC2326965F6500780591 /* CBUUIDs.swift */,
 				F9A0FC2526965FC700780591 /* BlePeripheral.swift */,
-				F93A3A45269CD0A2006AD1E2 /* ActivityLog.swift */,
-				F93A3A49269CD278006AD1E2 /* ActivityGraph.swift */,
+				F93A3A45269CD0A2006AD1E2 /* UserData.swift */,
 			);
 			path = levo;
 			sourceTree = "<group>";
@@ -240,14 +237,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				F9597BAF26816BCE009AE690 /* WorkoutViewController.swift in Sources */,
-				F93A3A4A269CD278006AD1E2 /* ActivityGraph.swift in Sources */,
 				F9597BAB26816BCE009AE690 /* AppDelegate.swift in Sources */,
 				63A16DF926ACB30D00429A9B /* SettingsViewController.swift in Sources */,
 				F9A0FC2626965FC700780591 /* BlePeripheral.swift in Sources */,
 				F9597BAD26816BCE009AE690 /* SceneDelegate.swift in Sources */,
 				63A16DFB26ACB31B00429A9B /* ProfileViewController.swift in Sources */,
 				F9A0FC2426965F6500780591 /* CBUUIDs.swift in Sources */,
-				F93A3A46269CD0A2006AD1E2 /* ActivityLog.swift in Sources */,
+				F93A3A46269CD0A2006AD1E2 /* UserData.swift in Sources */,
 				63FCDDE326AC9E3D00F31282 /* LandingViewController.swift in Sources */,
 				F93A3A4E269CDE1A006AD1E2 /* ResultsViewController.swift in Sources */,
 			);
