@@ -9,6 +9,16 @@ import Foundation
 
 class DataProcessing {
     
+    func gyro_smooth(_ gyro: [Float]) -> [Float] {
+        var temp: [Float] = gyro
+        for i in 0...gyro.count - 2 {
+            if (abs(gyro[i+1]) < abs(gyro[i])*1.1 && abs(gyro[i+1]) > abs(gyro[i])*0.9 ) || abs(gyro[i+1]) > 100*abs(gyro[i]) {
+                temp[i+1] = temp[i]
+            }
+        }
+        return temp
+    }
+    
     // trapezoid rule
     func trap_rule(_ data: [Float], _ sp: Float) -> [Float] {
         var integral: [Float] = []

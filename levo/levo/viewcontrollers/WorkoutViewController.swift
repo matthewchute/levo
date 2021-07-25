@@ -40,6 +40,8 @@ class WorkoutViewController: UIViewController, ChartViewDelegate {
     var range_of_reps: [[Int]] = [[3]]
     var sample_period: Float = 3.0
     
+    var temp: [Float] = [3.0]
+    
     // UI
     @IBOutlet weak var btn: UIButton!
     @IBOutlet weak var xBtn: UIButton!
@@ -108,11 +110,11 @@ class WorkoutViewController: UIViewController, ChartViewDelegate {
     }
     
     @IBAction func displayYData() {
-        setData(data: xAcc, axis: "X Acc")
+        setData(data: temp, axis: "Angular XZ")
     }
     
     @IBAction func displayZData() {
-        setData(data: zAcc, axis: "Z Acc")
+        setData(data: agl2gndZ, axis: "agl2gndZ")
     }
     
     @IBAction func didTapBackBtn() {
@@ -125,6 +127,10 @@ class WorkoutViewController: UIViewController, ChartViewDelegate {
     }
     
     func process_data() -> (Int, [Float], [Float], [Float], [Float], [[Int]]) {
+        
+        let angularDispXZPlane: [Float] = dp.noise_comp(dp.trap_rule(dp.gyro_smooth(yGyro), sample_period), yGyro.count)
+        
+        temp = angularDispXZPlane
         
         // get velocity in each axis
         xVel = dp.noise_comp(dp.trap_rule(xAcc, sample_period), xAcc.count)
