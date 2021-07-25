@@ -210,10 +210,10 @@
             </objects>
             <point key="canvasLocation" x="247.82608695652175" y="37.5"/>
         </scene>
-        <!--Results View Controller-->
+        <!--View Controller-->
         <scene sceneID="MXZ-2y-HQP">
             <objects>
-                <viewController storyboardIdentifier="Results" id="xin-x5-35g" customClass="ResultsViewController" customModule="levo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BLE" id="xin-x5-35g" customClass="BLEViewController" customModule="levo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="CCW-6Y-2aX">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -249,7 +249,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cV2-61-1Hy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1049" y="38"/>
+            <point key="canvasLocation" x="1030" y="38"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="ecG-cC-Ejv">

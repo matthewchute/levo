@@ -94,13 +94,16 @@ class WorkoutViewController: UIViewController, ChartViewDelegate {
     }
     
     @IBAction func didtap() {
-        let vc = storyboard?.instantiateViewController(identifier: "Results") as! ResultsViewController
+        let vc = storyboard?.instantiateViewController(identifier: "BLE") as! BLEViewController
         vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true)
     }
     
     @IBAction func displayXData() {
-        (num_reps, velAvgs, velPeaks, accAvgs, accPeaks, range_of_reps) = process_data()
+        if xAcc.count != 1 {
+            (num_reps, velAvgs, velPeaks, accAvgs, accPeaks, range_of_reps) = process_data()
+            dataLbl.text = "R: \(num_reps) \n aV: \(velAvgs) \n pV: \(velPeaks)"
+        }
         setData(data: up_vel_iso, axis: "Up Vel")
     }
     

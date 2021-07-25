@@ -8,7 +8,7 @@
 import UIKit
 import CoreBluetooth
 
-class ResultsViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDelegate {
+class BLEViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDelegate {
     
     var centralManager: CBCentralManager!
     var myPeripheral: CBPeripheral!
@@ -159,7 +159,7 @@ class ResultsViewController: UIViewController, CBCentralManagerDelegate, CBPerip
     }
 }
 
-extension ResultsViewController: CBPeripheralManagerDelegate {
+extension BLEViewController: CBPeripheralManagerDelegate {
     
     func peripheralManagerDidUpdateState(_ peripheral: CBPeripheralManager) {
         print("*****************************************")
