@@ -195,10 +195,7 @@ extension ResultsViewController: CBPeripheralManagerDelegate {
         parseString(str: characteristicASCIIValue as String)
 
         if !done_flag {
-            print("Gyro X: \(xGryo[counter]), \(xGryo[counter+1]) \n Gyro Y: \(yGryo[counter]), \(yGryo[counter+1]) \n Gyro Z: \(zGryo[counter]), \(zGryo[counter+1]) \n")
-        
             data_label.text = "Parsing..."
-        
             counter += 2
         } else {
             centralManager.cancelPeripheralConnection(myPeripheral)

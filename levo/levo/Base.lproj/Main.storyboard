@@ -314,18 +314,10 @@
                                     </label>
                                 </subviews>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N29-yZ-BTy">
-                                <rect key="frame" x="184" y="782" width="46" height="30"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <action selector="didTap" destination="aDS-fh-N1S" eventType="touchUpInside" id="U8h-Wv-B5n"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="v1E-aQ-zfG"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="v1E-aQ-zfG" firstAttribute="bottom" secondItem="N29-yZ-BTy" secondAttribute="bottom" constant="50" id="6C3-Ca-3Sy"/>
                             <constraint firstItem="1OO-ZB-29t" firstAttribute="centerX" secondItem="YKo-up-Mmu" secondAttribute="centerX" id="EFn-aq-SUz"/>
                             <constraint firstItem="1OO-ZB-29t" firstAttribute="top" secondItem="v1E-aQ-zfG" secondAttribute="top" constant="20" id="H2k-qK-OAL"/>
                             <constraint firstItem="RtH-KX-4XX" firstAttribute="leading" secondItem="v1E-aQ-zfG" secondAttribute="leading" constant="20" id="HSk-dm-WaM"/>
@@ -333,7 +325,6 @@
                             <constraint firstItem="BU1-Ym-gyU" firstAttribute="centerX" secondItem="YKo-up-Mmu" secondAttribute="centerX" id="OvB-RW-f8u"/>
                             <constraint firstItem="BU1-Ym-gyU" firstAttribute="top" secondItem="1OO-ZB-29t" secondAttribute="bottom" constant="100" id="TLk-x5-fFG"/>
                             <constraint firstItem="v1E-aQ-zfG" firstAttribute="trailing" secondItem="BU1-Ym-gyU" secondAttribute="trailing" constant="40" id="WZr-H2-0Ae"/>
-                            <constraint firstItem="N29-yZ-BTy" firstAttribute="centerX" secondItem="YKo-up-Mmu" secondAttribute="centerX" id="x8w-qY-FB9"/>
                             <constraint firstItem="RtH-KX-4XX" firstAttribute="top" secondItem="v1E-aQ-zfG" secondAttribute="top" constant="20" id="zQX-7u-sya"/>
                         </constraints>
                     </view>

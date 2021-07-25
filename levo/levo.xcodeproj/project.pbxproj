@@ -10,6 +10,7 @@
 		6341B4AC269FD2030061B23B /* Pods_levo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D8601A4098EAFBF922D17D9 /* Pods_levo.framework */; };
 		63A16DF926ACB30D00429A9B /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A16DF826ACB30D00429A9B /* SettingsViewController.swift */; };
 		63A16DFB26ACB31B00429A9B /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A16DFA26ACB31B00429A9B /* ProfileViewController.swift */; };
+		63A16DFE26ADEF6800429A9B /* DataProcessing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A16DFD26ADEF6800429A9B /* DataProcessing.swift */; };
 		63FCDDE326AC9E3D00F31282 /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FCDDE226AC9E3D00F31282 /* LandingViewController.swift */; };
 		F93A3A46269CD0A2006AD1E2 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93A3A45269CD0A2006AD1E2 /* UserData.swift */; };
 		F93A3A4E269CDE1A006AD1E2 /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93A3A4D269CDE1A006AD1E2 /* ResultsViewController.swift */; };
@@ -28,6 +29,7 @@
 		6341B4AF269FD2380061B23B /* Charts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Charts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		63A16DF826ACB30D00429A9B /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		63A16DFA26ACB31B00429A9B /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		63A16DFD26ADEF6800429A9B /* DataProcessing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProcessing.swift; sourceTree = "<group>"; };
 		63FCDDE226AC9E3D00F31282 /* LandingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
 		7A29897FA0434D9B7B566779 /* Pods-levo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-levo.release.xcconfig"; path = "Target Support Files/Pods-levo/Pods-levo.release.xcconfig"; sourceTree = "<group>"; };
 		8D8601A4098EAFBF922D17D9 /* Pods_levo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_levo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -118,6 +120,7 @@
 				F9A0FC2326965F6500780591 /* CBUUIDs.swift */,
 				F9A0FC2526965FC700780591 /* BlePeripheral.swift */,
 				F93A3A45269CD0A2006AD1E2 /* UserData.swift */,
+				63A16DFD26ADEF6800429A9B /* DataProcessing.swift */,
 			);
 			path = levo;
 			sourceTree = "<group>";
@@ -244,6 +247,7 @@
 				63A16DFB26ACB31B00429A9B /* ProfileViewController.swift in Sources */,
 				F9A0FC2426965F6500780591 /* CBUUIDs.swift in Sources */,
 				F93A3A46269CD0A2006AD1E2 /* UserData.swift in Sources */,
+				63A16DFE26ADEF6800429A9B /* DataProcessing.swift in Sources */,
 				63FCDDE326AC9E3D00F31282 /* LandingViewController.swift in Sources */,
 				F93A3A4E269CDE1A006AD1E2 /* ResultsViewController.swift in Sources */,
 			);
