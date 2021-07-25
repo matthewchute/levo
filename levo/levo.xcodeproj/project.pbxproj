@@ -71,6 +71,24 @@
 			path = viewcontrollers;
 			sourceTree = "<group>";
 		};
+		63A16DFF26ADFDA000429A9B /* bluetooth */ = {
+			isa = PBXGroup;
+			children = (
+				F9A0FC2326965F6500780591 /* CBUUIDs.swift */,
+				F9A0FC2526965FC700780591 /* BlePeripheral.swift */,
+			);
+			path = bluetooth;
+			sourceTree = "<group>";
+		};
+		63A16E0026ADFDD000429A9B /* data */ = {
+			isa = PBXGroup;
+			children = (
+				63A16DFD26ADEF6800429A9B /* DataProcessing.swift */,
+				F93A3A45269CD0A2006AD1E2 /* UserData.swift */,
+			);
+			path = data;
+			sourceTree = "<group>";
+		};
 		A5076D4C6CF192DE46D2FC51 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -112,15 +130,13 @@
 			children = (
 				F9597BAA26816BCE009AE690 /* AppDelegate.swift */,
 				F9597BAC26816BCE009AE690 /* SceneDelegate.swift */,
-				F9597BB026816BCE009AE690 /* Main.storyboard */,
 				63A16DFC26ACBEEB00429A9B /* viewcontrollers */,
-				F9597BB326816BD0009AE690 /* Assets.xcassets */,
+				63A16DFF26ADFDA000429A9B /* bluetooth */,
+				63A16E0026ADFDD000429A9B /* data */,
+				F9597BB026816BCE009AE690 /* Main.storyboard */,
 				F9597BB526816BD0009AE690 /* LaunchScreen.storyboard */,
 				F9597BB826816BD0009AE690 /* Info.plist */,
-				F9A0FC2326965F6500780591 /* CBUUIDs.swift */,
-				F9A0FC2526965FC700780591 /* BlePeripheral.swift */,
-				F93A3A45269CD0A2006AD1E2 /* UserData.swift */,
-				63A16DFD26ADEF6800429A9B /* DataProcessing.swift */,
+				F9597BB326816BD0009AE690 /* Assets.xcassets */,
 			);
 			path = levo;
 			sourceTree = "<group>";
