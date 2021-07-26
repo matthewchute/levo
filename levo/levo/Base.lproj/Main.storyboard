@@ -83,7 +83,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xdc-C1-IKi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-610.14492753623188" y="37.5"/>
+            <point key="canvasLocation" x="-554" y="38"/>
         </scene>
         <!--Settings View Controller-->
         <scene sceneID="gUz-qI-q4z">
@@ -124,7 +124,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oHM-Po-ENZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-610" y="751"/>
+            <point key="canvasLocation" x="-554" y="751"/>
         </scene>
         <!--Workout View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -142,7 +142,7 @@
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="75" translatesAutoresizingMaskIntoConstraints="NO" id="ny4-qf-bEg">
-                                <rect key="frame" x="63" y="702" width="288" height="30"/>
+                                <rect key="frame" x="184" y="702" width="46" height="30"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mLx-hl-lGy">
                                         <rect key="frame" x="0.0" y="0.0" width="46" height="30"/>
@@ -151,26 +151,12 @@
                                             <action selector="displayXData" destination="BYZ-38-t0r" eventType="touchUpInside" id="Rpe-df-C3a"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DNU-HX-5C8">
-                                        <rect key="frame" x="121" y="0.0" width="46" height="30"/>
-                                        <state key="normal" title="Button"/>
-                                        <connections>
-                                            <action selector="displayYData" destination="BYZ-38-t0r" eventType="touchUpInside" id="MrV-Da-MfK"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="04q-yz-DJD">
-                                        <rect key="frame" x="242" y="0.0" width="46" height="30"/>
-                                        <state key="normal" title="Button"/>
-                                        <connections>
-                                            <action selector="displayZData" destination="BYZ-38-t0r" eventType="touchUpInside" id="IYx-bf-GfM"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wqy-Ue-VE1">
-                                <rect key="frame" x="25" y="69" width="364" height="18"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <nil key="textColor"/>
+                                <rect key="frame" x="25" y="69" width="364" height="31.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
+                                <color key="textColor" systemColor="systemOrangeColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9SE-nF-NxZ">
@@ -200,15 +186,44 @@
                     <connections>
                         <outlet property="backBtn" destination="9SE-nF-NxZ" id="OAI-cV-13b"/>
                         <outlet property="btn" destination="HEN-8C-nQj" id="Oph-4h-wfp"/>
-                        <outlet property="dataLbl" destination="wqy-Ue-VE1" id="lNI-5T-T4g"/>
+                        <outlet property="titleLbl" destination="wqy-Ue-VE1" id="SAf-6M-lno"/>
                         <outlet property="xBtn" destination="mLx-hl-lGy" id="20F-K7-zPt"/>
-                        <outlet property="yBtn" destination="DNU-HX-5C8" id="p8a-ww-7GC"/>
-                        <outlet property="zBtn" destination="04q-yz-DJD" id="HhO-oE-air"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="247.82608695652175" y="37.5"/>
+            <point key="canvasLocation" x="1072" y="38"/>
+        </scene>
+        <!--Graph View Controller-->
+        <scene sceneID="AKl-Uv-zhh">
+            <objects>
+                <viewController storyboardIdentifier="GraphVC" id="kJ3-hJ-ywN" customClass="GraphViewController" customModule="levo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="nc4-R4-cdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CJm-RZ-hOi">
+                                <rect key="frame" x="20" y="64" width="20" height="22"/>
+                                <state key="normal" image="arrow.backward" catalog="system"/>
+                                <connections>
+                                    <action selector="goBack" destination="kJ3-hJ-ywN" eventType="touchUpInside" id="fvR-nD-HA2"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="75G-Ch-Dw6"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="CJm-RZ-hOi" firstAttribute="leading" secondItem="75G-Ch-Dw6" secondAttribute="leading" constant="20" id="D3X-Ue-GgZ"/>
+                            <constraint firstItem="CJm-RZ-hOi" firstAttribute="top" secondItem="75G-Ch-Dw6" secondAttribute="top" constant="20" id="WqQ-T0-BBe"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="backBtn" destination="CJm-RZ-hOi" id="nVA-c9-99w"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Mg1-L9-JkW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1070" y="751"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="MXZ-2y-HQP">
@@ -249,7 +264,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cV2-61-1Hy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1030" y="38"/>
+            <point key="canvasLocation" x="1071" y="-689"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="ecG-cC-Ejv">
@@ -341,7 +356,104 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZPS-kU-JD9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="248" y="751"/>
+            <point key="canvasLocation" x="-555" y="-689"/>
+        </scene>
+        <!--Select Workout View Controller-->
+        <scene sceneID="B3U-zS-9BK">
+            <objects>
+                <viewController storyboardIdentifier="Select" id="XTH-03-SjA" customClass="SelectWorkoutViewController" customModule="levo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Eq0-c9-4Yl">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="BMW-aH-Ybo">
+                                <rect key="frame" x="20" y="286" width="374" height="314"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nyq-6R-46Q">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="41"/>
+                                        <color key="backgroundColor" systemColor="systemOrangeColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                        <state key="normal" title="Button">
+                                            <color key="titleColor" systemColor="systemBackgroundColor"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="didTapBenchBtn" destination="XTH-03-SjA" eventType="touchUpInside" id="oFT-AK-4Pw"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xeb-gq-sNg">
+                                        <rect key="frame" x="0.0" y="91" width="374" height="41"/>
+                                        <color key="backgroundColor" systemColor="systemOrangeColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                        <state key="normal" title="Button">
+                                            <color key="titleColor" systemColor="systemBackgroundColor"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="didTapDeadBtn" destination="XTH-03-SjA" eventType="touchUpInside" id="dcX-8u-f0O"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LDW-RA-iW0">
+                                        <rect key="frame" x="0.0" y="182" width="374" height="41"/>
+                                        <color key="backgroundColor" systemColor="systemOrangeColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                        <state key="normal" title="Button">
+                                            <color key="titleColor" systemColor="systemBackgroundColor"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="didTapSquatBtn" destination="XTH-03-SjA" eventType="touchUpInside" id="VX8-UE-vmG"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tps-nr-6eg">
+                                        <rect key="frame" x="0.0" y="273" width="374" height="41"/>
+                                        <color key="backgroundColor" systemColor="systemOrangeColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                        <state key="normal" title="Button">
+                                            <color key="titleColor" systemColor="systemBackgroundColor"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="didTapClearBtn" destination="XTH-03-SjA" eventType="touchUpInside" id="Duk-GR-ri7"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qy3-db-d2s">
+                                <rect key="frame" x="20" y="64" width="19.5" height="22"/>
+                                <state key="normal" image="arrow.backward" catalog="system"/>
+                                <connections>
+                                    <action selector="didTapBackBtn" destination="XTH-03-SjA" eventType="touchUpInside" id="E6S-c3-efD"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J9f-2c-Hs9">
+                                <rect key="frame" x="174" y="64" width="66.5" height="31.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
+                                <color key="textColor" systemColor="systemOrangeColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Ftc-Fj-i3e"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="BMW-aH-Ybo" firstAttribute="centerX" secondItem="Eq0-c9-4Yl" secondAttribute="centerX" id="DyV-7C-AWC"/>
+                            <constraint firstItem="Qy3-db-d2s" firstAttribute="top" secondItem="Ftc-Fj-i3e" secondAttribute="top" constant="20" id="FtL-kN-pB9"/>
+                            <constraint firstItem="J9f-2c-Hs9" firstAttribute="top" secondItem="Ftc-Fj-i3e" secondAttribute="top" constant="20" id="My8-li-bPD"/>
+                            <constraint firstItem="BMW-aH-Ybo" firstAttribute="top" secondItem="Qy3-db-d2s" secondAttribute="bottom" constant="200" id="STb-an-V9B"/>
+                            <constraint firstItem="BMW-aH-Ybo" firstAttribute="leading" secondItem="Ftc-Fj-i3e" secondAttribute="leading" constant="20" id="WZI-Lp-kdP"/>
+                            <constraint firstItem="Qy3-db-d2s" firstAttribute="leading" secondItem="Ftc-Fj-i3e" secondAttribute="leading" constant="20" id="uRR-vM-Xpl"/>
+                            <constraint firstItem="J9f-2c-Hs9" firstAttribute="centerX" secondItem="Eq0-c9-4Yl" secondAttribute="centerX" id="vr1-k3-bNF"/>
+                            <constraint firstItem="Ftc-Fj-i3e" firstAttribute="trailing" secondItem="BMW-aH-Ybo" secondAttribute="trailing" constant="20" id="ylp-lY-dYi"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="backBtn" destination="Qy3-db-d2s" id="czV-Y2-TzS"/>
+                        <outlet property="benchBtn" destination="nyq-6R-46Q" id="3JW-3p-i1Y"/>
+                        <outlet property="cleanBtn" destination="Tps-nr-6eg" id="Th0-bf-Puh"/>
+                        <outlet property="deadliftBtn" destination="Xeb-gq-sNg" id="0Y5-fe-f1T"/>
+                        <outlet property="squatBtn" destination="LDW-RA-iW0" id="qNW-Ci-jNm"/>
+                        <outlet property="titleLbl" destination="J9f-2c-Hs9" id="Nln-Gu-Wqa"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="W9b-mv-GzP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="248" y="38"/>
         </scene>
     </scenes>
     <resources>

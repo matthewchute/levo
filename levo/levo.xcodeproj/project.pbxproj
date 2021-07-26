@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		6341B4AC269FD2030061B23B /* Pods_levo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D8601A4098EAFBF922D17D9 /* Pods_levo.framework */; };
+		6343408D26AF340200961163 /* SelectWorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6343408C26AF340200961163 /* SelectWorkoutViewController.swift */; };
+		6343408F26AF3C2700961163 /* GraphViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6343408E26AF3C2700961163 /* GraphViewController.swift */; };
 		63A16DF926ACB30D00429A9B /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A16DF826ACB30D00429A9B /* SettingsViewController.swift */; };
 		63A16DFB26ACB31B00429A9B /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A16DFA26ACB31B00429A9B /* ProfileViewController.swift */; };
 		63A16DFE26ADEF6800429A9B /* DataProcessing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A16DFD26ADEF6800429A9B /* DataProcessing.swift */; };
@@ -27,6 +29,8 @@
 /* Begin PBXFileReference section */
 		3FEA19FE99CA1CCD0F93EAF5 /* Pods-levo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-levo.debug.xcconfig"; path = "Target Support Files/Pods-levo/Pods-levo.debug.xcconfig"; sourceTree = "<group>"; };
 		6341B4AF269FD2380061B23B /* Charts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Charts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6343408C26AF340200961163 /* SelectWorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SelectWorkoutViewController.swift; path = levo/SelectWorkoutViewController.swift; sourceTree = SOURCE_ROOT; };
+		6343408E26AF3C2700961163 /* GraphViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GraphViewController.swift; path = levo/GraphViewController.swift; sourceTree = SOURCE_ROOT; };
 		63A16DF826ACB30D00429A9B /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		63A16DFA26ACB31B00429A9B /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		63A16DFD26ADEF6800429A9B /* DataProcessing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProcessing.swift; sourceTree = "<group>"; };
@@ -62,6 +66,8 @@
 		63A16DFC26ACBEEB00429A9B /* viewcontrollers */ = {
 			isa = PBXGroup;
 			children = (
+				6343408E26AF3C2700961163 /* GraphViewController.swift */,
+				6343408C26AF340200961163 /* SelectWorkoutViewController.swift */,
 				F9597BAE26816BCE009AE690 /* WorkoutViewController.swift */,
 				63A16DFA26ACB31B00429A9B /* ProfileViewController.swift */,
 				63A16DF826ACB30D00429A9B /* SettingsViewController.swift */,
@@ -261,6 +267,8 @@
 				F9A0FC2626965FC700780591 /* BlePeripheral.swift in Sources */,
 				F9597BAD26816BCE009AE690 /* SceneDelegate.swift in Sources */,
 				63A16DFB26ACB31B00429A9B /* ProfileViewController.swift in Sources */,
+				6343408D26AF340200961163 /* SelectWorkoutViewController.swift in Sources */,
+				6343408F26AF3C2700961163 /* GraphViewController.swift in Sources */,
 				F9A0FC2426965F6500780591 /* CBUUIDs.swift in Sources */,
 				F93A3A46269CD0A2006AD1E2 /* UserData.swift in Sources */,
 				63A16DFE26ADEF6800429A9B /* DataProcessing.swift in Sources */,

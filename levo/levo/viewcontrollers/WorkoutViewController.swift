@@ -5,10 +5,8 @@
 //  Created by Antonio Kim on 2021-06-21.
 //
 import UIKit
-import Charts
-import TinyConstraints
 
-class WorkoutViewController: UIViewController, ChartViewDelegate {
+class WorkoutViewController: UIViewController {
     
     var dp = DataProcessing()
     
@@ -43,9 +41,7 @@ class WorkoutViewController: UIViewController, ChartViewDelegate {
     // UI
     @IBOutlet weak var btn: UIButton!
     @IBOutlet weak var xBtn: UIButton!
-    @IBOutlet weak var yBtn: UIButton!
-    @IBOutlet weak var zBtn: UIButton!
-    @IBOutlet weak var dataLbl: UILabel!
+    @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var backBtn: UIButton!
     
     override func viewDidLoad() {
@@ -57,20 +53,14 @@ class WorkoutViewController: UIViewController, ChartViewDelegate {
         
         // buttons
         btn.setTitle("Start", for: .normal)
-        xBtn.setTitle("Up Vel", for: .normal)
-        yBtn.setTitle("X Acc", for: .normal)
-        zBtn.setTitle("Z Acc", for: .normal)
-        dataLbl.text = "Data to be displayed here"
+        xBtn.setTitle("View Graphs", for: .normal)
+        xBtn.isHidden = true
+        titleLbl.text = UserData.workoutType
         
         backBtn.frame = CGRect(x: 25, y: 25, width: 25, height: 25)
         backBtn.imageEdgeInsets = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
         backBtn.tintColor = .systemOrange
-        
-        // charts
-        view.addSubview(lineChartView)
-        lineChartView.centerInSuperview()
-        lineChartView.width(to: view)
-        lineChartView.heightToWidth(of: view)
+
     }
     
     @objc func catchBase(_ noti: Notification) {
@@ -82,6 +72,10 @@ class WorkoutViewController: UIViewController, ChartViewDelegate {
             agl2gndY = agly
             agl2gndZ = aglz
             sample_period = tsp
+            if xAcc.count > 1 {
+                (num_reps, velAvgs, velPeaks, accAvgs, accPeaks, range_of_reps) = process_data()
+            }
+            xBtn.isHidden = false
         } else {print("******ERROR******")}
     }
     
@@ -100,28 +94,13 @@ class WorkoutViewController: UIViewController, ChartViewDelegate {
     }
     
     @IBAction func displayXData() {
-        if xAcc.count != 1 {
-            (num_reps, velAvgs, velPeaks, accAvgs, accPeaks, range_of_reps) = process_data()
-            dataLbl.text = "R: \(num_reps) \n aV: \(velAvgs) \n pV: \(velPeaks)"
-        }
-        setData(data: up_vel_iso, axis: "Up Vel")
-    }
-    
-    @IBAction func displayYData() {
-        setData(data: xAcc, axis: "X Acc")
-    }
-    
-    @IBAction func displayZData() {
-        setData(data: zAcc, axis: "Z Acc")
+        let vc1 = storyboard?.instantiateViewController(identifier: "GraphVC") as! GraphViewController
+        vc1.modalPresentationStyle = .fullScreen
+        present(vc1, animated: true)
     }
     
     @IBAction func didTapBackBtn() {
         dismiss(animated: true, completion: nil)
-    }
-    
-    func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
-        print(entry)
-        
     }
     
     func process_data() -> (Int, [Float], [Float], [Float], [Float], [[Int]]) {
@@ -143,48 +122,5 @@ class WorkoutViewController: UIViewController, ChartViewDelegate {
         (up_vel_iso, up_acc_iso) = dp.in_rep_slope(lwr, upr, up_vel, up_acc)
             
         return dp.rep_count(up_vel_iso, up_acc_iso)
-    }
-
-    // Charts Methods:
-    lazy var lineChartView: LineChartView = {
-        let chartView = LineChartView()
-        chartView.backgroundColor = .systemBlue
-        chartView.rightAxis.enabled = false
-        
-        // Y-Axis customization. No need
-        let yAxis = chartView.leftAxis
-        yAxis.labelFont = .boldSystemFont(ofSize: 12)
-        yAxis.setLabelCount(6, force: false)
-        yAxis.labelTextColor = .white
-        yAxis.axisLineColor = .white
-        yAxis.labelPosition = .outsideChart
-        
-        chartView.xAxis.labelPosition = .bottom
-        chartView.xAxis.setLabelCount(6, force: false)
-        chartView.xAxis.labelTextColor = .white
-        
-        chartView.animate(xAxisDuration: 2.5)
-        return chartView
-    }()
-    
-    func setData(data: [Float], axis: String) {
-        let set1 = LineChartDataSet(entries: prepValues(data), label: axis)
-        let data = LineChartData(dataSet: set1)
-        lineChartView.data = data
-        data.setDrawValues(false)
-        set1.mode = .cubicBezier
-        set1.drawCirclesEnabled = false
-    }
-    
-    func prepValues(_ input: [Float]) -> [ChartDataEntry] {
-        var temp: [ChartDataEntry] = []
-        if input.count == 0 {return [ChartDataEntry(x:0.0, y: 0.0)]}
-        else {
-            for i in 0...input.count-1 {
-                temp.append(ChartDataEntry(x: Double(i), y: Double(input[i])))
-                // print("x: \(Double(i)), y: \(Double(input[i]))")
-            }
-        }
-        return temp
     }
 }

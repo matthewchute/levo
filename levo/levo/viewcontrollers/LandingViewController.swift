@@ -32,7 +32,7 @@ class LandingViewController: UIViewController {
     @IBOutlet weak var settingsButton: UIButton!
     
     @IBAction func didTapStartWorkout() {
-        let vc = storyboard?.instantiateViewController(identifier: "Workout") as! WorkoutViewController
+        let vc = storyboard?.instantiateViewController(identifier: "Select") as! SelectWorkoutViewController
         vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true)
     }
