@@ -166,16 +166,26 @@
                                     <action selector="didTapBackBtn" destination="BYZ-38-t0r" eventType="touchUpInside" id="hh9-57-cqv"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N3F-hU-BMr">
+                                <rect key="frame" x="20" y="300.5" width="374" height="33.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                <color key="textColor" red="0.098039215690000001" green="0.2274509804" blue="0.43529411759999997" alpha="0.8980392157" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="N3F-hU-BMr" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="23K-Fd-NlK"/>
                             <constraint firstItem="wqy-Ue-VE1" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="25" id="2VS-6b-2dU"/>
                             <constraint firstItem="9SE-nF-NxZ" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="5Nd-vJ-Duw"/>
                             <constraint firstItem="HEN-8C-nQj" firstAttribute="top" secondItem="ny4-qf-bEg" secondAttribute="bottom" constant="50" id="9kS-Ns-E8z"/>
                             <constraint firstItem="ny4-qf-bEg" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Lg1-I1-xsB"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="wqy-Ue-VE1" secondAttribute="trailing" constant="25" id="WOp-tx-Fkm"/>
+                            <constraint firstItem="N3F-hU-BMr" firstAttribute="top" secondItem="wqy-Ue-VE1" secondAttribute="bottom" constant="200" id="X24-3e-hn1"/>
+                            <constraint firstItem="N3F-hU-BMr" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="gTl-ix-HJS"/>
                             <constraint firstItem="wqy-Ue-VE1" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="m6M-G1-7en"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="N3F-hU-BMr" secondAttribute="trailing" constant="20" id="rvs-bM-1J6"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="HEN-8C-nQj" secondAttribute="bottom" constant="50" id="u8J-el-TDC"/>
                             <constraint firstItem="wqy-Ue-VE1" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="25" id="ubn-1a-uTv"/>
                             <constraint firstItem="HEN-8C-nQj" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="vfa-5U-Ntb"/>
@@ -186,6 +196,7 @@
                     <connections>
                         <outlet property="backBtn" destination="9SE-nF-NxZ" id="OAI-cV-13b"/>
                         <outlet property="btn" destination="HEN-8C-nQj" id="Oph-4h-wfp"/>
+                        <outlet property="mainLbl" destination="N3F-hU-BMr" id="Oct-k6-bta"/>
                         <outlet property="titleLbl" destination="wqy-Ue-VE1" id="SAf-6M-lno"/>
                         <outlet property="xBtn" destination="mLx-hl-lGy" id="20F-K7-zPt"/>
                     </connections>

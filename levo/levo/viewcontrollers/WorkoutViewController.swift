@@ -43,6 +43,7 @@ class WorkoutViewController: UIViewController {
     @IBOutlet weak var xBtn: UIButton!
     @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var backBtn: UIButton!
+    @IBOutlet weak var mainLbl: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,16 +52,33 @@ class WorkoutViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(catchBase(_:)), name: Notification.Name("baseData"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(catchGyro(_:)), name: Notification.Name("gyroData"), object: nil)
         
-        // buttons
+        // UI
         btn.setTitle("Start", for: .normal)
         xBtn.setTitle("View Graphs", for: .normal)
         xBtn.isHidden = true
         titleLbl.text = UserData.workoutType
         
+        mainLbl.attributedText = makeFont("You have selected ", UserData.workoutType, "\n\n To begin your workout, hit the ", "Start", " button below.")
+        
         backBtn.frame = CGRect(x: 25, y: 25, width: 25, height: 25)
         backBtn.imageEdgeInsets = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
         backBtn.tintColor = .systemOrange
 
+    }
+    
+    func makeFont(_ first: String, _ second: String, _ third: String, _ fourth: String, _ fifth: String) -> NSMutableAttributedString {
+        let bold = [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 28, weight: .bold)]
+        let regular = [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 28, weight: .regular)]
+        let str = NSMutableAttributedString(string: first, attributes: regular)
+        let secondStr = NSMutableAttributedString(string: second, attributes: bold)
+        let thirdStr = NSMutableAttributedString(string: third, attributes: regular)
+        let fourthStr = NSMutableAttributedString(string: fourth, attributes: bold)
+        let fifthStr = NSMutableAttributedString(string: fifth, attributes: regular)
+        str.append(secondStr)
+        str.append(thirdStr)
+        str.append(fourthStr)
+        str.append(fifthStr)
+        return str
     }
     
     @objc func catchBase(_ noti: Notification) {
