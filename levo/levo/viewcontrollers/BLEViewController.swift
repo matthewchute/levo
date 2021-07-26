@@ -52,6 +52,7 @@ class BLEViewController: UIViewController, CBCentralManagerDelegate, CBPeriphera
         super.viewDidLoad()
         centralManager = CBCentralManager(delegate: self, queue: nil)
         back_btn.setTitle("Back", for: .normal)
+        back_btn.layer.cornerRadius = 20
     }
     
     // parse str sent over ble and collect x y z accelerations and store them in respective array

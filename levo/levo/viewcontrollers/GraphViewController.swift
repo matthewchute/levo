@@ -17,6 +17,9 @@ class GraphViewController: UIViewController, ChartViewDelegate {
         backBtn.frame = CGRect(x: 25, y: 25, width: 25, height: 25)
         backBtn.imageEdgeInsets = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
         backBtn.tintColor = .systemOrange
+        backBtn.layer.cornerRadius = 20
+        
+        titleLbl.text = "Upward Velocity"
         
         // charts
         view.addSubview(lineChartView)
@@ -29,6 +32,7 @@ class GraphViewController: UIViewController, ChartViewDelegate {
     }
     
     @IBOutlet weak var backBtn: UIButton!
+    @IBOutlet weak var titleLbl: UILabel!
     
     @IBAction func goBack() {
         dismiss(animated: true, completion: nil)

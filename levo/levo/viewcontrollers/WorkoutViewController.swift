@@ -54,11 +54,14 @@ class WorkoutViewController: UIViewController {
         
         // UI
         btn.setTitle("Start", for: .normal)
+        btn.layer.cornerRadius = 20
         xBtn.setTitle("View Graphs", for: .normal)
+        xBtn.layer.cornerRadius = 20
         xBtn.isHidden = true
         titleLbl.text = UserData.workoutType
         
-        mainLbl.attributedText = makeFont("You have selected ", UserData.workoutType, "\n\n To begin your workout, hit the ", "Start", " button below.")
+        mainLbl.attributedText = makeFont("You have selected ", UserData.workoutType, "\n\nTo begin your workout, hit the ", "Start", " button below.")
+        mainLbl.textAlignment = .center
         
         backBtn.frame = CGRect(x: 25, y: 25, width: 25, height: 25)
         backBtn.imageEdgeInsets = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
@@ -81,6 +84,23 @@ class WorkoutViewController: UIViewController {
         return str
     }
     
+    func makeFont1(_ first: String, _ second: String, _ third: String, _ fourth: String, _ fifth: String, _ sixth: String) -> NSMutableAttributedString {
+        let bold = [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 22, weight: .bold)]
+        let regular = [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 22, weight: .regular)]
+        let str = NSMutableAttributedString(string: first, attributes: bold)
+        let secondStr = NSMutableAttributedString(string: second, attributes: regular)
+        let thirdStr = NSMutableAttributedString(string: third, attributes: bold)
+        let fourthStr = NSMutableAttributedString(string: fourth, attributes: regular)
+        let fifthStr = NSMutableAttributedString(string: fifth, attributes: bold)
+        let sixthStr = NSMutableAttributedString(string: sixth, attributes: regular)
+        str.append(secondStr)
+        str.append(thirdStr)
+        str.append(fourthStr)
+        str.append(fifthStr)
+        str.append(sixthStr)
+        return str
+    }
+    
     @objc func catchBase(_ noti: Notification) {
         if let (arrx, arry, arrz, aglx, agly, aglz, tsp) = noti.object as! ([Float], [Float], [Float], [Float], [Float], [Float], Float)? {
             xAcc = arrx
@@ -94,6 +114,10 @@ class WorkoutViewController: UIViewController {
                 (num_reps, velAvgs, velPeaks, accAvgs, accPeaks, range_of_reps) = process_data()
             }
             xBtn.isHidden = false
+            
+            mainLbl.attributedText = makeFont1("Reps: ", "\(num_reps)", "\n\nAverage Velocity per Rep: ", "\(velAvgs)", "\n\nPeak Velocity per Rep: ", "\(velPeaks)")
+            mainLbl.textAlignment = .left
+            
         } else {print("******ERROR******")}
     }
     
