@@ -28,5 +28,7 @@ class UserData {
     
     static var workouts: exercise = exercise(type: "Test", sets: [set(reps: 0, avgVel: [0], peakVel: [0])])
     
+    static var tempUpVel: [Float] = [0.0]
+    
     //static var allw
 }

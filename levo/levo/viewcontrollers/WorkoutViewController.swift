@@ -96,6 +96,7 @@ class WorkoutViewController: UIViewController {
     @IBAction func displayXData() {
         let vc1 = storyboard?.instantiateViewController(identifier: "GraphVC") as! GraphViewController
         vc1.modalPresentationStyle = .fullScreen
+        UserData.tempUpVel = up_vel_iso
         present(vc1, animated: true)
     }
     

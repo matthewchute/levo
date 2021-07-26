@@ -23,6 +23,8 @@ class GraphViewController: UIViewController, ChartViewDelegate {
         lineChartView.centerInSuperview()
         lineChartView.width(to: view)
         lineChartView.heightToWidth(of: view)
+        
+        setData(data: UserData.tempUpVel, axis: "Upward Velocity")
 
     }
     
