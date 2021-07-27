@@ -151,16 +151,19 @@ class WorkoutViewController: UIViewController, ChartViewDelegate {
                 
         let angularDispXZPlane: [Float] = dp.trap_rule(dp.gyro_smooth(yGyro), sample_period)
                 
-        temp = angularDispXZPlane
-        
+        //agldisp = angularDispXZPlane
+        let gyro_filt = dp.gyro_crush_acc(yGyro, accAx1: zAcc, accAx2: xAcc)
+                
+        let agl_adjZ = dp.gyro_comb_angle(gyro: angularDispXZPlane, agl2gnd: agl2gndZ)
+        let agl_adjX = dp.gyro_comb_angle(gyro: angularDispXZPlane, agl2gnd: agl2gndX)
         // get velocity in each axis
         xVel = dp.noise_comp(dp.trap_rule(xAcc, sample_period), xAcc.count)
         //yVel = noise_comp(trap_rule(yAcc), yAcc.count)
         zVel = dp.noise_comp(dp.trap_rule(zAcc, sample_period), zAcc.count)
         
         // get upward acc and vel
-        let up_acc = dp.orientation_correction([xAcc],[zAcc],[agl2gndX],[agl2gndZ])
-        let up_vel = dp.orientation_correction([xVel],[zVel],[agl2gndX],[agl2gndZ])
+        let up_acc = dp.orientation_correction([xAcc],[zAcc],[agl_adjX],[agl_adjZ])
+        let up_vel = dp.orientation_correction([xVel],[zVel],[agl_adjX],[agl_adjZ])
         
         // get and return rest of data
         var lwr: Int = 0
@@ -169,9 +172,12 @@ class WorkoutViewController: UIViewController, ChartViewDelegate {
         (lwr, upr) = dp.set_range(up_acc)
         (up_vel_iso, up_acc_iso) = dp.in_rep_slope(lwr, upr, up_vel, up_acc)
         
+        
+        
         let netDisp = dp.noise_comp(dp.trap_rule(up_vel_iso, sample_period), up_vel_iso.count)
         
-        temp1 = netDisp
+        temp = agl_adjZ
+        temp1 = gyro_filt
             
         return dp.rep_count(up_vel_iso, up_acc_iso)
     }
