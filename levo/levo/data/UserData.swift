@@ -24,6 +24,8 @@ class UserData {
     
     static var workoutType: String = "None"
     
+    static var num_sets: Int = 0
+    
     static var personal: user = user(firstName: "John", lastName: "Doe", email: "jdoe@sfu.ca", age: 24, height: 183.0, weight: 200.0)
     
     static var workouts: exercise = exercise(type: "Test", sets: [set(reps: 0, avgVel: [0], peakVel: [0])])

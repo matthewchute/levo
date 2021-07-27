@@ -134,28 +134,44 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mLx-hl-lGy">
-                                <rect key="frame" x="40" y="680" width="334" height="41"/>
-                                <color key="backgroundColor" systemColor="systemOrangeColor"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
-                                <state key="normal" title="Button">
-                                    <color key="titleColor" systemColor="systemBackgroundColor"/>
-                                </state>
-                                <connections>
-                                    <action selector="displayXData" destination="BYZ-38-t0r" eventType="touchUpInside" id="Rpe-df-C3a"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HEN-8C-nQj">
-                                <rect key="frame" x="40" y="771" width="334" height="41"/>
-                                <color key="backgroundColor" systemColor="systemOrangeColor"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
-                                <state key="normal" title="Button">
-                                    <color key="titleColor" systemColor="systemBackgroundColor"/>
-                                </state>
-                                <connections>
-                                    <action selector="didtap" destination="BYZ-38-t0r" eventType="touchUpInside" id="hPf-yx-Ac6"/>
-                                </connections>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="Yaj-0T-XH2">
+                                <rect key="frame" x="40" y="639" width="334" height="173"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mLx-hl-lGy">
+                                        <rect key="frame" x="0.0" y="0.0" width="334" height="41"/>
+                                        <color key="backgroundColor" systemColor="systemOrangeColor"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                        <state key="normal" title="Button">
+                                            <color key="titleColor" systemColor="systemBackgroundColor"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="displayGraph" destination="BYZ-38-t0r" eventType="touchUpInside" id="5wX-Fm-jvX"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0oV-Dz-V0C">
+                                        <rect key="frame" x="0.0" y="66" width="334" height="41"/>
+                                        <color key="backgroundColor" systemColor="systemOrangeColor"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                        <state key="normal" title="Button">
+                                            <color key="titleColor" systemColor="systemBackgroundColor"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="endWorkout" destination="BYZ-38-t0r" eventType="touchUpInside" id="xsr-V4-pSe"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HEN-8C-nQj">
+                                        <rect key="frame" x="0.0" y="132" width="334" height="41"/>
+                                        <color key="backgroundColor" systemColor="systemOrangeColor"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                        <state key="normal" title="Button">
+                                            <color key="titleColor" systemColor="systemBackgroundColor"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="displayBLE" destination="BYZ-38-t0r" eventType="touchUpInside" id="Aih-3c-9jM"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wqy-Ue-VE1">
                                 <rect key="frame" x="25" y="69" width="364" height="31.5"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
@@ -181,30 +197,28 @@
                         <constraints>
                             <constraint firstItem="N3F-hU-BMr" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="23K-Fd-NlK"/>
                             <constraint firstItem="wqy-Ue-VE1" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="25" id="2VS-6b-2dU"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Yaj-0T-XH2" secondAttribute="trailing" constant="40" id="4l0-kz-9cJ"/>
                             <constraint firstItem="9SE-nF-NxZ" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="5Nd-vJ-Duw"/>
-                            <constraint firstItem="mLx-hl-lGy" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="G0K-yJ-zlF"/>
-                            <constraint firstItem="HEN-8C-nQj" firstAttribute="top" secondItem="mLx-hl-lGy" secondAttribute="bottom" constant="50" id="PXB-mK-z7K"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="HEN-8C-nQj" secondAttribute="trailing" constant="40" id="QnF-um-TmK"/>
+                            <constraint firstItem="Yaj-0T-XH2" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="A1G-Wv-ujX"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Yaj-0T-XH2" secondAttribute="bottom" constant="50" id="BVx-Is-c1r"/>
+                            <constraint firstItem="Yaj-0T-XH2" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="Rhe-uI-LoV"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="wqy-Ue-VE1" secondAttribute="trailing" constant="25" id="WOp-tx-Fkm"/>
                             <constraint firstItem="N3F-hU-BMr" firstAttribute="top" secondItem="wqy-Ue-VE1" secondAttribute="bottom" constant="150" id="X24-3e-hn1"/>
-                            <constraint firstItem="HEN-8C-nQj" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="dnc-4a-Zsa"/>
                             <constraint firstItem="N3F-hU-BMr" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="gTl-ix-HJS"/>
                             <constraint firstItem="wqy-Ue-VE1" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="m6M-G1-7en"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="mLx-hl-lGy" secondAttribute="trailing" constant="40" id="n7c-5G-gjP"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="N3F-hU-BMr" secondAttribute="trailing" constant="20" id="rvs-bM-1J6"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="HEN-8C-nQj" secondAttribute="bottom" constant="50" id="u8J-el-TDC"/>
                             <constraint firstItem="wqy-Ue-VE1" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="25" id="ubn-1a-uTv"/>
-                            <constraint firstItem="HEN-8C-nQj" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="vfa-5U-Ntb"/>
                             <constraint firstItem="9SE-nF-NxZ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="wdM-XX-qtQ"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="J21-BK-eFA"/>
                     <connections>
                         <outlet property="backBtn" destination="9SE-nF-NxZ" id="OAI-cV-13b"/>
-                        <outlet property="btn" destination="HEN-8C-nQj" id="Oph-4h-wfp"/>
+                        <outlet property="endWorkoutBtn" destination="0oV-Dz-V0C" id="2fc-Tk-fye"/>
+                        <outlet property="graphBtn" destination="mLx-hl-lGy" id="kJV-b7-vBG"/>
                         <outlet property="mainLbl" destination="N3F-hU-BMr" id="Oct-k6-bta"/>
+                        <outlet property="startBtn" destination="HEN-8C-nQj" id="Dag-xa-9M7"/>
                         <outlet property="titleLbl" destination="wqy-Ue-VE1" id="SAf-6M-lno"/>
-                        <outlet property="xBtn" destination="mLx-hl-lGy" id="20F-K7-zPt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

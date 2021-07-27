@@ -39,8 +39,9 @@ class WorkoutViewController: UIViewController {
     var sample_period: Float = 3.0
     
     // UI
-    @IBOutlet weak var btn: UIButton!
-    @IBOutlet weak var xBtn: UIButton!
+    @IBOutlet weak var startBtn: UIButton!
+    @IBOutlet weak var graphBtn: UIButton!
+    @IBOutlet weak var endWorkoutBtn: UIButton!
     @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var backBtn: UIButton!
     @IBOutlet weak var mainLbl: UILabel!
@@ -53,11 +54,14 @@ class WorkoutViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(catchGyro(_:)), name: Notification.Name("gyroData"), object: nil)
         
         // UI
-        btn.setTitle("Start", for: .normal)
-        btn.layer.cornerRadius = 20
-        xBtn.setTitle("View Graphs", for: .normal)
-        xBtn.layer.cornerRadius = 20
-        xBtn.isHidden = true
+        startBtn.setTitle("Start", for: .normal)
+        startBtn.layer.cornerRadius = 20
+        graphBtn.setTitle("View Graphs", for: .normal)
+        graphBtn.layer.cornerRadius = 20
+        graphBtn.isHidden = true
+        endWorkoutBtn.setTitle("End Workout", for: .normal)
+        endWorkoutBtn.layer.cornerRadius = 20
+        endWorkoutBtn.isHidden = true
         titleLbl.text = UserData.workoutType
         
         mainLbl.attributedText = makeFont("You have selected ", UserData.workoutType, "\n\nTo begin your workout, hit the ", "Start", " button below.")
@@ -84,21 +88,25 @@ class WorkoutViewController: UIViewController {
         return str
     }
     
-    func makeFont1(_ first: String, _ second: String, _ third: String, _ fourth: String, _ fifth: String, _ sixth: String) -> NSMutableAttributedString {
+    func makeFont1(_ first: String, _ second: String, _ third: String, _ fourth: String, _ fifth: String, _ sixth: String, _ seventh: String, _ eigth: String) -> NSMutableAttributedString {
         let bold = [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 22, weight: .bold)]
         let regular = [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 22, weight: .regular)]
-        let str = NSMutableAttributedString(string: first, attributes: bold)
+        let firstStr = NSMutableAttributedString(string: first, attributes: bold)
         let secondStr = NSMutableAttributedString(string: second, attributes: regular)
         let thirdStr = NSMutableAttributedString(string: third, attributes: bold)
         let fourthStr = NSMutableAttributedString(string: fourth, attributes: regular)
         let fifthStr = NSMutableAttributedString(string: fifth, attributes: bold)
         let sixthStr = NSMutableAttributedString(string: sixth, attributes: regular)
-        str.append(secondStr)
-        str.append(thirdStr)
-        str.append(fourthStr)
-        str.append(fifthStr)
-        str.append(sixthStr)
-        return str
+        let seventhStr = NSMutableAttributedString(string: seventh, attributes: bold)
+        let eigthStr = NSMutableAttributedString(string: eigth, attributes: regular)
+        seventhStr.append(eigthStr)
+        seventhStr.append(firstStr)
+        seventhStr.append(secondStr)
+        seventhStr.append(thirdStr)
+        seventhStr.append(fourthStr)
+        seventhStr.append(fifthStr)
+        seventhStr.append(sixthStr)
+        return seventhStr
     }
     
     @objc func catchBase(_ noti: Notification) {
@@ -113,10 +121,19 @@ class WorkoutViewController: UIViewController {
             if xAcc.count > 1 {
                 (num_reps, velAvgs, velPeaks, accAvgs, accPeaks, range_of_reps) = process_data()
             }
-            xBtn.isHidden = false
             
-            mainLbl.attributedText = makeFont1("Reps: ", "\(num_reps)", "\n\nAverage Velocity per Rep: ", "\(velAvgs)", "\n\nPeak Velocity per Rep: ", "\(velPeaks)")
+            // increment number of sets
+            UserData.num_sets += 1
+            
+            // update buttons
+            graphBtn.isHidden = false
+            endWorkoutBtn.isHidden = false
+            startBtn.setTitle("Start Another Set", for: .normal)
+            
+            // update label
+            mainLbl.attributedText = makeFont1("\n\nReps: ", "\(num_reps)", "\n\nAverage Velocity per Rep: ", "\(velAvgs)", "\n\nPeak Velocity per Rep: ", "\(velPeaks)", "Set: ", "\(UserData.num_sets)")
             mainLbl.textAlignment = .left
+            
             
         } else {print("******ERROR******")}
     }
@@ -129,13 +146,17 @@ class WorkoutViewController: UIViewController {
         } else {print("******ERROR******")}
     }
     
-    @IBAction func didtap() {
+    @IBAction func displayBLE() {
         let vc = storyboard?.instantiateViewController(identifier: "BLE") as! BLEViewController
         vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true)
     }
     
-    @IBAction func displayXData() {
+    @IBAction func endWorkout() {
+        
+    }
+    
+    @IBAction func displayGraph() {
         let vc1 = storyboard?.instantiateViewController(identifier: "GraphVC") as! GraphViewController
         vc1.modalPresentationStyle = .fullScreen
         UserData.tempUpVel = up_vel_iso
