@@ -11,6 +11,7 @@ struct user {
 
 struct exercise {
     var type: String
+    var num_sets: Int
     var sets: [set]
 }
 
@@ -24,11 +25,11 @@ class UserData {
     
     static var workoutType: String = "None"
     
-    static var num_sets: Int = 0
-    
     static var personal: user = user(firstName: "John", lastName: "Doe", email: "jdoe@sfu.ca", age: 24, height: 183.0, weight: 200.0)
     
-    static var workouts: exercise = exercise(type: "Test", sets: [set(reps: 0, avgVel: [0], peakVel: [0])])
+    static var exer: exercise = exercise(type: "null", num_sets: 0, sets: [])
+    
+    static var past_exer: [exercise] = []
     
     static var tempUpVel: [Float] = [0.0]
     

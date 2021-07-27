@@ -70,6 +70,9 @@ class WorkoutViewController: UIViewController {
         backBtn.frame = CGRect(x: 25, y: 25, width: 25, height: 25)
         backBtn.imageEdgeInsets = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
         backBtn.tintColor = .systemOrange
+        
+        // data management
+        UserData.exer.type = UserData.workoutType
 
     }
     
@@ -122,18 +125,17 @@ class WorkoutViewController: UIViewController {
                 (num_reps, velAvgs, velPeaks, accAvgs, accPeaks, range_of_reps) = process_data()
             }
             
-            // increment number of sets
-            UserData.num_sets += 1
-            
             // update buttons
             graphBtn.isHidden = false
             endWorkoutBtn.isHidden = false
             startBtn.setTitle("Start Another Set", for: .normal)
             
             // update label
-            mainLbl.attributedText = makeFont1("\n\nReps: ", "\(num_reps)", "\n\nAverage Velocity per Rep: ", "\(velAvgs)", "\n\nPeak Velocity per Rep: ", "\(velPeaks)", "Set: ", "\(UserData.num_sets)")
+            mainLbl.attributedText = makeFont1("\n\nReps: ", "\(num_reps)", "\n\nAverage Velocity per Rep: ", "\(velAvgs)", "\n\nPeak Velocity per Rep: ", "\(velPeaks)", "Set: ", "\(UserData.exer.num_sets)")
             mainLbl.textAlignment = .left
             
+            // data management
+            UserData.exer.sets.append(set(reps: num_reps, avgVel: velAvgs, peakVel: velPeaks))
             
         } else {print("******ERROR******")}
     }
@@ -149,11 +151,17 @@ class WorkoutViewController: UIViewController {
     @IBAction func displayBLE() {
         let vc = storyboard?.instantiateViewController(identifier: "BLE") as! BLEViewController
         vc.modalPresentationStyle = .fullScreen
+        // increment number of sets
+        UserData.exer.num_sets += 1
         present(vc, animated: true)
     }
     
     @IBAction func endWorkout() {
-        
+        let vc2 = storyboard?.instantiateViewController(identifier: "Landing") as! LandingViewController
+        vc2.modalPresentationStyle = .fullScreen
+        UserData.past_exer.append(UserData.exer)
+        UserData.exer = exercise(type: "null", num_sets: 0, sets: [])
+        present(vc2, animated: true)
     }
     
     @IBAction func displayGraph() {

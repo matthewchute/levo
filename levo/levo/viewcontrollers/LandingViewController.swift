@@ -38,7 +38,9 @@ class LandingViewController: UIViewController {
     }
     
     @IBAction func didTapPrevWorkout() {
-        
+        let vc1 = storyboard?.instantiateViewController(identifier: "Previous") as! PreviousWorkoutsViewController
+        vc1.modalPresentationStyle = .fullScreen
+        present(vc1, animated: true)
     }
     
     @IBAction func didTapProfile() {

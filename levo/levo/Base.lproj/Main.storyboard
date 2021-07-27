@@ -507,6 +507,50 @@
             </objects>
             <point key="canvasLocation" x="248" y="38"/>
         </scene>
+        <!--Previous Workouts View Controller-->
+        <scene sceneID="upa-bl-ZRS">
+            <objects>
+                <viewController storyboardIdentifier="Previous" id="g38-cQ-PAz" customClass="PreviousWorkoutsViewController" customModule="levo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="1PU-pp-5VQ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="vlH-FZ-BvT">
+                                <rect key="frame" x="40" y="244" width="334" height="91"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bep-QF-Y6s">
+                                        <rect key="frame" x="292.5" y="0.0" width="41.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Ot-eK-FkS">
+                                        <rect key="frame" x="292.5" y="70.5" width="41.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="wnC-H0-Fhv"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="wnC-H0-Fhv" firstAttribute="trailing" secondItem="vlH-FZ-BvT" secondAttribute="trailing" constant="40" id="GFA-ex-nUP"/>
+                            <constraint firstItem="vlH-FZ-BvT" firstAttribute="leading" secondItem="wnC-H0-Fhv" secondAttribute="leading" constant="40" id="U4v-Eq-qDW"/>
+                            <constraint firstItem="vlH-FZ-BvT" firstAttribute="top" secondItem="wnC-H0-Fhv" secondAttribute="top" constant="200" id="cKn-z7-g1t"/>
+                            <constraint firstItem="vlH-FZ-BvT" firstAttribute="centerX" secondItem="1PU-pp-5VQ" secondAttribute="centerX" id="i9f-UO-vs3"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="testLbl" destination="bep-QF-Y6s" id="rcz-KK-pyR"/>
+                        <outlet property="testLbl1" destination="9Ot-eK-FkS" id="bg1-OJ-jQh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="340-i6-1p3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1452" y="38"/>
+        </scene>
     </scenes>
     <resources>
         <image name="arrow.backward" catalog="system" width="128" height="98"/>
