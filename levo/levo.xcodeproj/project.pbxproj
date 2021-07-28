@@ -33,8 +33,8 @@
 		3FEA19FE99CA1CCD0F93EAF5 /* Pods-levo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-levo.debug.xcconfig"; path = "Target Support Files/Pods-levo/Pods-levo.debug.xcconfig"; sourceTree = "<group>"; };
 		631056EF26AF91A0000EE618 /* PreviousWorkoutsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviousWorkoutsViewController.swift; sourceTree = "<group>"; };
 		6341B4AF269FD2380061B23B /* Charts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Charts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		6343408C26AF340200961163 /* SelectWorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SelectWorkoutViewController.swift; path = levo/viewcontrollers/SelectWorkoutViewController.swift; sourceTree = SOURCE_ROOT; };
-		6343408E26AF3C2700961163 /* GraphViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GraphViewController.swift; path = levo/viewcontrollers/GraphViewController.swift; sourceTree = SOURCE_ROOT; };
+		6343408C26AF340200961163 /* SelectWorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SelectWorkoutViewController.swift; path = levo/viewcontrollers/dataGet/SelectWorkoutViewController.swift; sourceTree = SOURCE_ROOT; };
+		6343408E26AF3C2700961163 /* GraphViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GraphViewController.swift; path = levo/viewcontrollers/dataGet/GraphViewController.swift; sourceTree = SOURCE_ROOT; };
 		639AC56526B20645006FC4C2 /* DataDisplayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataDisplayViewController.swift; sourceTree = "<group>"; };
 		639AC56726B2176C006FC4C2 /* SetDisplayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetDisplayViewController.swift; sourceTree = "<group>"; };
 		63A16DF826ACB30D00429A9B /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -72,16 +72,9 @@
 		63A16DFC26ACBEEB00429A9B /* viewcontrollers */ = {
 			isa = PBXGroup;
 			children = (
-				639AC56726B2176C006FC4C2 /* SetDisplayViewController.swift */,
-				639AC56526B20645006FC4C2 /* DataDisplayViewController.swift */,
-				631056EF26AF91A0000EE618 /* PreviousWorkoutsViewController.swift */,
-				6343408E26AF3C2700961163 /* GraphViewController.swift */,
-				6343408C26AF340200961163 /* SelectWorkoutViewController.swift */,
-				F9597BAE26816BCE009AE690 /* WorkoutViewController.swift */,
-				63A16DFA26ACB31B00429A9B /* ProfileViewController.swift */,
-				63A16DF826ACB30D00429A9B /* SettingsViewController.swift */,
-				63FCDDE226AC9E3D00F31282 /* LandingViewController.swift */,
-				F93A3A4D269CDE1A006AD1E2 /* BLEViewController.swift */,
+				63EDE05826B21E9D0040A3C9 /* dataDisplay */,
+				63EDE05726B21E8F0040A3C9 /* dataGet */,
+				63EDE05626B21E860040A3C9 /* landingPage */,
 			);
 			path = viewcontrollers;
 			sourceTree = "<group>";
@@ -102,6 +95,37 @@
 				F93A3A45269CD0A2006AD1E2 /* UserData.swift */,
 			);
 			path = data;
+			sourceTree = "<group>";
+		};
+		63EDE05626B21E860040A3C9 /* landingPage */ = {
+			isa = PBXGroup;
+			children = (
+				63FCDDE226AC9E3D00F31282 /* LandingViewController.swift */,
+				63A16DFA26ACB31B00429A9B /* ProfileViewController.swift */,
+				63A16DF826ACB30D00429A9B /* SettingsViewController.swift */,
+			);
+			path = landingPage;
+			sourceTree = "<group>";
+		};
+		63EDE05726B21E8F0040A3C9 /* dataGet */ = {
+			isa = PBXGroup;
+			children = (
+				6343408C26AF340200961163 /* SelectWorkoutViewController.swift */,
+				F9597BAE26816BCE009AE690 /* WorkoutViewController.swift */,
+				F93A3A4D269CDE1A006AD1E2 /* BLEViewController.swift */,
+				6343408E26AF3C2700961163 /* GraphViewController.swift */,
+			);
+			path = dataGet;
+			sourceTree = "<group>";
+		};
+		63EDE05826B21E9D0040A3C9 /* dataDisplay */ = {
+			isa = PBXGroup;
+			children = (
+				631056EF26AF91A0000EE618 /* PreviousWorkoutsViewController.swift */,
+				639AC56726B2176C006FC4C2 /* SetDisplayViewController.swift */,
+				639AC56526B20645006FC4C2 /* DataDisplayViewController.swift */,
+			);
+			path = dataDisplay;
 			sourceTree = "<group>";
 		};
 		A5076D4C6CF192DE46D2FC51 /* Pods */ = {
