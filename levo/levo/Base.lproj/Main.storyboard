@@ -97,9 +97,7 @@
                                 <rect key="frame" x="20" y="64" width="19.5" height="22"/>
                                 <state key="normal" image="arrow.backward" catalog="system"/>
                                 <connections>
-                                    <action selector="didTapBackBtn" destination="XTH-03-SjA" eventType="touchUpInside" id="yJr-8Z-2c8"/>
                                     <action selector="goBack" destination="2Cl-GM-oaz" eventType="touchUpInside" id="MwZ-yp-x44"/>
-                                    <action selector="goBack" destination="g38-cQ-PAz" eventType="touchUpInside" id="tgj-9h-Pz7"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uFI-Rn-FxW">
@@ -108,25 +106,13 @@
                                 <color key="textColor" systemColor="systemOrangeColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="uWg-R0-UEj">
-                                <rect key="frame" x="0.0" y="145.5" width="414" height="666.5"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="2Cl-GM-oaz" id="kys-mY-yKd"/>
-                                    <outlet property="delegate" destination="2Cl-GM-oaz" id="ZSV-Ke-mSX"/>
-                                </connections>
-                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="3Lf-p7-BOB"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="uWg-R0-UEj" firstAttribute="top" secondItem="uFI-Rn-FxW" secondAttribute="bottom" constant="50" id="4Sa-X0-6ci"/>
                             <constraint firstItem="6eH-eZ-Ema" firstAttribute="top" secondItem="3Lf-p7-BOB" secondAttribute="top" constant="20" id="OLE-By-XIV"/>
-                            <constraint firstItem="3Lf-p7-BOB" firstAttribute="trailing" secondItem="uWg-R0-UEj" secondAttribute="trailing" id="Tub-6s-Gzt"/>
-                            <constraint firstItem="3Lf-p7-BOB" firstAttribute="bottom" secondItem="uWg-R0-UEj" secondAttribute="bottom" constant="50" id="Uaf-NC-Kck"/>
                             <constraint firstItem="6eH-eZ-Ema" firstAttribute="leading" secondItem="3Lf-p7-BOB" secondAttribute="leading" constant="20" id="cnl-bV-h8G"/>
                             <constraint firstItem="uFI-Rn-FxW" firstAttribute="top" secondItem="3Lf-p7-BOB" secondAttribute="top" constant="20" id="dgY-8e-JgT"/>
-                            <constraint firstItem="uWg-R0-UEj" firstAttribute="leading" secondItem="3Lf-p7-BOB" secondAttribute="leading" id="rdJ-oW-KTC"/>
                             <constraint firstItem="uFI-Rn-FxW" firstAttribute="centerX" secondItem="gEH-rs-K8C" secondAttribute="centerX" id="xB8-Qd-MDb"/>
                         </constraints>
                     </view>
@@ -136,6 +122,58 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3d7-4F-0KF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1452" y="1485"/>
+        </scene>
+        <!--Set Display View Controller-->
+        <scene sceneID="KVk-pn-0ER">
+            <objects>
+                <viewController storyboardIdentifier="Sets" id="JlH-rG-YvA" customClass="SetDisplayViewController" customModule="levo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ipp-7Y-Z3I">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h5w-aY-Nev">
+                                <rect key="frame" x="20" y="64" width="19.5" height="22"/>
+                                <state key="normal" image="arrow.backward" catalog="system"/>
+                                <connections>
+                                    <action selector="goBack" destination="JlH-rG-YvA" eventType="touchUpInside" id="OUl-cg-kPa"/>
+                                </connections>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="BuQ-Pt-X5u">
+                                <rect key="frame" x="0.0" y="94" width="414" height="718"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="JlH-rG-YvA" id="lIa-Na-K61"/>
+                                    <outlet property="delegate" destination="JlH-rG-YvA" id="lDX-5e-aej"/>
+                                </connections>
+                            </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TWU-hi-BtC">
+                                <rect key="frame" x="174" y="64" width="66.5" height="31.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
+                                <color key="textColor" systemColor="systemOrangeColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="LZf-bg-4sr"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="h5w-aY-Nev" firstAttribute="leading" secondItem="LZf-bg-4sr" secondAttribute="leading" constant="20" id="5yu-X3-2U5"/>
+                            <constraint firstItem="TWU-hi-BtC" firstAttribute="top" secondItem="LZf-bg-4sr" secondAttribute="top" constant="20" id="7cN-Cq-GVe"/>
+                            <constraint firstItem="TWU-hi-BtC" firstAttribute="centerX" secondItem="ipp-7Y-Z3I" secondAttribute="centerX" id="DNr-cV-esF"/>
+                            <constraint firstItem="LZf-bg-4sr" firstAttribute="trailing" secondItem="BuQ-Pt-X5u" secondAttribute="trailing" id="MZH-Y6-yzg"/>
+                            <constraint firstItem="h5w-aY-Nev" firstAttribute="top" secondItem="LZf-bg-4sr" secondAttribute="top" constant="20" id="bZg-b4-7wD"/>
+                            <constraint firstItem="LZf-bg-4sr" firstAttribute="bottom" secondItem="BuQ-Pt-X5u" secondAttribute="bottom" constant="50" id="skb-Ne-5hi"/>
+                            <constraint firstItem="BuQ-Pt-X5u" firstAttribute="leading" secondItem="LZf-bg-4sr" secondAttribute="leading" id="vwr-cG-GsG"/>
+                            <constraint firstItem="BuQ-Pt-X5u" firstAttribute="top" secondItem="LZf-bg-4sr" secondAttribute="top" constant="50" id="yoo-H2-0Mf"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="backBtn" destination="h5w-aY-Nev" id="NAX-W0-ajG"/>
+                        <outlet property="titleLbl" destination="TWU-hi-BtC" id="1Eg-nH-jDa"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Rv0-Jo-wr8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1452" y="751"/>
         </scene>

@@ -53,4 +53,6 @@ class UserData {
     static var tempUpVel: [Float] = [0.0]
     
     static var whichCell: Int = 0
+    
+    static var whichSet: Int = 0
 }
