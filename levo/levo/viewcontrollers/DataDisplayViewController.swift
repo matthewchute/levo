@@ -7,8 +7,30 @@
 
 import UIKit
 
-class DataDisplayViewController: UIViewController {
-
+class DataDisplayViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        UserData.past_exer[UserData.whichCell].num_sets
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
+        
+        cell.textLabel?.text = "Set: \(indexPath.row+1)"
+        
+        cell.detailTextLabel?.text = "Reps: \(UserData.past_exer[UserData.whichCell].sets[indexPath.row].reps.description)"
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+//        UserData.whichCell = indexPath.row
+//        let vc = storyboard?.instantiateViewController(identifier: "Data") as! DataDisplayViewController
+//        vc.modalPresentationStyle = .fullScreen
+//        present(vc, animated: true)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

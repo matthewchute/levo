@@ -108,13 +108,25 @@
                                 <color key="textColor" systemColor="systemOrangeColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="uWg-R0-UEj">
+                                <rect key="frame" x="0.0" y="145.5" width="414" height="666.5"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="2Cl-GM-oaz" id="kys-mY-yKd"/>
+                                    <outlet property="delegate" destination="2Cl-GM-oaz" id="ZSV-Ke-mSX"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="3Lf-p7-BOB"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="uWg-R0-UEj" firstAttribute="top" secondItem="uFI-Rn-FxW" secondAttribute="bottom" constant="50" id="4Sa-X0-6ci"/>
                             <constraint firstItem="6eH-eZ-Ema" firstAttribute="top" secondItem="3Lf-p7-BOB" secondAttribute="top" constant="20" id="OLE-By-XIV"/>
+                            <constraint firstItem="3Lf-p7-BOB" firstAttribute="trailing" secondItem="uWg-R0-UEj" secondAttribute="trailing" id="Tub-6s-Gzt"/>
+                            <constraint firstItem="3Lf-p7-BOB" firstAttribute="bottom" secondItem="uWg-R0-UEj" secondAttribute="bottom" constant="50" id="Uaf-NC-Kck"/>
                             <constraint firstItem="6eH-eZ-Ema" firstAttribute="leading" secondItem="3Lf-p7-BOB" secondAttribute="leading" constant="20" id="cnl-bV-h8G"/>
                             <constraint firstItem="uFI-Rn-FxW" firstAttribute="top" secondItem="3Lf-p7-BOB" secondAttribute="top" constant="20" id="dgY-8e-JgT"/>
+                            <constraint firstItem="uWg-R0-UEj" firstAttribute="leading" secondItem="3Lf-p7-BOB" secondAttribute="leading" id="rdJ-oW-KTC"/>
                             <constraint firstItem="uFI-Rn-FxW" firstAttribute="centerX" secondItem="gEH-rs-K8C" secondAttribute="centerX" id="xB8-Qd-MDb"/>
                         </constraints>
                     </view>
