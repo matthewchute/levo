@@ -12,6 +12,7 @@ struct user {
 struct exercise {
     var type: String
     var num_sets: Int
+    var date: String
     var sets: [set]
 }
 
@@ -27,23 +28,23 @@ class UserData {
     
     static var personal: user = user(firstName: "John", lastName: "Doe", email: "jdoe@sfu.ca", age: 24, height: 183.0, weight: 200.0)
     
-    static var exer: exercise = exercise(type: "null", num_sets: 0, sets: [])
+    static var exer: exercise = exercise(type: "null", num_sets: 0, date: "", sets: [])
     
     static var past_exer: [exercise] = [
-        exercise(type: "Bench Press", num_sets: 2, sets: [
+        exercise(type: "Bench Press", num_sets: 2, date: "Mar 11, 2020", sets: [
                 set(reps: 0, avgVel: [0.0], peakVel: [0.0]),
                 set(reps: 0, avgVel: [0.0], peakVel: [0.0])
                 ]),
-        exercise(type: "Deadlift", num_sets: 2, sets: [
+        exercise(type: "Deadlift", num_sets: 2, date: "Mar 11, 2020", sets: [
                 set(reps: 0, avgVel: [0.0], peakVel: [0.0]),
                 set(reps: 0, avgVel: [0.0], peakVel: [0.0])
                 ]),
-        exercise(type: "Squat", num_sets: 3, sets: [
+        exercise(type: "Squat", num_sets: 3, date: "Mar 11, 2020", sets: [
                 set(reps: 0, avgVel: [0.0], peakVel: [0.0]),
                 set(reps: 0, avgVel: [0.0], peakVel: [0.0]),
                 set(reps: 0, avgVel: [0.0], peakVel: [0.0])
                 ]),
-        exercise(type: "Clean", num_sets: 3, sets: [
+        exercise(type: "Clean", num_sets: 3, date: "Mar 11, 2020", sets: [
                 set(reps: 0, avgVel: [0.0], peakVel: [0.0]),
                 set(reps: 0, avgVel: [0.0], peakVel: [0.0]),
                 set(reps: 0, avgVel: [0.0], peakVel: [0.0])

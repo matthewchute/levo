@@ -73,6 +73,12 @@ class WorkoutViewController: UIViewController {
         
         // data management
         UserData.exer.type = UserData.workoutType
+        
+        let now = Date()
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .none
+        UserData.exer.date = formatter.string(from: now)
 
     }
     
@@ -160,7 +166,7 @@ class WorkoutViewController: UIViewController {
         let vc2 = storyboard?.instantiateViewController(identifier: "Landing") as! LandingViewController
         vc2.modalPresentationStyle = .fullScreen
         UserData.past_exer.append(UserData.exer)
-        UserData.exer = exercise(type: "null", num_sets: 0, sets: [])
+        UserData.exer = exercise(type: "null", num_sets: 0, date: "", sets: [])
         present(vc2, animated: true)
     }
     

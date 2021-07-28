@@ -35,6 +35,7 @@ class SetDisplayViewController: UIViewController, UITableViewDelegate, UITableVi
         super.viewDidLoad()
 
         titleLbl.text = UserData.past_exer[UserData.whichCell].type
+        subTitle.text = "on \(UserData.past_exer[UserData.whichCell].date)"
         backBtn.frame = CGRect(x: 25, y: 25, width: 25, height: 25)
         backBtn.imageEdgeInsets = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
         backBtn.tintColor = .systemOrange
@@ -42,6 +43,7 @@ class SetDisplayViewController: UIViewController, UITableViewDelegate, UITableVi
     
     @IBOutlet weak var backBtn: UIButton!
     @IBOutlet weak var titleLbl: UILabel!
+    @IBOutlet weak var subTitle: UILabel!
     
     @IBAction func goBack() {
         dismiss(animated: true, completion: nil)

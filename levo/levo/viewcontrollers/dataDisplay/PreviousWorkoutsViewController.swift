@@ -16,9 +16,9 @@ class PreviousWorkoutsViewController: UIViewController, UITableViewDelegate, UIT
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
         
-        cell.textLabel?.text = "\(UserData.past_exer[indexPath.row].type.description) Workout"
+        cell.textLabel?.text = UserData.past_exer[indexPath.row].type.description
         
-        cell.detailTextLabel?.text = "Sets: \(UserData.past_exer[indexPath.row].num_sets.description)"
+        cell.detailTextLabel?.text = UserData.past_exer[indexPath.row].date.description
         
         return cell
     }
@@ -30,12 +30,11 @@ class PreviousWorkoutsViewController: UIViewController, UITableViewDelegate, UIT
         vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true)
     }
-    
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        titleLbl.text = "Previous Workouts"
         backBtn.frame = CGRect(x: 25, y: 25, width: 25, height: 25)
         backBtn.imageEdgeInsets = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
         backBtn.tintColor = .systemOrange
@@ -43,11 +42,10 @@ class PreviousWorkoutsViewController: UIViewController, UITableViewDelegate, UIT
     }
     
     @IBOutlet weak var backBtn: UIButton!
+    @IBOutlet weak var titleLbl: UILabel!
     
     @IBAction func goBack() {
         dismiss(animated: true, completion: nil)
     }
-    
-    
 
 }
