@@ -11,6 +11,7 @@
 		6341B4AC269FD2030061B23B /* Pods_levo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D8601A4098EAFBF922D17D9 /* Pods_levo.framework */; };
 		6343408D26AF340200961163 /* SelectWorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6343408C26AF340200961163 /* SelectWorkoutViewController.swift */; };
 		6343408F26AF3C2700961163 /* GraphViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6343408E26AF3C2700961163 /* GraphViewController.swift */; };
+		639AC56626B20645006FC4C2 /* DataDisplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639AC56526B20645006FC4C2 /* DataDisplayViewController.swift */; };
 		63A16DF926ACB30D00429A9B /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A16DF826ACB30D00429A9B /* SettingsViewController.swift */; };
 		63A16DFB26ACB31B00429A9B /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A16DFA26ACB31B00429A9B /* ProfileViewController.swift */; };
 		63A16DFE26ADEF6800429A9B /* DataProcessing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A16DFD26ADEF6800429A9B /* DataProcessing.swift */; };
@@ -33,6 +34,7 @@
 		6341B4AF269FD2380061B23B /* Charts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Charts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6343408C26AF340200961163 /* SelectWorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SelectWorkoutViewController.swift; path = levo/viewcontrollers/SelectWorkoutViewController.swift; sourceTree = SOURCE_ROOT; };
 		6343408E26AF3C2700961163 /* GraphViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GraphViewController.swift; path = levo/viewcontrollers/GraphViewController.swift; sourceTree = SOURCE_ROOT; };
+		639AC56526B20645006FC4C2 /* DataDisplayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataDisplayViewController.swift; sourceTree = "<group>"; };
 		63A16DF826ACB30D00429A9B /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		63A16DFA26ACB31B00429A9B /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		63A16DFD26ADEF6800429A9B /* DataProcessing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProcessing.swift; sourceTree = "<group>"; };
@@ -68,6 +70,7 @@
 		63A16DFC26ACBEEB00429A9B /* viewcontrollers */ = {
 			isa = PBXGroup;
 			children = (
+				639AC56526B20645006FC4C2 /* DataDisplayViewController.swift */,
 				631056EF26AF91A0000EE618 /* PreviousWorkoutsViewController.swift */,
 				6343408E26AF3C2700961163 /* GraphViewController.swift */,
 				6343408C26AF340200961163 /* SelectWorkoutViewController.swift */,
@@ -277,6 +280,7 @@
 				F93A3A46269CD0A2006AD1E2 /* UserData.swift in Sources */,
 				63A16DFE26ADEF6800429A9B /* DataProcessing.swift in Sources */,
 				63FCDDE326AC9E3D00F31282 /* LandingViewController.swift in Sources */,
+				639AC56626B20645006FC4C2 /* DataDisplayViewController.swift in Sources */,
 				F93A3A4E269CDE1A006AD1E2 /* BLEViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

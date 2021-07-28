@@ -25,6 +25,10 @@ class PreviousWorkoutsViewController: UIViewController, UITableViewDelegate, UIT
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        UserData.whichCell = indexPath.row
+        let vc = storyboard?.instantiateViewController(identifier: "Data") as! DataDisplayViewController
+        vc.modalPresentationStyle = .fullScreen
+        present(vc, animated: true)
     }
     
     

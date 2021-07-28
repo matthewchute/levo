@@ -85,6 +85,48 @@
             </objects>
             <point key="canvasLocation" x="-554" y="38"/>
         </scene>
+        <!--Data Display View Controller-->
+        <scene sceneID="VPr-hC-LGs">
+            <objects>
+                <viewController storyboardIdentifier="Data" id="2Cl-GM-oaz" customClass="DataDisplayViewController" customModule="levo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gEH-rs-K8C">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6eH-eZ-Ema">
+                                <rect key="frame" x="20" y="64" width="19.5" height="22"/>
+                                <state key="normal" image="arrow.backward" catalog="system"/>
+                                <connections>
+                                    <action selector="didTapBackBtn" destination="XTH-03-SjA" eventType="touchUpInside" id="yJr-8Z-2c8"/>
+                                    <action selector="goBack" destination="2Cl-GM-oaz" eventType="touchUpInside" id="MwZ-yp-x44"/>
+                                    <action selector="goBack" destination="g38-cQ-PAz" eventType="touchUpInside" id="tgj-9h-Pz7"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uFI-Rn-FxW">
+                                <rect key="frame" x="174" y="64" width="66.5" height="31.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
+                                <color key="textColor" systemColor="systemOrangeColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="3Lf-p7-BOB"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="6eH-eZ-Ema" firstAttribute="top" secondItem="3Lf-p7-BOB" secondAttribute="top" constant="20" id="OLE-By-XIV"/>
+                            <constraint firstItem="6eH-eZ-Ema" firstAttribute="leading" secondItem="3Lf-p7-BOB" secondAttribute="leading" constant="20" id="cnl-bV-h8G"/>
+                            <constraint firstItem="uFI-Rn-FxW" firstAttribute="top" secondItem="3Lf-p7-BOB" secondAttribute="top" constant="20" id="dgY-8e-JgT"/>
+                            <constraint firstItem="uFI-Rn-FxW" firstAttribute="centerX" secondItem="gEH-rs-K8C" secondAttribute="centerX" id="xB8-Qd-MDb"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="backBtn" destination="6eH-eZ-Ema" id="G2D-wj-MvH"/>
+                        <outlet property="titleLbl" destination="uFI-Rn-FxW" id="vMb-UI-VAw"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3d7-4F-0KF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1452" y="751"/>
+        </scene>
         <!--Settings View Controller-->
         <scene sceneID="gUz-qI-q4z">
             <objects>
