@@ -29,7 +29,12 @@ class UserData {
     
     static var exer: exercise = exercise(type: "null", num_sets: 0, sets: [])
     
-    static var past_exer: [exercise] = []
+    static var past_exer: [exercise] = [
+        exercise(type: "Bench Press", num_sets: 4, sets: [set(reps: 0, avgVel: [0.0], peakVel: [0.0])]),
+        exercise(type: "Deadlift", num_sets: 4, sets: [set(reps: 0, avgVel: [0.0], peakVel: [0.0])]),
+        exercise(type: "Squat", num_sets: 8, sets: [set(reps: 0, avgVel: [0.0], peakVel: [0.0])]),
+        exercise(type: "Clean", num_sets: 8, sets: [set(reps: 0, avgVel: [0.0], peakVel: [0.0])])
+    ]
     
     static var tempUpVel: [Float] = [0.0]
     
