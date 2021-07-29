@@ -9,6 +9,50 @@ import Foundation
 
 class DataProcessing {
     
+    func gyro_comb_angle(gyro: [Float], agl2gnd: [Float]) -> [Float]{
+        var true_agl: [Float] = gyro
+        //var temp:Float = Float(0.0)
+        var adj:Float = Float(0.0)
+        for i in 0...gyro.count - 2{
+           // temp = agl2gnd[i]
+            true_agl[i] = agl2gnd[i] + (gyro[i]*(22/(7*180))) - adj
+            if agl2gnd[i] != agl2gnd[i+1]{
+                adj = gyro[i]*(22/(7*180))
+                
+            }
+            true_agl[gyro.count-1] = true_agl[gyro.count-2]
+        }
+        return true_agl
+    }
+    
+    
+    func gyro_crush_acc(_ gyro: [Float], accAx1: [Float], accAx2: [Float]) -> [Float] {
+        var gyro_min_acc: [Float] = gyro
+        let acc: [Float] = accAx1
+        let a2g_scale: Float = Float(60.0)
+        var mag_cmp: Float
+        for i in 0...gyro.count - 2{
+            
+            mag_cmp = (abs(gyro[i]) + 1)/(abs(acc[i]*a2g_scale)+1)
+            
+            if mag_cmp < 0.5{
+                gyro_min_acc[i] = 0 //gyro[i] - a2g_scale*acc[i]
+            }
+            
+        }
+        return gyro_min_acc
+    }
+    
+    func gyro_smooth(_ gyro: [Float]) -> [Float] {
+        var temp: [Float] = gyro
+        for i in 0...gyro.count - 2 {
+            if (abs(gyro[i+1]) < abs(gyro[i])*1.1 && abs(gyro[i+1]) > abs(gyro[i])*0.9 ) || abs(gyro[i+1]) > 100*abs(gyro[i]) {
+                temp[i+1] = temp[i]
+            }
+        }
+        return temp
+    }
+    
     // trapezoid rule
     func trap_rule(_ data: [Float], _ sp: Float) -> [Float] {
         var integral: [Float] = []
