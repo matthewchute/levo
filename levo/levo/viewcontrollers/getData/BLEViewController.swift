@@ -132,6 +132,8 @@ class BLEViewController: UIViewController, CBCentralManagerDelegate, CBPeriphera
         for service in services {
             peripheral.discoverCharacteristics(nil, for: service)
         }
+        
+        BlePeripheral.connectedService = services[0]
         print("Discovered Services: \(services)")
     }
     
@@ -146,6 +148,7 @@ class BLEViewController: UIViewController, CBCentralManagerDelegate, CBPeriphera
         for characteristic in characteristics {
             if characteristic.uuid.isEqual(CBUUIDs.BLE_Characteristic_uuid_Rx)  {
                 rxCharacteristic = characteristic
+                BlePeripheral.connectedRXChar = rxCharacteristic
                 peripheral.setNotifyValue(true, for: rxCharacteristic!)
                 peripheral.readValue(for: characteristic)
                 print("RX Characteristic: \(rxCharacteristic.uuid)")
@@ -153,7 +156,23 @@ class BLEViewController: UIViewController, CBCentralManagerDelegate, CBPeriphera
 
             if characteristic.uuid.isEqual(CBUUIDs.BLE_Characteristic_uuid_Tx){
                 txCharacteristic = characteristic
+                BlePeripheral.connectedTXChar = txCharacteristic
                 print("TX Characteristic: \(txCharacteristic.uuid)")
+            }
+        }
+        BlePeripheral.connectedPeripheral = myPeripheral
+        writeOutgoingValue()
+        
+        sleep(1)
+    }
+    
+    func writeOutgoingValue(){
+        let valueString = ("start" as NSString).data(using: String.Encoding.utf8.rawValue)
+          //change the "data" to valueString
+        if let blePeripheral = myPeripheral {
+            if let txCharacteristic = BlePeripheral.connectedTXChar {
+                blePeripheral.writeValue(valueString!, for: txCharacteristic, type: CBCharacteristicWriteType.withResponse)
+                print("***start****")
             }
         }
     }
@@ -195,7 +214,7 @@ extension BLEViewController: CBPeripheralManagerDelegate {
         parseString(str: characteristicASCIIValue as String)
 
         if !done_flag {
-            //print("\(xGyro[counter]) \(xGyro[counter+1]) \n \(yGyro[counter]) \(yGyro[counter+1]) \n \(zGyro[counter]) \(zGyro[counter+1])")
+            print("\(xGyro[counter]) \(xGyro[counter+1]) \n \(yGyro[counter]) \(yGyro[counter+1]) \n \(zGyro[counter]) \(zGyro[counter+1])")
             data_label.text = "Parsing..."
             counter += 2
         } else {
