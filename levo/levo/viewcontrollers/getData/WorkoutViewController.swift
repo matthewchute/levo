@@ -49,9 +49,8 @@ class WorkoutViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // nc observers
-        NotificationCenter.default.addObserver(self, selector: #selector(catchBase(_:)), name: Notification.Name("baseData"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(catchGyro(_:)), name: Notification.Name("gyroData"), object: nil)
+        // get data
+        NotificationCenter.default.addObserver(self, selector: #selector(catchData(_:)), name: Notification.Name("data"), object: nil)
         
         // UI
         startBtn.setTitle("Start", for: .normal)
@@ -118,15 +117,21 @@ class WorkoutViewController: UIViewController {
         return seventhStr
     }
     
-    @objc func catchBase(_ noti: Notification) {
-        if let (arrx, arry, arrz, aglx, agly, aglz, tsp) = noti.object as! ([Float], [Float], [Float], [Float], [Float], [Float], Float)? {
+    @objc func catchData(_ noti: Notification) {
+        if let (arrx, arry, arrz, aglx, agly, aglz, tsp, gx, gy, gz) = noti.object as! ([Float], [Float], [Float], [Float], [Float], [Float], Float, [Float], [Float], [Float])? {
+            
+            // load values
             xAcc = arrx
             yAcc = arry
             zAcc = arrz
             agl2gndX = aglx
             agl2gndY = agly
             agl2gndZ = aglz
+            xGyro = gx
+            yGyro = gy
+            zGyro = gz
             sample_period = tsp
+            
             if xAcc.count > 1 {
                 (num_reps, velAvgs, velPeaks, accAvgs, accPeaks, range_of_reps) = process_data()
             }
@@ -143,14 +148,6 @@ class WorkoutViewController: UIViewController {
             // data management
             UserData.exer.sets.append(set(reps: num_reps, avgVel: velAvgs, peakVel: velPeaks))
             
-        } else {print("******ERROR******")}
-    }
-    
-    @objc func catchGyro(_ noti: Notification) {
-        if let (arrx, arry, arrz) = noti.object as! ([Float], [Float], [Float])? {
-            xGyro = arrx
-            yGyro = arry
-            zGyro = arrz
         } else {print("******ERROR******")}
     }
     

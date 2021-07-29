@@ -43,8 +43,7 @@ class BLEViewController: UIViewController, CBCentralManagerDelegate, CBPeriphera
         let xgyro: [Float] = xGyro
         let ygyro: [Float] = yGyro
         let zgyro: [Float] = zGyro
-        NotificationCenter.default.post(name: Notification.Name("baseData"), object: (xdata, ydata, zdata, xagl, yagl, zagl, sp))
-        NotificationCenter.default.post(name: Notification.Name("gyroData"), object: (xgyro, ygyro, zgyro))
+        NotificationCenter.default.post(name: Notification.Name("data"), object: (xdata, ydata, zdata, xagl, yagl, zagl, sp, xgyro, ygyro, zgyro))
         dismiss(animated: true, completion: nil)
     }
     
