@@ -276,7 +276,6 @@ def data_collect():
     #ble = bluetooth.BLE()
     #uart = BLEUART(ble)
     tick = time.ticks_ms()
-    print('pre rx')
     #def on_rx():
     #    if uart.read().decode().strip() == "start":
     #        print_this()
@@ -284,12 +283,8 @@ def data_collect():
     #        print("Wrong input.")
     
     #uart.irq(handler=on_rx)
-    
-    print('pre_loop called')
     while(idx<=loop):
     
-        
-        
         #Read Accelerometer raw value
     
         Ax, Ay, Az = readAcc(deviceaddr,i2c)
@@ -322,8 +317,6 @@ def data_collect():
         idx += 1
        
     #END WHILE
-    
-    print('post loop')
      
     tock = time.ticks_ms()
     sample_period = time.ticks_diff(tock,tick)/loop
@@ -335,22 +328,18 @@ def data_collect():
     # uart = BLEUART(ble)
     # utime.sleep_ms(500)
     
-    
-    for i in range(math.ceil(loop/2)):
+    for i in range(math.ceil(loop)):
         send_string = ''
-        for j in range(2):
+        for j in range(1):
             temp = read_fl.readline().strip("\n")
             send_string = send_string + temp + ','
         sendMessages((str(send_string)))# +str(i)))
         #print(send_string)
-    
     EOF_STR = EOF_STR1 + str(sample_period) + ',' + EOF_STR2
     sendMessages(EOF_STR)
-    
+     
     uart.close()
-    
     datfile.close()
-    print('end of called collection')
 
 if __name__ == "__main__":
 
@@ -366,6 +355,5 @@ if __name__ == "__main__":
     
     uart.irq(handler=on_rx)
     
-    print('idle')
     
     
