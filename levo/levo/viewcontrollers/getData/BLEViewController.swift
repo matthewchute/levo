@@ -65,23 +65,14 @@ class BLEViewController: UIViewController, CBCentralManagerDelegate, CBPeriphera
         } else {
             // append xyz acceleration values
             xAcc.append(Float(stringArr[0]) ?? 0.0)
-            xAcc.append(Float(stringArr[9]) ?? 0.0)
             yAcc.append(Float(stringArr[1]) ?? 0.0)
-            yAcc.append(Float(stringArr[10]) ?? 0.0)
             zAcc.append(Float(stringArr[2]) ?? 0.0)
-            zAcc.append(Float(stringArr[11]) ?? 0.0)
-            agl2gndX.append(Float(stringArr[6]) ?? 0.0)
-            agl2gndX.append(Float(stringArr[15]) ?? 0.0)
-            agl2gndY.append(Float(stringArr[7]) ?? 0.0)
-            agl2gndY.append(Float(stringArr[16]) ?? 0.0)
-            agl2gndZ.append(Float(stringArr[8]) ?? 0.0)
-            agl2gndZ.append(Float(stringArr[17]) ?? 0.0)
             xGyro.append(Float(stringArr[3]) ?? 7.0)
-            xGyro.append(Float(stringArr[12]) ?? 7.0)
             yGyro.append(Float(stringArr[4]) ?? 7.0)
-            yGyro.append(Float(stringArr[13]) ?? 7.0)
             zGyro.append(Float(stringArr[5]) ?? 7.0)
-            zGyro.append(Float(stringArr[14]) ?? 7.0)
+            agl2gndX.append(Float(stringArr[6]) ?? 0.0)
+            agl2gndY.append(Float(stringArr[7]) ?? 0.0)
+            agl2gndZ.append(Float(stringArr[8]) ?? 0.0)
         }
     }
     
@@ -214,7 +205,7 @@ extension BLEViewController: CBPeripheralManagerDelegate {
         parseString(str: characteristicASCIIValue as String)
 
         if !done_flag {
-            print("\(xGyro[counter]) \(xGyro[counter+1]) \n \(yGyro[counter]) \(yGyro[counter+1]) \n \(zGyro[counter]) \(zGyro[counter+1])")
+            //print("\(xGyro[counter]) \(xGyro[counter+1]) \n \(yGyro[counter]) \(yGyro[counter+1]) \n \(zGyro[counter]) \(zGyro[counter+1])")
             data_label.text = "Parsing..."
             counter += 2
         } else {
