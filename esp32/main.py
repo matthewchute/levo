@@ -271,7 +271,9 @@ def data_collect():
     agl2gndY = 0 #assume y, z are parallel to ground
     agl2gndZ = 22/14
     idx = 0
-    loop = 500
+    loop = 3000
+    last_move = 0
+    stop_collection = 0
     datfile = open('dat.txt','a')
     #ble = bluetooth.BLE()
     #uart = BLEUART(ble)
@@ -283,35 +285,43 @@ def data_collect():
     #        print("Wrong input.")
     
     #uart.irq(handler=on_rx)
-    while(idx<=loop):
+    while(idx<loop and stop_collection == 0):
     
         #Read Accelerometer raw value
     
         Ax, Ay, Az = readAcc(deviceaddr,i2c)
+        #Ax = Ax - noiseX
+        #Ay = Ay - noiseY
+        Az = Az - noiseZ
     
         #Read Gyroscope raw value
-        gyro_x,gyro_y,gyro_z = readGy(deviceaddr,i2c)
-
+        #gyro_x,gyro_y,gyro_z = readGy(deviceaddr,i2c)
+        Gx,Gy,Gz = readGy(deviceaddr,i2c)
         ## Assess accelleration and angle to ground
         motionFlag, magsList = is_accelerating(Ax,Ay,Az, magsList)
         #THIS IS GOTTA CHANGE FROM THE MPU6050 to the LSM6#############y
-        Gx = ((gyro_x) - ngyroX)#*360
-        Gy = ((gyro_y) - ngyroY)#*360 #########Gy noise proportional to A in plane
-        Gz = ((gyro_z) - ngyroZ)#*360
+        #Gx = ((gyro_x))#*360
+        #Gy = ((gyro_y))#*360 #########Gy noise proportional to A in plane
+        #Gz = ((gyro_z))#*360
         if motionFlag < 1:
-            agl2gndX = angle_finder((Ax-noiseX),agl2gndX)
-            agl2gndY = angle_finder((Ay-noiseY),agl2gndY)
-            agl2gndZ = angle_finder((Az-noiseZ),agl2gndZ)
+            agl2gndX = angle_finder((Ax),agl2gndX)
+            agl2gndY = angle_finder((Ay),agl2gndY)
+            agl2gndZ = angle_finder((Az),agl2gndZ)
+        else:
+            last_move = idx
         
         #remove constant noise ##ax ay swapped fpr testing
-        Ax = (Ax - noiseX)*g - g*math.cos(agl2gndX) #- noiseX#convert to m/s^2
-        Ay = (Ay - noiseY)*g - g*math.cos(agl2gndY) #- noiseY
-        Az = (Az - noiseZ)*g - g*math.cos(agl2gndZ) #- noiseZ
+        Ax = (Ax)*g - g*math.cos(agl2gndX) #- noiseX#convert to m/s^2
+        Ay = (Ay)*g - g*math.cos(agl2gndY) #- noiseY
+        Az = (Az)*g - g*math.cos(agl2gndZ) #- noiseZ
         
     
         datstr = str(Ax)+','+str(Ay)+','+str(Az)+','+str(Gx)+','+str(Gy)+','+str(Gz)+','+str(agl2gndX)+','+str(agl2gndY)+','+str(agl2gndZ)+'\n' #Yy for zero
         
         datfile.write(datstr)
+        
+        if (idx-last_move) > 900:
+            stop_collection = 1
         
         
         idx += 1
@@ -320,6 +330,7 @@ def data_collect():
      
     tock = time.ticks_ms()
     sample_period = time.ticks_diff(tock,tick)/loop
+    print(idx)
     print(sample_period)
     datfile.close()
     read_fl = open('dat.txt','r')
@@ -328,7 +339,7 @@ def data_collect():
     # uart = BLEUART(ble)
     # utime.sleep_ms(500)
     
-    for i in range(math.ceil(loop)):
+    for i in range(math.ceil(idx)):
         send_string = ''
         for j in range(1):
             temp = read_fl.readline().strip("\n")
