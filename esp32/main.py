@@ -45,7 +45,7 @@ _ADV_APPEARANCE_GENERIC_COMPUTER = const(128)
 #globals
 noiseX = 0.1
 noiseY = 0.1
-noiseZ = 0.1
+noiseZ = -0.1 #z is face dowin in case
 ngyroX = 0
 ngyroY = 0
 ngyroZ = 0
@@ -121,7 +121,7 @@ def is_accelerating(Ax_inst,Ay_inst,Az_inst, magList):
         magList[i] = magList[i+1]
     magList[len(magList)-1] = mag
     #mags.append(mag)
-    if min(magList) > 0.95 and max(magList) < 1.05: #if the lowest and highest values for accelerations 
+    if min(magList) > 0.90 and max(magList) < 1.1: #if the lowest and highest values for accelerations 
         movementFlag = 0 #in movement buffer are g +/- 5%, bar is not accelerating
     else:
         movementFlag = 1 #if the bar has accelerated withing the last 0.145 sec, do not recalulated downward direction   
@@ -250,9 +250,6 @@ def accnoisecalib(deviceaddr,i2c):
 
 def data_collect():
     deviceaddr, i2c = initDevice()
-    machine.freq(240000000)
-    
-
     open('dat.txt','w').close()
     accX = 0
     aglX = 0
@@ -292,7 +289,7 @@ def data_collect():
         Ax, Ay, Az = readAcc(deviceaddr,i2c)
         #Ax = Ax - noiseX
         #Ay = Ay - noiseY
-        Az = Az - noiseZ
+        #Az = Az #- noiseZ
     
         #Read Gyroscope raw value
         #gyro_x,gyro_y,gyro_z = readGy(deviceaddr,i2c)
@@ -309,6 +306,7 @@ def data_collect():
             agl2gndZ = angle_finder((Az),agl2gndZ)
         else:
             last_move = idx
+            print(idx)
         
         #remove constant noise ##ax ay swapped fpr testing
         Ax = (Ax)*g - g*math.cos(agl2gndX) #- noiseX#convert to m/s^2
@@ -320,7 +318,7 @@ def data_collect():
         
         datfile.write(datstr)
         
-        if (idx-last_move) > 900:
+        if (idx-last_move) > 500:
             stop_collection = 1
         
         
@@ -329,7 +327,7 @@ def data_collect():
     #END WHILE
      
     tock = time.ticks_ms()
-    sample_period = time.ticks_diff(tock,tick)/loop
+    sample_period = time.ticks_diff(tock,tick)/idx
     print(idx)
     print(sample_period)
     datfile.close()
@@ -353,7 +351,7 @@ def data_collect():
     datfile.close()
 
 if __name__ == "__main__":
-
+    machine.freq(240000000)
     ble = bluetooth.BLE()
     uart = BLEUART(ble)
     tick = time.ticks_ms()
