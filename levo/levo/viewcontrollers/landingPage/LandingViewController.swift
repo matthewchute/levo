@@ -12,9 +12,9 @@ class LandingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        startWorkoutButton.setTitle("Start Workout", for: .normal)
+        startWorkoutButton.setTitle("Start Exercise", for: .normal)
         startWorkoutButton.layer.cornerRadius = 20
-        prevWorkoutButton.setTitle("Previous Workouts", for: .normal)
+        prevWorkoutButton.setTitle("Exercise History", for: .normal)
         prevWorkoutButton.layer.cornerRadius = 20
         
         profileButton.frame = CGRect(x: 100, y: 100, width: 100, height: 100)

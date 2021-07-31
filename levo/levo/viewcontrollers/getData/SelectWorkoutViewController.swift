@@ -21,7 +21,7 @@ class SelectWorkoutViewController: UIViewController {
         cleanBtn.setTitle("Clean", for: .normal)
         cleanBtn.layer.cornerRadius = 20
         
-        titleLbl.text = "Workouts"
+        titleLbl.text = "Exercises"
         
         backBtn.frame = CGRect(x: 25, y: 25, width: 25, height: 25)
         backBtn.imageEdgeInsets = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
