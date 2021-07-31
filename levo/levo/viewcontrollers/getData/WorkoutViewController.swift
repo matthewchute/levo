@@ -126,6 +126,8 @@ class WorkoutViewController: UIViewController {
     @objc func catchData(_ noti: Notification) {
         if let (arrx, arry, arrz, aglx, agly, aglz, tsp, gx, gy, gz) = noti.object as! ([Float], [Float], [Float], [Float], [Float], [Float], Float, [Float], [Float], [Float])? {
             
+            UserData.exer.num_sets += 1
+            
             // load values
             xAcc = arrx
             yAcc = arry
@@ -175,7 +177,6 @@ class WorkoutViewController: UIViewController {
         let vc = storyboard?.instantiateViewController(identifier: "BLE") as! BLEViewController
         vc.modalPresentationStyle = .fullScreen
         // increment number of sets
-        UserData.exer.num_sets += 1
         present(vc, animated: true)
     }
     
