@@ -149,6 +149,9 @@ class WorkoutViewController: UIViewController {
             // data management
             UserData.exer.sets.append(set(reps: num_reps, avgVel: velAvgs, peakVel: velPeaks))
             
+            UserData.tempUpAcc = up_acc_iso
+            UserData.tempUpVel = up_vel_iso
+            
         } else {print("******ERROR******")}
     }
     
@@ -171,8 +174,6 @@ class WorkoutViewController: UIViewController {
     @IBAction func displayGraph() {
         let vc1 = storyboard?.instantiateViewController(identifier: "GraphVC") as! GraphViewController
         vc1.modalPresentationStyle = .fullScreen
-        UserData.tempUpData.append(up_acc_iso)
-        UserData.tempUpData.append(up_vel_iso)
         present(vc1, animated: true)
     }
     
@@ -207,7 +208,9 @@ class WorkoutViewController: UIViewController {
         
         (lwr, upr) = dp.set_range(up_acc)
         (up_vel_iso, up_acc_iso) = dp.in_rep_slope(lwr, upr, up_vel, up_acc)
-            
+        
+        up_acc_iso = up_acc
+        
         return dp.rep_count(up_vel_iso, up_acc_iso)
     }
 }

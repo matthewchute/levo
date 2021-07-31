@@ -59,7 +59,7 @@ class BLEViewController: UIViewController, CBCentralManagerDelegate, CBPeriphera
         let stringArr: [String] = str.components(separatedBy: ",")
         if stringArr[0] == "EOF" {
             sample_period = Float(stringArr[1]) ?? 0.0
-            data_label.text = "Complete."
+            data_label.text = "Complete. \nHit the Back Button."
             print("Complete")
             done_flag = true
         } else {
@@ -79,7 +79,7 @@ class BLEViewController: UIViewController, CBCentralManagerDelegate, CBPeriphera
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
         if central.state == CBManagerState.poweredOn {
             central.scanForPeripherals(withServices: nil, options: nil)
-            data_label.text = "BLE is powered on"
+            data_label.text = "Connecting to Levo..."
             print("BLE is powered on")
         } else {
             data_label.text = "BLE Error"
@@ -94,7 +94,7 @@ class BLEViewController: UIViewController, CBCentralManagerDelegate, CBPeriphera
                 self.myPeripheral = peripheral
                 self.myPeripheral.delegate = self
                 self.centralManager.connect(peripheral, options: nil)
-                data_label.text = "ESP32 is connected"
+                data_label.text = "Levo Connected."
                 print("ESP32 is connected")
                 // This is for debugging purpose. Will remove after completion - Antonio
                 //print("Peripheral Discovered: \(peripheral)")
@@ -164,6 +164,7 @@ class BLEViewController: UIViewController, CBCentralManagerDelegate, CBPeriphera
             if let txCharacteristic = BlePeripheral.connectedTXChar {
                 blePeripheral.writeValue(valueString!, for: txCharacteristic, type: CBCharacteristicWriteType.withResponse)
                 print("***start****")
+                data_label.text = "Begin Exercise."
             }
         }
     }
@@ -206,7 +207,7 @@ extension BLEViewController: CBPeripheralManagerDelegate {
 
         if !done_flag {
             //print("\(xGyro[counter]) \(xGyro[counter+1]) \n \(yGyro[counter]) \(yGyro[counter+1]) \n \(zGyro[counter]) \(zGyro[counter+1])")
-            data_label.text = "Parsing..."
+            data_label.text = "Processing Data...\n Please wait."
             counter += 2
         } else {
             centralManager.cancelPeripheralConnection(myPeripheral)

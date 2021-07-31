@@ -32,7 +32,9 @@ class UserData {
     
     static var past_exer: [exercise] = []
     
-    static var tempUpData: [[Float]] = [[]]
+    static var tempUpAcc: [Float] = []
+    
+    static var tempUpVel: [Float] = []
     
     static var whichCell: Int = 0
     
