@@ -20,6 +20,10 @@ class GraphViewController: UIViewController, ChartViewDelegate {
         backBtn.layer.cornerRadius = 20
         
         titleLbl.text = "Upward Velocity"
+        accBtn.setTitle("Acc", for: .normal)
+        accBtn.layer.cornerRadius = 20
+        velBtn.setTitle("Velo", for: .normal)
+        velBtn.layer.cornerRadius = 20
         
         // charts
         view.addSubview(lineChartView)
@@ -27,15 +31,25 @@ class GraphViewController: UIViewController, ChartViewDelegate {
         lineChartView.width(to: view)
         lineChartView.heightToWidth(of: view)
         
-        setData(data: UserData.tempUpVel, axis: "Upward Velocity")
+        setData(data: UserData.tempUpData[1], axis: "Upward Velocity")
 
     }
     
     @IBOutlet weak var backBtn: UIButton!
     @IBOutlet weak var titleLbl: UILabel!
+    @IBOutlet weak var accBtn: UIButton!
+    @IBOutlet weak var velBtn: UIButton!
     
     @IBAction func goBack() {
         dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func accTap() {
+        setData(data: UserData.tempUpData[0], axis: "Upward Acceleration")
+    }
+    
+    @IBAction func velTap() {
+        setData(data: UserData.tempUpData[1], axis: "Upward Velocity")
     }
     
     func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {

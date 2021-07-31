@@ -351,21 +351,54 @@
                                 <color key="textColor" systemColor="systemOrangeColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="20" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="U9j-Sn-4hh">
+                                <rect key="frame" x="40" y="717" width="334" height="34"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RZM-9g-ydC">
+                                        <rect key="frame" x="0.0" y="0.0" width="157" height="34"/>
+                                        <color key="backgroundColor" systemColor="systemOrangeColor"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                        <state key="normal" title="Button">
+                                            <color key="titleColor" systemColor="systemBackgroundColor"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="accTap" destination="kJ3-hJ-ywN" eventType="touchUpInside" id="Vu7-qF-TDe"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="742-Ri-Fqr">
+                                        <rect key="frame" x="177" y="0.0" width="157" height="34"/>
+                                        <color key="backgroundColor" systemColor="systemOrangeColor"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                        <state key="normal" title="Button">
+                                            <color key="titleColor" systemColor="systemBackgroundColor"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="velTap" destination="kJ3-hJ-ywN" eventType="touchUpInside" id="sNw-tZ-Wfc"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="75G-Ch-Dw6"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="CJm-RZ-hOi" firstAttribute="centerX" secondItem="nc4-R4-cdC" secondAttribute="centerX" id="KdN-8n-1IF"/>
                             <constraint firstItem="jya-ou-bxI" firstAttribute="centerX" secondItem="nc4-R4-cdC" secondAttribute="centerX" id="MCp-wR-3a0"/>
+                            <constraint firstItem="U9j-Sn-4hh" firstAttribute="centerX" secondItem="nc4-R4-cdC" secondAttribute="centerX" id="SE1-ya-6Py"/>
                             <constraint firstItem="CJm-RZ-hOi" firstAttribute="leading" secondItem="75G-Ch-Dw6" secondAttribute="leading" constant="40" id="TvH-WB-r5i"/>
+                            <constraint firstItem="CJm-RZ-hOi" firstAttribute="top" secondItem="U9j-Sn-4hh" secondAttribute="bottom" constant="20" id="elu-zu-sxU"/>
+                            <constraint firstItem="U9j-Sn-4hh" firstAttribute="leading" secondItem="75G-Ch-Dw6" secondAttribute="leading" constant="40" id="enV-ia-fdU"/>
                             <constraint firstItem="75G-Ch-Dw6" firstAttribute="bottom" secondItem="CJm-RZ-hOi" secondAttribute="bottom" constant="50" id="hHk-Rm-ikm"/>
                             <constraint firstItem="jya-ou-bxI" firstAttribute="top" secondItem="75G-Ch-Dw6" secondAttribute="top" constant="25" id="mKU-pe-y2E"/>
+                            <constraint firstItem="75G-Ch-Dw6" firstAttribute="trailing" secondItem="U9j-Sn-4hh" secondAttribute="trailing" constant="40" id="pSH-JD-5zX"/>
                             <constraint firstItem="75G-Ch-Dw6" firstAttribute="trailing" secondItem="CJm-RZ-hOi" secondAttribute="trailing" constant="40" id="qf7-IM-ZTN"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="accBtn" destination="RZM-9g-ydC" id="ZGu-jW-zR0"/>
                         <outlet property="backBtn" destination="CJm-RZ-hOi" id="nVA-c9-99w"/>
                         <outlet property="titleLbl" destination="jya-ou-bxI" id="p7q-sV-TqL"/>
+                        <outlet property="velBtn" destination="742-Ri-Fqr" id="e0w-dg-fnu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mg1-L9-JkW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

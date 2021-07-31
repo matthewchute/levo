@@ -14,6 +14,7 @@ class WorkoutViewController: UIViewController {
     var xAcc: [Float] = [3.0]
     var yAcc: [Float] = [3.0]
     var zAcc: [Float] = [3.0]
+    var up_acc_iso: [Float] = [3.0]
     var accAvgs: [Float] = [3.0]
     var accPeaks: [Float] = [3.0]
     
@@ -170,7 +171,8 @@ class WorkoutViewController: UIViewController {
     @IBAction func displayGraph() {
         let vc1 = storyboard?.instantiateViewController(identifier: "GraphVC") as! GraphViewController
         vc1.modalPresentationStyle = .fullScreen
-        UserData.tempUpVel = up_vel_iso
+        UserData.tempUpData.append(up_acc_iso)
+        UserData.tempUpData.append(up_vel_iso)
         present(vc1, animated: true)
     }
     
@@ -202,7 +204,7 @@ class WorkoutViewController: UIViewController {
         // get and return rest of data
         var lwr: Int = 0
         var upr: Int = 0
-        var up_acc_iso: [Float] = [0.0]
+        
         (lwr, upr) = dp.set_range(up_acc)
         (up_vel_iso, up_acc_iso) = dp.in_rep_slope(lwr, upr, up_vel, up_acc)
             
