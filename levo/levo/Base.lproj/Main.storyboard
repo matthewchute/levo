@@ -106,18 +106,40 @@
                                 <color key="textColor" systemColor="systemOrangeColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sYp-6Y-4ip" customClass="LineChartView" customModule="Charts">
+                                <rect key="frame" x="0.0" y="100.5" width="414" height="400"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="400" id="Iut-25-tcc"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T6Q-FZ-BRO">
+                                <rect key="frame" x="20" y="510.5" width="374" height="29"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <color key="textColor" red="0.098039215690000001" green="0.2274509804" blue="0.43529411759999997" alpha="0.8980392157" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="3Lf-p7-BOB"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="sYp-6Y-4ip" firstAttribute="leading" secondItem="3Lf-p7-BOB" secondAttribute="leading" id="2MM-QT-ByT"/>
+                            <constraint firstItem="T6Q-FZ-BRO" firstAttribute="top" secondItem="sYp-6Y-4ip" secondAttribute="bottom" constant="10" id="7Io-Ay-bq2"/>
+                            <constraint firstItem="sYp-6Y-4ip" firstAttribute="top" secondItem="uFI-Rn-FxW" secondAttribute="bottom" constant="5" id="8kE-WE-ixg"/>
+                            <constraint firstItem="3Lf-p7-BOB" firstAttribute="trailing" secondItem="sYp-6Y-4ip" secondAttribute="trailing" id="NPf-0k-nHy"/>
                             <constraint firstItem="6eH-eZ-Ema" firstAttribute="top" secondItem="3Lf-p7-BOB" secondAttribute="top" constant="20" id="OLE-By-XIV"/>
                             <constraint firstItem="6eH-eZ-Ema" firstAttribute="leading" secondItem="3Lf-p7-BOB" secondAttribute="leading" constant="20" id="cnl-bV-h8G"/>
                             <constraint firstItem="uFI-Rn-FxW" firstAttribute="top" secondItem="3Lf-p7-BOB" secondAttribute="top" constant="20" id="dgY-8e-JgT"/>
+                            <constraint firstItem="T6Q-FZ-BRO" firstAttribute="leading" secondItem="3Lf-p7-BOB" secondAttribute="leading" constant="20" id="ej3-X2-Aoz"/>
+                            <constraint firstItem="3Lf-p7-BOB" firstAttribute="trailing" secondItem="T6Q-FZ-BRO" secondAttribute="trailing" constant="20" id="kg3-r1-bdF"/>
+                            <constraint firstItem="T6Q-FZ-BRO" firstAttribute="centerX" secondItem="gEH-rs-K8C" secondAttribute="centerX" id="unK-SU-t2z"/>
                             <constraint firstItem="uFI-Rn-FxW" firstAttribute="centerX" secondItem="gEH-rs-K8C" secondAttribute="centerX" id="xB8-Qd-MDb"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="backBtn" destination="6eH-eZ-Ema" id="G2D-wj-MvH"/>
+                        <outlet property="chart" destination="sYp-6Y-4ip" id="R73-8Y-bST"/>
+                        <outlet property="mainLbl" destination="T6Q-FZ-BRO" id="MMC-UO-k4o"/>
                         <outlet property="titleLbl" destination="uFI-Rn-FxW" id="vMb-UI-VAw"/>
                     </connections>
                 </viewController>
