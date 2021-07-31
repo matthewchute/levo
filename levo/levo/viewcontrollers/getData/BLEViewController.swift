@@ -33,24 +33,13 @@ class BLEViewController: UIViewController, CBCentralManagerDelegate, CBPeriphera
     @IBOutlet weak var back_btn: UIButton!
     
     @IBAction func didTap(_ sender: Any) {
-        let xdata: [Float] = xAcc
-        let ydata: [Float] = yAcc
-        let zdata: [Float] = zAcc
-        let xagl: [Float] = agl2gndX
-        let yagl: [Float] = agl2gndY
-        let zagl: [Float] = agl2gndZ
-        let sp: Float = sample_period
-        let xgyro: [Float] = xGyro
-        let ygyro: [Float] = yGyro
-        let zgyro: [Float] = zGyro
-        NotificationCenter.default.post(name: Notification.Name("data"), object: (xdata, ydata, zdata, xagl, yagl, zagl, sp, xgyro, ygyro, zgyro))
         dismiss(animated: true, completion: nil)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         centralManager = CBCentralManager(delegate: self, queue: nil)
-        back_btn.setTitle("Back", for: .normal)
+        back_btn.setTitle("Cancel Set", for: .normal)
         back_btn.layer.cornerRadius = 20
     }
     
@@ -59,7 +48,6 @@ class BLEViewController: UIViewController, CBCentralManagerDelegate, CBPeriphera
         let stringArr: [String] = str.components(separatedBy: ",")
         if stringArr[0] == "EOF" {
             sample_period = Float(stringArr[1]) ?? 0.0
-            data_label.text = "Complete. \nHit the Back Button."
             print("Complete")
             done_flag = true
         } else {
@@ -211,6 +199,18 @@ extension BLEViewController: CBPeripheralManagerDelegate {
             counter += 2
         } else {
             centralManager.cancelPeripheralConnection(myPeripheral)
+            let xdata: [Float] = xAcc
+            let ydata: [Float] = yAcc
+            let zdata: [Float] = zAcc
+            let xagl: [Float] = agl2gndX
+            let yagl: [Float] = agl2gndY
+            let zagl: [Float] = agl2gndZ
+            let sp: Float = sample_period
+            let xgyro: [Float] = xGyro
+            let ygyro: [Float] = yGyro
+            let zgyro: [Float] = zGyro
+            NotificationCenter.default.post(name: Notification.Name("data"), object: (xdata, ydata, zdata, xagl, yagl, zagl, sp, xgyro, ygyro, zgyro))
+            dismiss(animated: true, completion: nil)
         }
     }
 }
