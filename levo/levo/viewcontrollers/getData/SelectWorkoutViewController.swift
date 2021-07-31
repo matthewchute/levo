@@ -22,6 +22,7 @@ class SelectWorkoutViewController: UIViewController {
         cleanBtn.layer.cornerRadius = 20
         
         titleLbl.text = "Exercises"
+        subTitleLbl.text = "Select which exercise you \n would like to track."
         
         backBtn.frame = CGRect(x: 25, y: 25, width: 25, height: 25)
         backBtn.imageEdgeInsets = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
@@ -36,6 +37,7 @@ class SelectWorkoutViewController: UIViewController {
     @IBOutlet weak var cleanBtn: UIButton!
     @IBOutlet weak var backBtn: UIButton!
     @IBOutlet weak var titleLbl: UILabel!
+    @IBOutlet weak var subTitleLbl: UILabel!
     
     @IBAction func didTapBackBtn() {
         dismiss(animated: true, completion: nil)

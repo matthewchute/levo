@@ -581,15 +581,25 @@
                                 <color key="textColor" systemColor="systemOrangeColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QAc-KH-l01">
+                                <rect key="frame" x="20" y="170.5" width="374" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" red="0.098039215690000001" green="0.2274509804" blue="0.43529411759999997" alpha="0.8980392157" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Ftc-Fj-i3e"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="BMW-aH-Ybo" firstAttribute="centerX" secondItem="Eq0-c9-4Yl" secondAttribute="centerX" id="DyV-7C-AWC"/>
                             <constraint firstItem="Qy3-db-d2s" firstAttribute="top" secondItem="Ftc-Fj-i3e" secondAttribute="top" constant="20" id="FtL-kN-pB9"/>
+                            <constraint firstItem="Ftc-Fj-i3e" firstAttribute="trailing" secondItem="QAc-KH-l01" secondAttribute="trailing" constant="20" id="LnJ-lp-Mev"/>
                             <constraint firstItem="J9f-2c-Hs9" firstAttribute="top" secondItem="Ftc-Fj-i3e" secondAttribute="top" constant="20" id="My8-li-bPD"/>
+                            <constraint firstItem="QAc-KH-l01" firstAttribute="centerX" secondItem="Eq0-c9-4Yl" secondAttribute="centerX" id="Oso-5e-Vt5"/>
                             <constraint firstItem="BMW-aH-Ybo" firstAttribute="top" secondItem="Qy3-db-d2s" secondAttribute="bottom" constant="200" id="STb-an-V9B"/>
                             <constraint firstItem="BMW-aH-Ybo" firstAttribute="leading" secondItem="Ftc-Fj-i3e" secondAttribute="leading" constant="20" id="WZI-Lp-kdP"/>
+                            <constraint firstItem="QAc-KH-l01" firstAttribute="leading" secondItem="Ftc-Fj-i3e" secondAttribute="leading" constant="20" id="Ym5-fS-USi"/>
+                            <constraint firstItem="QAc-KH-l01" firstAttribute="top" secondItem="J9f-2c-Hs9" secondAttribute="bottom" constant="75" id="fZ8-q6-Jbp"/>
                             <constraint firstItem="Qy3-db-d2s" firstAttribute="leading" secondItem="Ftc-Fj-i3e" secondAttribute="leading" constant="20" id="uRR-vM-Xpl"/>
                             <constraint firstItem="J9f-2c-Hs9" firstAttribute="centerX" secondItem="Eq0-c9-4Yl" secondAttribute="centerX" id="vr1-k3-bNF"/>
                             <constraint firstItem="Ftc-Fj-i3e" firstAttribute="trailing" secondItem="BMW-aH-Ybo" secondAttribute="trailing" constant="20" id="ylp-lY-dYi"/>
@@ -601,12 +611,13 @@
                         <outlet property="cleanBtn" destination="Tps-nr-6eg" id="Th0-bf-Puh"/>
                         <outlet property="deadliftBtn" destination="Xeb-gq-sNg" id="0Y5-fe-f1T"/>
                         <outlet property="squatBtn" destination="LDW-RA-iW0" id="qNW-Ci-jNm"/>
+                        <outlet property="subTitleLbl" destination="QAc-KH-l01" id="xxK-rE-4Rm"/>
                         <outlet property="titleLbl" destination="J9f-2c-Hs9" id="Nln-Gu-Wqa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W9b-mv-GzP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="248" y="38"/>
+            <point key="canvasLocation" x="247.82608695652175" y="37.5"/>
         </scene>
         <!--Previous Workouts View Controller-->
         <scene sceneID="upa-bl-ZRS">
