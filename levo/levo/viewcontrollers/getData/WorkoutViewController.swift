@@ -52,6 +52,7 @@ class WorkoutViewController: UIViewController {
         
         // get data
         NotificationCenter.default.addObserver(self, selector: #selector(catchData(_:)), name: Notification.Name("data"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(catchCancel(_:)), name: Notification.Name("cancel"), object: nil)
         
         // UI
         startBtn.setTitle("Start", for: .normal)
@@ -116,6 +117,10 @@ class WorkoutViewController: UIViewController {
         seventhStr.append(fifthStr)
         seventhStr.append(sixthStr)
         return seventhStr
+    }
+    
+    @objc func catchCancel(_ noti: Notification) {
+        mainLbl.attributedText = makeFont("Excercise has been", " Canceled.\n\n", "To start a new set, hit the ", "Start ", "button below.")
     }
     
     @objc func catchData(_ noti: Notification) {

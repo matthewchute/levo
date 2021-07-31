@@ -33,6 +33,8 @@ class BLEViewController: UIViewController, CBCentralManagerDelegate, CBPeriphera
     @IBOutlet weak var back_btn: UIButton!
     
     @IBAction func didTap(_ sender: Any) {
+        let cancelFlag = true
+        NotificationCenter.default.post(name: Notification.Name("cancel"), object: cancelFlag)
         dismiss(animated: true, completion: nil)
     }
     
