@@ -143,7 +143,18 @@ class WorkoutViewController: UIViewController {
             startBtn.setTitle("Start Another Set", for: .normal)
             
             // update label
-            mainLbl.attributedText = makeFont1("\n\nReps: ", "\(num_reps)", "\n\nAverage Velocity per Rep: ", "\(velAvgs)", "\n\nPeak Velocity per Rep: ", "\(velPeaks)", "Set: ", "\(UserData.exer.num_sets)")
+            var velPeaksVals: String = ""
+            var velAvgsVals: String = ""
+            for i in 0..<velPeaks.count {
+                if i == velPeaks.count-1 {
+                    velPeaksVals.append("\(String(format: "%.2f", velPeaks[i]))")
+                    velAvgsVals.append("\(String(format: "%.2f", velAvgs[i]))")
+                } else {
+                    velPeaksVals.append("\(String(format: "%.2f", velPeaks[i])),   ")
+                    velAvgsVals.append("\(String(format: "%.2f", velAvgs[i])),   ")
+                }
+            }
+            mainLbl.attributedText = makeFont1("\n\n# of Reps:\n", "\(num_reps)", "\n\nAverage Velocity per Rep (m/s):\n", "\(velAvgsVals)", "\n\nPeak Velocity per Rep (m/s):\n", "\(velPeaksVals)", "Set: ", "\(UserData.exer.num_sets)")
             mainLbl.textAlignment = .left
             
             // data management
