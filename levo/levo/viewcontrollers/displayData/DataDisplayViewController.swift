@@ -22,29 +22,19 @@ class DataDisplayViewController: UIViewController, ChartViewDelegate {
         backBtn.tintColor = .systemOrange
         
         // charts
-        //view.addSubview(lineChartView)
-        //lineChartView.centerInSuperview()
-        //lineChartView.width(to: view)
-        //lineChartView.heightToWidth(of: view)
-        
         chart.backgroundColor = .systemBlue
         chart.rightAxis.enabled = false
-        
-        // Y-Axis customization. No need
         let yAxis = chart.leftAxis
         yAxis.labelFont = .boldSystemFont(ofSize: 12)
         yAxis.setLabelCount(6, force: false)
         yAxis.labelTextColor = .white
         yAxis.axisLineColor = .white
         yAxis.labelPosition = .outsideChart
-        
         chart.xAxis.labelPosition = .bottom
         chart.xAxis.setLabelCount(6, force: false)
         chart.xAxis.labelTextColor = .white
-        
         chart.animate(xAxisDuration: 2.5)
-        
-        setData(data: UserData.tempUpVel, axis: "Upward Velocity")
+        setData(data: UserData.past_exer[UserData.whichCell].sets[UserData.whichSet].upVelData, axis: "Upward Velocity")
         
         // update label
         var velPeaksVals: String = ""
@@ -66,6 +56,7 @@ class DataDisplayViewController: UIViewController, ChartViewDelegate {
     @IBOutlet weak var backBtn: UIButton!
     @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var mainLbl: UILabel!
+    @IBOutlet weak var chart: LineChartView!
     
     @IBAction func goBack() {
         dismiss(animated: true, completion: nil)
@@ -95,30 +86,6 @@ class DataDisplayViewController: UIViewController, ChartViewDelegate {
     func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
         print(entry)
     }
-    
-    @IBOutlet weak var chart: LineChartView!
-    
-    // Charts Methods:
-//    lazy var lineChartView: LineChartView = {
-//        let chartView = LineChartView()
-//        chartView.backgroundColor = .systemBlue
-//        chartView.rightAxis.enabled = false
-//
-//        // Y-Axis customization. No need
-//        let yAxis = chartView.leftAxis
-//        yAxis.labelFont = .boldSystemFont(ofSize: 12)
-//        yAxis.setLabelCount(6, force: false)
-//        yAxis.labelTextColor = .white
-//        yAxis.axisLineColor = .white
-//        yAxis.labelPosition = .outsideChart
-//
-//        chartView.xAxis.labelPosition = .bottom
-//        chartView.xAxis.setLabelCount(6, force: false)
-//        chartView.xAxis.labelTextColor = .white
-//
-//        chartView.animate(xAxisDuration: 2.5)
-//        return chartView
-//    }()
     
     func setData(data: [Float], axis: String) {
         let set1 = LineChartDataSet(entries: prepValues(data), label: axis)

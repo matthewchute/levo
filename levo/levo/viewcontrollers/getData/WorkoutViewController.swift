@@ -60,7 +60,7 @@ class WorkoutViewController: UIViewController {
         graphBtn.setTitle("View Graphs", for: .normal)
         graphBtn.layer.cornerRadius = 20
         graphBtn.isHidden = true
-        endWorkoutBtn.setTitle("End Workout", for: .normal)
+        endWorkoutBtn.setTitle("End Exercise", for: .normal)
         endWorkoutBtn.layer.cornerRadius = 20
         endWorkoutBtn.isHidden = true
         titleLbl.text = UserData.workoutType
@@ -165,7 +165,7 @@ class WorkoutViewController: UIViewController {
             mainLbl.textAlignment = .left
             
             // data management
-            UserData.exer.sets.append(set(reps: num_reps, avgVel: velAvgs, peakVel: velPeaks))
+            UserData.exer.sets.append(set(reps: num_reps, upVelData: up_vel_iso, avgVel: velAvgs, peakVel: velPeaks))
             
             UserData.tempUpAcc = up_acc_iso
             UserData.tempUpVel = up_vel_iso
@@ -181,11 +181,9 @@ class WorkoutViewController: UIViewController {
     }
     
     @IBAction func endWorkout() {
-        let vc2 = storyboard?.instantiateViewController(identifier: "Landing") as! LandingViewController
-        vc2.modalPresentationStyle = .fullScreen
         UserData.past_exer.append(UserData.exer)
-        UserData.exer = exercise(type: "null", num_sets: 0, date: "", sets: [])
-        present(vc2, animated: true)
+        UserData.exer = exercise(type: "null", num_sets: 0, date: "null", sets: [])
+        dismiss(animated: true, completion: nil)
     }
     
     @IBAction func displayGraph() {
