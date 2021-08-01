@@ -10,7 +10,7 @@ import UIKit
 class SetDisplayViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        UserData.past_exer[UserData.whichCell].num_sets
+        return UserData.past_exer[UserData.whichCell].num_sets
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
