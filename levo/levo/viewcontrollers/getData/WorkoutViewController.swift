@@ -202,22 +202,22 @@ class WorkoutViewController: UIViewController {
             
         //let angularDispXZPlane: [Float] = dp.noise_comp(dp.trap_rule(dp.gyro_smooth(yGyro), sample_period), yGyro.count)
                 
-        let angularDispXZPlane: [Float] = dp.trap_rule(dp.gyro_smooth(yGyro), sample_period)
+        let angularDispYZPlane: [Float] = dp.trap_rule(dp.gyro_smooth(xGyro), sample_period)
                 
         //agldisp = angularDispXZPlane
-        _ = dp.gyro_crush_acc(yGyro, accAx1: zAcc, accAx2: xAcc)
+        _ = dp.gyro_crush_acc(xGyro, accAx1: zAcc, accAx2: yAcc)
                 
-        let agl_adjZ = dp.gyro_comb_angle(gyro: angularDispXZPlane, agl2gnd: agl2gndZ)
-        let agl_adjX = dp.gyro_comb_angle(gyro: angularDispXZPlane, agl2gnd: agl2gndX)
+        let agl_adjZ = dp.gyro_comb_angle(gyro: angularDispYZPlane, agl2gnd: agl2gndZ)
+        let agl_adjY = dp.gyro_comb_angle(gyro: angularDispYZPlane, agl2gnd: agl2gndY)
         
         // get velocity in each axis
         xVel = dp.noise_comp(dp.trap_rule(xAcc, sample_period), xAcc.count)
-        //yVel = noise_comp(trap_rule(yAcc), yAcc.count)
+        yVel = dp.noise_comp(dp.trap_rule(yAcc, sample_period), yAcc.count)
         zVel = dp.noise_comp(dp.trap_rule(zAcc, sample_period), zAcc.count)
         
         // get upward acc and vel
-        let up_acc = dp.orientation_correction([xAcc],[zAcc],[agl_adjX],[agl_adjZ])
-        let up_vel = dp.orientation_correction([xVel],[zVel],[agl_adjX],[agl_adjZ])
+        let up_acc = dp.orientation_correction([yAcc],[zAcc],[agl_adjY],[agl_adjZ])
+        let up_vel = dp.orientation_correction([yVel],[zVel],[agl_adjY],[agl_adjZ])
         
         // get and return rest of data
         var lwr: Int = 0
