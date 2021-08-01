@@ -18,23 +18,24 @@ struct exercise {
 
 struct set {
     var reps: Int
+    var upVelData: [Float]
     var avgVel: [Float]
     var peakVel: [Float]
 }
 
 class UserData {
     
-    static var workoutType: String = "None"
-    
     static var personal: user = user(firstName: "John", lastName: "Doe", email: "jdoe@sfu.ca", age: 24, height: 183.0, weight: 200.0)
     
-    static var exer: exercise = exercise(type: "null", num_sets: 0, date: "", sets: [])
-    
-    static var past_exer: [exercise] = [exercise(type: "Squat", num_sets: 1, date: "Today", sets: [set(reps: 8, avgVel: [0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0], peakVel: [0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0])])]
+    static var workoutType: String = "None"
     
     static var tempUpAcc: [Float] = []
     
     static var tempUpVel: [Float] = []
+    
+    static var exer: exercise = exercise(type: "null", num_sets: 0, date: "", sets: [])
+    
+    static var past_exer: [exercise] = []
     
     static var whichCell: Int = 0
     
