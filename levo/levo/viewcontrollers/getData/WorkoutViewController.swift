@@ -201,6 +201,10 @@ class WorkoutViewController: UIViewController {
     func process_data() -> (Int, [Float], [Float], [Float], [Float], [[Int]]) {
             
         //let angularDispXZPlane: [Float] = dp.noise_comp(dp.trap_rule(dp.gyro_smooth(yGyro), sample_period), yGyro.count)
+        
+        for i in 0..<yAcc.count {
+            yAcc[i] -= 0.3
+        }
                 
         let angularDispYZPlane: [Float] = dp.trap_rule(dp.gyro_smooth(xGyro), sample_period)
                 
