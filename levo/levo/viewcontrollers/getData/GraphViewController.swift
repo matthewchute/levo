@@ -31,7 +31,7 @@ class GraphViewController: UIViewController, ChartViewDelegate {
         lineChartView.width(to: view)
         lineChartView.heightToWidth(of: view)
         
-        setData(data: UserData.tempUpVel, axis: "Upward Velocity")
+        setData(data: UserData.tempUpVel, axis: "Upward Velocity (m/s)")
 
     }
     
@@ -45,11 +45,13 @@ class GraphViewController: UIViewController, ChartViewDelegate {
     }
     
     @IBAction func accTap() {
-        setData(data: UserData.tempUpAcc, axis: "Upward Acceleration")
+        titleLbl.text = "Upward Acceleration"
+        setData(data: UserData.tempUpAcc, axis: "Upward Acceleration (m/s^2)")
     }
     
     @IBAction func velTap() {
-        setData(data: UserData.tempUpVel, axis: "Upward Velocity")
+        titleLbl.text = "Upward Velocity"
+        setData(data: UserData.tempUpVel, axis: "Upward Velocity (m/s)")
     }
     
     func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {

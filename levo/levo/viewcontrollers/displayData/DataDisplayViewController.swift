@@ -34,7 +34,7 @@ class DataDisplayViewController: UIViewController, ChartViewDelegate {
         chart.xAxis.setLabelCount(6, force: false)
         chart.xAxis.labelTextColor = .white
         chart.animate(xAxisDuration: 2.5)
-        setData(data: UserData.past_exer[UserData.whichCell].sets[UserData.whichSet].upVelData, axis: "Upward Velocity")
+        setData(data: UserData.past_exer[UserData.whichCell].sets[UserData.whichSet].upVelData, axis: "Upward Velocity (m/s)")
         
         // update label
         var velPeaksVals: String = ""
