@@ -28,6 +28,7 @@ class BLEViewController: UIViewController, CBCentralManagerDelegate, CBPeriphera
     var xGyro: [Float] = []
     var yGyro: [Float] = []
     var zGyro: [Float] = []
+    var test: Int = 0
     
     @IBOutlet weak var data_label: UILabel!
     @IBOutlet weak var back_btn: UIButton!
@@ -196,7 +197,8 @@ extension BLEViewController: CBPeripheralManagerDelegate {
         parseString(str: characteristicASCIIValue as String)
 
         if !done_flag {
-            //print("\(xGyro[counter]) \(xGyro[counter+1]) \n \(yGyro[counter]) \(yGyro[counter+1]) \n \(zGyro[counter]) \(zGyro[counter+1])")
+            test+=1
+            print("\(test)")
             data_label.text = "Processing Data...\n Please wait."
             counter += 2
         } else {

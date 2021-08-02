@@ -14,11 +14,9 @@ class SetDisplayViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
+        let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
         
-        cell.textLabel?.text = "Set: \(indexPath.row+1)"
-        
-        cell.detailTextLabel?.text = "Reps: \(UserData.past_exer[UserData.whichCell].sets[indexPath.row].reps.description)"
+        cell.textLabel?.text = "View Set \(indexPath.row+1)"
         
         return cell
     }

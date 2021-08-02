@@ -314,7 +314,7 @@ class DataProcessing {
                 }
             }
             
-            if t1_flag == 1 && t2_flag == 1 && (t2_idx - t1_idx) > 15 {
+            if t1_flag == 1 && t2_flag == 1 && (t2_idx - t1_idx) > 25 {
                 var avgTempVel: Float = 0.0
                 var peakTempVel: Float = 0.0
                 var avgTempAcc: Float = 0.0
