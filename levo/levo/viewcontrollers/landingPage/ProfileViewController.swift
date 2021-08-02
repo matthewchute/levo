@@ -12,7 +12,12 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        NotificationCenter.default.addObserver(self, selector: #selector(catchPersonal(_:)), name: Notification.Name("personal"), object: nil)
+        
         titleLbl.text = "Profile"
+        
+        editBtn.setTitle("Edit", for: .normal)
+        editBtn.layer.cornerRadius = 20
         
         firstName.attributedText = makeFont2("First Name: ", UserData.personal.firstName)
         lastName.attributedText = makeFont2("Last Name: ", UserData.personal.lastName)
@@ -25,6 +30,17 @@ class ProfileViewController: UIViewController {
         backBtn.imageEdgeInsets = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
         backBtn.tintColor = .systemOrange
         
+    }
+    
+    @objc func catchPersonal(_ noti: Notification) {
+        if let (_, _, _, _, _, _) = noti.object as! (String, String, String, Int, Double, Double)? {
+            firstName.attributedText = makeFont2("First Name: ", UserData.personal.firstName)
+            lastName.attributedText = makeFont2("Last Name: ", UserData.personal.lastName)
+            email.attributedText = makeFont2("Email: ", UserData.personal.email)
+            age.attributedText = makeFont2("Age: ", String(UserData.personal.age))
+            height.attributedText = makeFont3("Height: ", String(UserData.personal.height), " cm")
+            weight.attributedText = makeFont3("Weight: ", String(UserData.personal.weight), " lbs")
+        }
     }
     
     func makeFont2(_ firstPart: String, _ secondPart: String) -> NSMutableAttributedString {
@@ -55,10 +71,17 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var age: UILabel!
     @IBOutlet weak var height: UILabel!
     @IBOutlet weak var weight: UILabel!
+    @IBOutlet weak var editBtn: UIButton!
     
     
     @IBAction func goBack() {
         dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func tapEdit() {
+        let vc = storyboard?.instantiateViewController(identifier: "EditProfile") as! EditProfileViewController
+        vc.modalPresentationStyle = .fullScreen
+        present(vc, animated: true)
     }
     
 
