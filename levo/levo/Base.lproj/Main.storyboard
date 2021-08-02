@@ -803,6 +803,9 @@
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <action selector="doneEditFN:" destination="6Tb-Cw-Ga4" eventType="primaryActionTriggered" id="r6v-Jg-Eeo"/>
+                                                </connections>
                                             </textField>
                                         </subviews>
                                     </stackView>
@@ -822,6 +825,9 @@
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <action selector="doneEditLN:" destination="6Tb-Cw-Ga4" eventType="primaryActionTriggered" id="fJI-ZD-bAC"/>
+                                                </connections>
                                             </textField>
                                         </subviews>
                                     </stackView>
@@ -841,6 +847,9 @@
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <action selector="doneEditE:" destination="6Tb-Cw-Ga4" eventType="primaryActionTriggered" id="NOi-so-Osd"/>
+                                                </connections>
                                             </textField>
                                         </subviews>
                                     </stackView>
@@ -860,6 +869,9 @@
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <action selector="doneEditA:" destination="6Tb-Cw-Ga4" eventType="primaryActionTriggered" id="HyB-P6-ebV"/>
+                                                </connections>
                                             </textField>
                                         </subviews>
                                     </stackView>
@@ -879,6 +891,9 @@
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <action selector="doneEditH:" destination="6Tb-Cw-Ga4" eventType="primaryActionTriggered" id="cZG-Gf-9dD"/>
+                                                </connections>
                                             </textField>
                                         </subviews>
                                     </stackView>
@@ -898,6 +913,9 @@
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <action selector="doneEditW:" destination="6Tb-Cw-Ga4" eventType="primaryActionTriggered" id="bE1-Yc-ENn"/>
+                                                </connections>
                                             </textField>
                                         </subviews>
                                     </stackView>

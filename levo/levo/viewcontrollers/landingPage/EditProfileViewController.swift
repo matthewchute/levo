@@ -49,7 +49,33 @@ class EditProfileViewController: UIViewController {
     @IBOutlet weak var ageTF: UITextField!
     @IBOutlet weak var heightTF: UITextField!
     @IBOutlet weak var weightTF: UITextField!
+
+    @IBAction func doneEditFN(_ sender: UITextField) {
+        sender.resignFirstResponder()
+    }
     
+    @IBAction func doneEditLN(_ sender: UITextField) {
+        sender.resignFirstResponder()
+    }
+    
+    
+    @IBAction func doneEditE(_ sender: UITextField) {
+        sender.resignFirstResponder()
+    }
+    
+    
+    @IBAction func doneEditA(_ sender: UITextField) {
+        sender.resignFirstResponder()
+    }
+    
+    @IBAction func doneEditH(_ sender: UITextField) {
+        sender.resignFirstResponder()
+    }
+    
+    
+    @IBAction func doneEditW(_ sender: UITextField) {
+        sender.resignFirstResponder()
+    }
     
     @IBAction func tapCancel() {
         dismiss(animated: true, completion: nil)
@@ -65,5 +91,10 @@ class EditProfileViewController: UIViewController {
         NotificationCenter.default.post(name: Notification.Name("personal"), object: (UserData.personal.firstName, UserData.personal.lastName, UserData.personal.email, UserData.personal.age, UserData.personal.height, UserData.personal.weight))
         dismiss(animated: true, completion: nil)
     }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+            self.view.endEditing(true)
+            return false
+        }
 
 }
