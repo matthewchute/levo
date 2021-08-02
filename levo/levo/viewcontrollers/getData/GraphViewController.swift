@@ -20,9 +20,9 @@ class GraphViewController: UIViewController, ChartViewDelegate {
         backBtn.layer.cornerRadius = 20
         
         titleLbl.text = "Upward Velocity"
-        accBtn.setTitle("Acc", for: .normal)
+        accBtn.setTitle("Acceleration", for: .normal)
         accBtn.layer.cornerRadius = 20
-        velBtn.setTitle("Velo", for: .normal)
+        velBtn.setTitle("Velocity", for: .normal)
         velBtn.layer.cornerRadius = 20
         
         // charts

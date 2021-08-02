@@ -189,7 +189,7 @@ class DataProcessing {
         repsDmet_dt.append(dmet_dt[lwr])
         
         for i in 1...(upr-lwr-1) {
-            if 0.4 > abs(met[i+lwr] - met[i+lwr-1]) {
+            if 0.15 > abs(met[i+lwr] - met[i+lwr-1]) {
                 repsMet.append(met[i+lwr]+discon_const)
                 repsDmet_dt.append(met[i+lwr]+discon_const)
             } else {
@@ -222,11 +222,11 @@ class DataProcessing {
         prev = 0.0
         
         for i in 1...metCorrected.count-1 {
-            if abs(prev) < 0.2 && abs(dmet_dt[i+lwr-1]) < 0.2 && abs(dmet_dt[i+lwr+1]) < 0.2 && abs(dmet_dt[i+lwr+2]) < 0.2 && abs(dmet_dt[i+lwr+3]) < 0.2 && abs(dmet_dt[i+lwr+4]) < 0.2 {
+            if abs(prev) < 0.1 && abs(dmet_dt[i+lwr-1]) < 0.1 && abs(dmet_dt[i+lwr+1]) < 0.1 && abs(dmet_dt[i+lwr+2]) < 0.1 && abs(dmet_dt[i+lwr+3]) < 0.1 && abs(dmet_dt[i+lwr+4]) < 0.1 {
                 metCorrected[i] = 0.0
                 first_move = 1
                 prev = metCorrected[i]
-            } else if abs(dmet_dt[i+lwr-1]) < 0.2 && abs(dmet_dt[i+lwr+1]) < 0.2 && abs(dmet_dt[i+lwr+2]) < 0.2 && abs(dmet_dt[i+lwr+3]) < 0.2 && abs(dmet_dt[i+lwr+4]) < 0.2 {
+            } else if abs(dmet_dt[i+lwr-1]) < 0.1 && abs(dmet_dt[i+lwr+1]) < 0.1 && abs(dmet_dt[i+lwr+2]) < 0.1 && abs(dmet_dt[i+lwr+3]) < 0.1 && abs(dmet_dt[i+lwr+4]) < 0.1 {
                 metCorrected[i] = prev
                 first_move = 1
             } else {
