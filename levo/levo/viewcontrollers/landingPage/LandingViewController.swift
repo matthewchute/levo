@@ -23,6 +23,7 @@ class LandingViewController: UIViewController {
         settingsButton.frame = CGRect(x: 100, y: 100, width: 100, height: 100)
         settingsButton.imageEdgeInsets = UIEdgeInsets(top: 30, left: 30, bottom: 30, right: 30)
         settingsButton.tintColor = .systemOrange
+        settingsButton.isHidden = true
         
     }
     
