@@ -1,2 +1,2 @@
 # levo
-test
+Barbell attachable exercise metric tracker.  
