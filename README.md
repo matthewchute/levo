@@ -1,2 +1,2 @@
 # levo
-Barbell attachable exercise metric tracker.  
+![levo](assets/levo.png)
